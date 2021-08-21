@@ -1,7 +1,7 @@
 {
 	"name": "a-b-c",
 	"version": "0.0.1",
-	"description": "null",
+	"description": "Some description this turned out to be!",
 	"homepage": "",
 	"repository": {
 		"type": "git",
@@ -16,7 +16,7 @@
 		"build-dist": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./build-dist.ps1",
 		"build": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./build-all.ps1"
 	},
-	"author": "null",
+	"author": "Alexandru BOIA <alexandru.boia@gmail.com>",
 	"license": "BSD-3-Clause",
 	"browser": "dist/index.umd2.js",
 	"files": [
