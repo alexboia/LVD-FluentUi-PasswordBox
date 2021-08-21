@@ -1,5 +1,5 @@
-import PasswordBox from './PasswordBox.jsx';
+import c from './c.jsx';
 
 export {
-	PasswordBox
+	c
 };

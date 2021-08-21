@@ -1,7 +1,7 @@
 {
-	"name": "lvd-fluentui-passwordbox",
+	"name": "a-b-c",
 	"version": "0.0.1",
-	"description": "",
+	"description": "null",
 	"homepage": "",
 	"repository": {
 		"type": "git",
@@ -16,7 +16,7 @@
 		"build-dist": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./build-dist.ps1",
 		"build": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./build-all.ps1"
 	},
-	"author": "Alexandru Boia <alexandru.boia@gmail.com>",
+	"author": "null",
 	"license": "BSD-3-Clause",
 	"browser": "dist/index.umd2.js",
 	"files": [
