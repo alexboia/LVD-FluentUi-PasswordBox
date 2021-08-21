@@ -1,5 +1,5 @@
 import React from 'react';
-import PasswordBox from './components/PasswordBox.jsx';
+import c from './components/c.jsx';
 
 export default class App extends React.Component {
 	constructor(props) {
@@ -8,7 +8,7 @@ export default class App extends React.Component {
 
 	render() {
 		return (
-			<PasswordBox 
+			<c 
 				
 			/>
 		);
