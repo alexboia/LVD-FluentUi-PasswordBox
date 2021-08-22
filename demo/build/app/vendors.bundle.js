@@ -1397,116 +1397,127 @@ module.exports = function() {
 
 
 /***/ }),
-/* 35 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ThemeProvider": () => (/* binding */ ThemeProvider)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _useThemeProviderClasses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(79);
-/* harmony import */ var _useThemeProvider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(38);
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(88);
-/* harmony import */ var _fluentui_react_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(36);
-
-
-
-
-
-/**
- * ThemeProvider, used for providing css variables and registering stylesheets.
- */
-var ThemeProvider = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function (props, ref) {
-    var rootRef = (0,_fluentui_react_hooks__WEBPACK_IMPORTED_MODULE_1__.useMergedRefs)(ref, react__WEBPACK_IMPORTED_MODULE_0__.useRef(null));
-    var _a = (0,_useThemeProvider__WEBPACK_IMPORTED_MODULE_2__.useThemeProvider)(props, {
-        ref: rootRef,
-        as: 'div',
-        applyTo: 'element',
-    }), render = _a.render, state = _a.state;
-    // Render styles.
-    (0,_useThemeProviderClasses__WEBPACK_IMPORTED_MODULE_3__.useThemeProviderClasses)(state);
-    // Apply focus rect class on key presses.
-    (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_4__.useFocusRects)(state.ref);
-    // Return the rendered content.
-    return render(state);
-});
-ThemeProvider.displayName = 'ThemeProvider';
-//# sourceMappingURL=ThemeProvider.js.map
-
-/***/ }),
+/* 35 */,
 /* 36 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "useMergedRefs": () => (/* binding */ useMergedRefs)
+/* harmony export */   "TextField": () => (/* binding */ TextField)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(37);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(37);
+/* harmony import */ var _TextField_base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(47);
+/* harmony import */ var _TextField_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(136);
 
 
-/**
- * React hook to merge multiple React refs (either MutableRefObjects or ref callbacks) into a single ref callback that
- * updates all provided refs
- * @param refs - Refs to collectively update with one ref value.
- * @returns A function with an attached "current" prop, so that it can be treated like a RefObject.
- */
-function useMergedRefs() {
-    var refs = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        refs[_i] = arguments[_i];
-    }
-    var mergedCallback = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(function (value) {
-        // Update the "current" prop hanging on the function.
-        mergedCallback.current = value;
-        for (var _i = 0, refs_1 = refs; _i < refs_1.length; _i++) {
-            var ref = refs_1[_i];
-            if (typeof ref === 'function') {
-                ref(value);
-            }
-            else if (ref) {
-                // work around the immutability of the React.Ref type
-                ref.current = value;
-            }
-        }
-    }, (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__spreadArrays)(refs));
-    return mergedCallback;
-}
-//# sourceMappingURL=useMergedRefs.js.map
+
+var TextField = (0,_Utilities__WEBPACK_IMPORTED_MODULE_0__.styled)(_TextField_base__WEBPACK_IMPORTED_MODULE_1__.TextFieldBase, _TextField_styles__WEBPACK_IMPORTED_MODULE_2__.getStyles, undefined, {
+    scope: 'TextField',
+});
+//# sourceMappingURL=TextField.js.map
 
 /***/ }),
-/* 37 */,
+/* 37 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "styled": () => (/* binding */ styled)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(44);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(45);
+/* harmony import */ var _customizations_useCustomizationSettings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(38);
+
+
+
+
+var DefaultFields = ['theme', 'styles'];
+function styled(Component, baseStyles, getProps, customizable, pure) {
+    customizable = customizable || { scope: '', fields: undefined };
+    var scope = customizable.scope, _a = customizable.fields, fields = _a === void 0 ? DefaultFields : _a;
+    var Wrapped = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function (props, forwardedRef) {
+        var styles = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
+        var settings = (0,_customizations_useCustomizationSettings__WEBPACK_IMPORTED_MODULE_1__.useCustomizationSettings)(fields, scope);
+        var customizedStyles = settings.styles, dir = settings.dir, rest = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__rest)(settings, ["styles", "dir"]);
+        var additionalProps = getProps ? getProps(props) : undefined;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        var cache = (styles.current && styles.current.__cachedInputs__) || [];
+        if (!styles.current || customizedStyles !== cache[1] || props.styles !== cache[2]) {
+            // Using styled components as the Component arg will result in nested styling arrays.
+            var concatenatedStyles = function (styleProps) {
+                return (0,_fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_3__.concatStyleSetsWithProps)(styleProps, baseStyles, customizedStyles, props.styles);
+            };
+            // The __cachedInputs__ array is attached to the function and consumed by the
+            // classNamesFunction as a list of keys to include for memoizing classnames.
+            concatenatedStyles.__cachedInputs__ = [
+                baseStyles,
+                customizedStyles,
+                props.styles,
+            ];
+            concatenatedStyles.__noStyleOverride__ =
+                !customizedStyles && !props.styles;
+            styles.current = concatenatedStyles;
+        }
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(Component, (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({ ref: forwardedRef }, rest, additionalProps, props, { styles: styles.current }));
+    });
+    // Function.prototype.name is an ES6 feature, so the cast to any is required until we're
+    // able to drop IE 11 support and compile with ES6 libs
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Wrapped.displayName = "Styled" + (Component.displayName || Component.name);
+    // This preserves backwards compatibility.
+    var pureComponent = pure ? react__WEBPACK_IMPORTED_MODULE_0__.memo(Wrapped) : Wrapped;
+    // Check if the wrapper has a displayName after it has been memoized. Then assign it to the pure component.
+    if (Wrapped.displayName) {
+        pureComponent.displayName = Wrapped.displayName;
+    }
+    return pureComponent;
+}
+//# sourceMappingURL=styled.js.map
+
+/***/ }),
 /* 38 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "useThemeProvider": () => (/* binding */ useThemeProvider)
+/* harmony export */   "useCustomizationSettings": () => (/* binding */ useCustomizationSettings)
 /* harmony export */ });
-/* harmony import */ var _renderThemeProvider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(75);
-/* harmony import */ var _useThemeProviderState__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(40);
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(39);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _Customizations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(40);
+/* harmony import */ var _CustomizerContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(39);
 
 
 
 /**
- * Returns the ThemeProvider render function and calculated state, given user input, ref, and
- * a set of default prop values.
+ * Hook to get Customizations settings from Customizations singleton or CustomizerContext.
+ * It will trigger component state update on settings change observed.
  */
-var useThemeProvider = function (props, defaultProps) {
-    var state = (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__.getPropsWithDefaults)(defaultProps, props);
-    // Apply changes to state.
-    (0,_useThemeProviderState__WEBPACK_IMPORTED_MODULE_1__.useThemeProviderState)(state);
-    return {
-        state: state,
-        render: _renderThemeProvider__WEBPACK_IMPORTED_MODULE_2__.renderThemeProvider,
-    };
-};
-//# sourceMappingURL=useThemeProvider.js.map
+function useCustomizationSettings(properties, scopeName) {
+    var forceUpdate = useForceUpdate();
+    var customizations = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_CustomizerContext__WEBPACK_IMPORTED_MODULE_1__.CustomizerContext).customizations;
+    var inCustomizerContext = customizations.inCustomizerContext;
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {
+        if (!inCustomizerContext) {
+            _Customizations__WEBPACK_IMPORTED_MODULE_2__.Customizations.observe(forceUpdate);
+        }
+        return function () {
+            if (!inCustomizerContext) {
+                _Customizations__WEBPACK_IMPORTED_MODULE_2__.Customizations.unobserve(forceUpdate);
+            }
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- exclude forceUpdate
+    }, [inCustomizerContext]);
+    return _Customizations__WEBPACK_IMPORTED_MODULE_2__.Customizations.getSettings(properties, scopeName, customizations);
+}
+function useForceUpdate() {
+    var _a = react__WEBPACK_IMPORTED_MODULE_0__.useState(0), setValue = _a[1];
+    return function () { return setValue(function (value) { return ++value; }); };
+}
+//# sourceMappingURL=useCustomizationSettings.js.map
 
 /***/ }),
 /* 39 */
@@ -1515,28 +1526,18 @@ var useThemeProvider = function (props, defaultProps) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getPropsWithDefaults": () => (/* binding */ getPropsWithDefaults)
+/* harmony export */   "CustomizerContext": () => (/* binding */ CustomizerContext)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(37);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 
-/**
- * Function to apply default values to a component props object. This function is intended for function components,
- * to maintain parity with the `defaultProps` feature of class components. It accounts for properties that are
- * specified, but undefined.
- * @param defaultProps- An object with default values for various properties
- * @param propsWithoutDefaults- The props object passed into the component
- */
-function getPropsWithDefaults(defaultProps, propsWithoutDefaults) {
-    var props = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, propsWithoutDefaults);
-    for (var _i = 0, _a = Object.keys(defaultProps); _i < _a.length; _i++) {
-        var key = _a[_i];
-        if (props[key] === undefined) {
-            props[key] = defaultProps[key];
-        }
-    }
-    return props;
-}
-//# sourceMappingURL=getPropsWithDefaults.js.map
+var CustomizerContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext({
+    customizations: {
+        inCustomizerContext: false,
+        settings: {},
+        scopedSettings: {},
+    },
+});
+//# sourceMappingURL=CustomizerContext.js.map
 
 /***/ }),
 /* 40 */
@@ -1545,58 +1546,89 @@ function getPropsWithDefaults(defaultProps, propsWithoutDefaults) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "useThemeProviderState": () => (/* binding */ useThemeProviderState)
+/* harmony export */   "Customizations": () => (/* binding */ Customizations)
 /* harmony export */ });
-/* harmony import */ var _fluentui_theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(73);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _useTheme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(45);
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(41);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(44);
+/* harmony import */ var _GlobalSettings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(41);
 
 
-
-
-var themeToIdMap = new Map();
-var getThemeId = function () {
-    var themes = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        themes[_i] = arguments[_i];
+var CustomizationsGlobalKey = 'customizations';
+var NO_CUSTOMIZATIONS = { settings: {}, scopedSettings: {}, inCustomizerContext: false };
+var _allSettings = _GlobalSettings__WEBPACK_IMPORTED_MODULE_0__.GlobalSettings.getValue(CustomizationsGlobalKey, {
+    settings: {},
+    scopedSettings: {},
+    inCustomizerContext: false,
+});
+var _events = [];
+var Customizations = /** @class */ (function () {
+    function Customizations() {
     }
-    var ids = [];
-    for (var _a = 0, themes_1 = themes; _a < themes_1.length; _a++) {
-        var theme = themes_1[_a];
-        if (theme) {
-            var id = theme.id || themeToIdMap.get(theme);
-            if (!id) {
-                id = (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__.getId)('');
-                themeToIdMap.set(theme, id);
-            }
-            ids.push(id);
+    Customizations.reset = function () {
+        _allSettings.settings = {};
+        _allSettings.scopedSettings = {};
+    };
+    /** Apply global Customization settings.
+     * @example Customizations.applySettings(\{ theme: \{...\} \});
+     */
+    Customizations.applySettings = function (settings) {
+        _allSettings.settings = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, _allSettings.settings), settings);
+        Customizations._raiseChange();
+    };
+    /** Apply Customizations to a particular named scope, like a component.
+     * @example Customizations.applyScopedSettings('Nav', \{ styles: () =\> \{\} \});
+     */
+    Customizations.applyScopedSettings = function (scopeName, settings) {
+        _allSettings.scopedSettings[scopeName] = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, _allSettings.scopedSettings[scopeName]), settings);
+        Customizations._raiseChange();
+    };
+    Customizations.getSettings = function (properties, scopeName, localSettings) {
+        if (localSettings === void 0) { localSettings = NO_CUSTOMIZATIONS; }
+        var settings = {};
+        var localScopedSettings = (scopeName && localSettings.scopedSettings[scopeName]) || {};
+        var globalScopedSettings = (scopeName && _allSettings.scopedSettings[scopeName]) || {};
+        for (var _i = 0, properties_1 = properties; _i < properties_1.length; _i++) {
+            var property = properties_1[_i];
+            settings[property] =
+                localScopedSettings[property] ||
+                    localSettings.settings[property] ||
+                    globalScopedSettings[property] ||
+                    _allSettings.settings[property];
         }
-    }
-    return ids.join('-');
-};
-var useThemeProviderState = function (draftState) {
-    var userTheme = draftState.theme;
-    // Pull contextual theme.
-    var parentTheme = (0,_useTheme__WEBPACK_IMPORTED_MODULE_2__.useTheme)();
-    // Update the incoming theme with a memoized version of the merged theme.
-    var theme = (draftState.theme = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(function () {
-        var mergedTheme = (0,_fluentui_theme__WEBPACK_IMPORTED_MODULE_3__.mergeThemes)(parentTheme, userTheme);
-        mergedTheme.id = getThemeId(parentTheme, userTheme);
-        return mergedTheme;
-    }, [parentTheme, userTheme]));
-    draftState.customizerContext = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(function () { return ({
-        customizations: {
-            inCustomizerContext: true,
-            settings: { theme: theme },
-            scopedSettings: theme.components || {},
-        },
-    }); }, [theme]);
-    if (draftState.theme.rtl !== parentTheme.rtl) {
-        draftState.dir = draftState.theme.rtl ? 'rtl' : 'ltr';
-    }
-};
-//# sourceMappingURL=useThemeProviderState.js.map
+        return settings;
+    };
+    /** Used to run some code that sets Customizations without triggering an update until the end.
+     * Useful for applying Customizations that don't affect anything currently rendered, or for
+     * applying many customizations at once.
+     * @param suppressUpdate - Do not raise the change event at the end, preventing all updates
+     */
+    Customizations.applyBatchedUpdates = function (code, suppressUpdate) {
+        Customizations._suppressUpdates = true;
+        try {
+            code();
+        }
+        catch (_a) {
+            /* do nothing */
+        }
+        Customizations._suppressUpdates = false;
+        if (!suppressUpdate) {
+            Customizations._raiseChange();
+        }
+    };
+    Customizations.observe = function (onChange) {
+        _events.push(onChange);
+    };
+    Customizations.unobserve = function (onChange) {
+        _events = _events.filter(function (cb) { return cb !== onChange; });
+    };
+    Customizations._raiseChange = function () {
+        if (!Customizations._suppressUpdates) {
+            _events.forEach(function (cb) { return cb(); });
+        }
+    };
+    return Customizations;
+}());
+
+//# sourceMappingURL=Customizations.js.map
 
 /***/ }),
 /* 41 */
@@ -1605,49 +1637,93 @@ var useThemeProviderState = function (draftState) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getId": () => (/* binding */ getId),
-/* harmony export */   "resetIds": () => (/* binding */ resetIds)
+/* harmony export */   "GlobalSettings": () => (/* binding */ GlobalSettings)
 /* harmony export */ });
 /* harmony import */ var _dom_getWindow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(42);
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(44);
 
-
-// Initialize global window id.
-var CURRENT_ID_PROPERTY = '__currentId__';
-var DEFAULT_ID_STRING = 'id__';
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-var _global = (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_0__.getWindow)() || {};
-if (_global[CURRENT_ID_PROPERTY] === undefined) {
-    _global[CURRENT_ID_PROPERTY] = 0;
-}
-var _initializedStylesheetResets = false;
 /**
- * Generates a unique id in the global scope (this spans across duplicate copies of the same library.)
+ * Storing global state in local module variables has issues when more than one copy
+ * if the module gets loaded on the page (due to a bundling error or simply by consuming
+ * a prebundled script.)
+ *
+ * This file contains helpers to deal with the getting and setting local state, and allows
+ * callers to get called back when it mutates.
+ */
+var GLOBAL_SETTINGS_PROP_NAME = '__globalSettings__';
+var CALLBACK_STATE_PROP_NAME = '__callbacks__';
+var _counter = 0;
+/**
+ * Global settings helper, which stores settings in the global (window) namespace.
+ * If window is not provided, it will store settings in module scope. Provides a
+ * way to observe changes as well when their values change.
  *
  * @public
+ * {@docCategory GlobalSettings}
  */
-function getId(prefix) {
-    if (!_initializedStylesheetResets) {
-        // Configure ids to reset on stylesheet resets.
-        var stylesheet = _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__.Stylesheet.getInstance();
-        if (stylesheet && stylesheet.onReset) {
-            stylesheet.onReset(resetIds);
-        }
-        _initializedStylesheetResets = true;
+var GlobalSettings = /** @class */ (function () {
+    function GlobalSettings() {
     }
-    var index = _global[CURRENT_ID_PROPERTY]++;
-    return (prefix === undefined ? DEFAULT_ID_STRING : prefix) + index;
+    GlobalSettings.getValue = function (key, defaultValue) {
+        var globalSettings = _getGlobalSettings();
+        if (globalSettings[key] === undefined) {
+            globalSettings[key] = typeof defaultValue === 'function' ? defaultValue() : defaultValue;
+        }
+        return globalSettings[key];
+    };
+    GlobalSettings.setValue = function (key, value) {
+        var globalSettings = _getGlobalSettings();
+        var callbacks = globalSettings[CALLBACK_STATE_PROP_NAME];
+        var oldValue = globalSettings[key];
+        if (value !== oldValue) {
+            globalSettings[key] = value;
+            var changeDescription = {
+                oldValue: oldValue,
+                value: value,
+                key: key,
+            };
+            for (var id in callbacks) {
+                if (callbacks.hasOwnProperty(id)) {
+                    callbacks[id](changeDescription);
+                }
+            }
+        }
+        return value;
+    };
+    GlobalSettings.addChangeListener = function (cb) {
+        // Note: we use generated ids on the callbacks to create a map of the callbacks, which optimizes removal.
+        // (It's faster to delete a key than it is to look up the index of an object and splice an array.)
+        var id = cb.__id__;
+        var callbacks = _getCallbacks();
+        if (!id) {
+            id = cb.__id__ = String(_counter++);
+        }
+        callbacks[id] = cb;
+    };
+    GlobalSettings.removeChangeListener = function (cb) {
+        var callbacks = _getCallbacks();
+        delete callbacks[cb.__id__];
+    };
+    return GlobalSettings;
+}());
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function _getGlobalSettings() {
+    var _a;
+    var win = (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    var globalObj = win || {};
+    if (!globalObj[GLOBAL_SETTINGS_PROP_NAME]) {
+        globalObj[GLOBAL_SETTINGS_PROP_NAME] = (_a = {},
+            _a[CALLBACK_STATE_PROP_NAME] = {},
+            _a);
+    }
+    return globalObj[GLOBAL_SETTINGS_PROP_NAME];
 }
-/**
- * Resets id counter to an (optional) number.
- *
- * @public
- */
-function resetIds(counter) {
-    if (counter === void 0) { counter = 0; }
-    _global[CURRENT_ID_PROPERTY] = counter;
+function _getCallbacks() {
+    var globalSettings = _getGlobalSettings();
+    return globalSettings[CALLBACK_STATE_PROP_NAME];
 }
-//# sourceMappingURL=getId.js.map
+//# sourceMappingURL=GlobalSettings.js.map
 
 /***/ }),
 /* 42 */
@@ -1711,7 +1787,286 @@ function setSSR(isEnabled) {
 //# sourceMappingURL=setSSR.js.map
 
 /***/ }),
-/* 44 */
+/* 44 */,
+/* 45 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "concatStyleSetsWithProps": () => (/* binding */ concatStyleSetsWithProps)
+/* harmony export */ });
+/* harmony import */ var _concatStyleSets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(46);
+
+/**
+ * Concatenates style sets into one, but resolves functional sets using the given props.
+ * @param styleProps - Props used to resolve functional sets.
+ * @param allStyles - Style sets, which can be functions or objects.
+ */
+function concatStyleSetsWithProps(styleProps) {
+    var allStyles = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        allStyles[_i - 1] = arguments[_i];
+    }
+    var result = [];
+    for (var _a = 0, allStyles_1 = allStyles; _a < allStyles_1.length; _a++) {
+        var styles = allStyles_1[_a];
+        if (styles) {
+            result.push(typeof styles === 'function' ? styles(styleProps) : styles);
+        }
+    }
+    if (result.length === 1) {
+        return result[0];
+    }
+    else if (result.length) {
+        // cliffkoh: I cannot figure out how to avoid the cast to any here.
+        // It is something to do with the use of Omit in IStyleSet.
+        // It might not be necessary once  Omit becomes part of lib.d.ts (when we remove our own Omit and rely on
+        // the official version).
+        return _concatStyleSets__WEBPACK_IMPORTED_MODULE_0__.concatStyleSets.apply(void 0, result);
+    }
+    return {};
+}
+//# sourceMappingURL=concatStyleSetsWithProps.js.map
+
+/***/ }),
+/* 46 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "concatStyleSets": () => (/* binding */ concatStyleSets)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(44);
+
+/**
+ * Combine a set of styles together (but does not register css classes).
+ * @param styleSets - One or more stylesets to be merged (each param can also be falsy).
+ */
+function concatStyleSets() {
+    var styleSets = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        styleSets[_i] = arguments[_i];
+    }
+    if (styleSets && styleSets.length === 1 && styleSets[0] && !styleSets[0].subComponentStyles) {
+        return styleSets[0];
+    }
+    var mergedSet = {};
+    // We process sub component styles in two phases. First we collect them, then we combine them into 1 style function.
+    var workingSubcomponentStyles = {};
+    for (var _a = 0, styleSets_1 = styleSets; _a < styleSets_1.length; _a++) {
+        var currentSet = styleSets_1[_a];
+        if (currentSet) {
+            for (var prop in currentSet) {
+                if (currentSet.hasOwnProperty(prop)) {
+                    if (prop === 'subComponentStyles' && currentSet.subComponentStyles !== undefined) {
+                        // subcomponent styles - style functions or objects
+                        var currentComponentStyles = currentSet.subComponentStyles;
+                        for (var subCompProp in currentComponentStyles) {
+                            if (currentComponentStyles.hasOwnProperty(subCompProp)) {
+                                if (workingSubcomponentStyles.hasOwnProperty(subCompProp)) {
+                                    workingSubcomponentStyles[subCompProp].push(currentComponentStyles[subCompProp]);
+                                }
+                                else {
+                                    workingSubcomponentStyles[subCompProp] = [currentComponentStyles[subCompProp]];
+                                }
+                            }
+                        }
+                        continue;
+                    }
+                    // the as any casts below is a workaround for ts 2.8.
+                    // todo: remove cast to any in ts 2.9.
+                    var mergedValue = mergedSet[prop];
+                    var currentValue = currentSet[prop];
+                    if (mergedValue === undefined) {
+                        mergedSet[prop] = currentValue;
+                    }
+                    else {
+                        mergedSet[prop] = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__spreadArrays)((Array.isArray(mergedValue) ? mergedValue : [mergedValue]), (Array.isArray(currentValue) ? currentValue : [currentValue]));
+                    }
+                }
+            }
+        }
+    }
+    if (Object.keys(workingSubcomponentStyles).length > 0) {
+        mergedSet.subComponentStyles = {};
+        var mergedSubStyles = mergedSet.subComponentStyles;
+        var _loop_1 = function (subCompProp) {
+            if (workingSubcomponentStyles.hasOwnProperty(subCompProp)) {
+                var workingSet_1 = workingSubcomponentStyles[subCompProp];
+                mergedSubStyles[subCompProp] = function (styleProps) {
+                    return concatStyleSets.apply(void 0, workingSet_1.map(function (styleFunctionOrObject) {
+                        return typeof styleFunctionOrObject === 'function' ? styleFunctionOrObject(styleProps) : styleFunctionOrObject;
+                    }));
+                };
+            }
+        };
+        // now we process the subcomponent styles if there are any
+        for (var subCompProp in workingSubcomponentStyles) {
+            _loop_1(subCompProp);
+        }
+    }
+    return mergedSet;
+}
+//# sourceMappingURL=concatStyleSets.js.map
+
+/***/ }),
+/* 47 */,
+/* 48 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "classNamesFunction": () => (/* binding */ classNamesFunction)
+/* harmony export */ });
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(55);
+/* harmony import */ var _rtl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(50);
+/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(42);
+
+
+
+var MAX_CACHE_COUNT = 50;
+var DEFAULT_SPECIFICITY_MULTIPLIER = 5;
+var _memoizedClassNames = 0;
+var stylesheet = _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_0__.Stylesheet.getInstance();
+if (stylesheet && stylesheet.onReset) {
+    stylesheet.onReset(function () { return _memoizedClassNames++; });
+}
+// Note that because of the caching nature within the classNames memoization,
+// I've disabled this rule to simply be able to work with any types.
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// This represents a prop we attach to each Map to indicate the cached return value
+// associated with the graph node.
+var retVal = '__retval__';
+/**
+ * Creates a getClassNames function which calls getStyles given the props, and injects them
+ * into mergeStyleSets.
+ *
+ * Note that the props you pass in on every render should be in the same order and
+ * immutable (numbers, strings, and booleans). This will allow the results to be memoized. Violating
+ * these will cause extra recalcs to occur.
+ */
+function classNamesFunction(options) {
+    // We build a trie where each node is a Map. The map entry key represents an argument
+    // value, and the entry value is another node (Map). Each node has a `__retval__`
+    // property which is used to hold the cached response.
+    if (options === void 0) { options = {}; }
+    // To derive the response, we can simply ensure the arguments are added or already
+    // exist in the trie. At the last node, if there is a `__retval__` we return that. Otherwise
+    // we call the `getStyles` api to evaluate, cache on the property, and return that.
+    var map = new Map();
+    var styleCalcCount = 0;
+    var getClassNamesCount = 0;
+    var currentMemoizedClassNames = _memoizedClassNames;
+    var getClassNames = function (styleFunctionOrObject, styleProps) {
+        var _a;
+        if (styleProps === void 0) { styleProps = {}; }
+        // If useStaticStyles is true, styleFunctionOrObject returns slot to classname mappings.
+        // If there is also no style overrides, we can skip merge styles completely and
+        // simply return the result from the style funcion.
+        if (options.useStaticStyles &&
+            typeof styleFunctionOrObject === 'function' &&
+            styleFunctionOrObject.__noStyleOverride__) {
+            return styleFunctionOrObject(styleProps);
+        }
+        getClassNamesCount++;
+        var current = map;
+        var theme = styleProps.theme;
+        var rtl = theme && theme.rtl !== undefined ? theme.rtl : (0,_rtl__WEBPACK_IMPORTED_MODULE_1__.getRTL)();
+        var disableCaching = options.disableCaching;
+        // On reset of our stylesheet, reset memoized cache.
+        if (currentMemoizedClassNames !== _memoizedClassNames) {
+            currentMemoizedClassNames = _memoizedClassNames;
+            map = new Map();
+            styleCalcCount = 0;
+        }
+        if (!options.disableCaching) {
+            current = _traverseMap(map, styleFunctionOrObject);
+            current = _traverseMap(current, styleProps);
+        }
+        if (disableCaching || !current[retVal]) {
+            if (styleFunctionOrObject === undefined) {
+                current[retVal] = {};
+            }
+            else {
+                current[retVal] = (0,_fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_2__.mergeCssSets)([
+                    (typeof styleFunctionOrObject === 'function'
+                        ? styleFunctionOrObject(styleProps)
+                        : styleFunctionOrObject),
+                ], { rtl: !!rtl, specificityMultiplier: options.useStaticStyles ? DEFAULT_SPECIFICITY_MULTIPLIER : undefined });
+            }
+            if (!disableCaching) {
+                styleCalcCount++;
+            }
+        }
+        if (styleCalcCount > (options.cacheSize || MAX_CACHE_COUNT)) {
+            var win = (0,_dom__WEBPACK_IMPORTED_MODULE_3__.getWindow)();
+            if ((_a = win === null || win === void 0 ? void 0 : win.FabricConfig) === null || _a === void 0 ? void 0 : _a.enableClassNameCacheFullWarning) {
+                // eslint-disable-next-line no-console
+                console.warn("Styles are being recalculated too frequently. Cache miss rate is " + styleCalcCount + "/" + getClassNamesCount + ".");
+                // eslint-disable-next-line no-console
+                console.trace();
+            }
+            map.clear();
+            styleCalcCount = 0;
+            // Mutate the options passed in, that's all we can do.
+            options.disableCaching = true;
+        }
+        // Note: the retVal is an attached property on the Map; not a key in the Map. We use this attached property to
+        // cache the return value for this branch of the graph.
+        return current[retVal];
+    };
+    return getClassNames;
+}
+function _traverseEdge(current, value) {
+    value = _normalizeValue(value);
+    if (!current.has(value)) {
+        current.set(value, new Map());
+    }
+    return current.get(value);
+}
+function _traverseMap(current, inputs) {
+    if (typeof inputs === 'function') {
+        var cachedInputsFromStyled = inputs.__cachedInputs__;
+        if (cachedInputsFromStyled) {
+            // The styled helper will generate the styles function and will attach the cached
+            // inputs (consisting of the default styles, customzied styles, and user provided styles.)
+            // These should be used as cache keys for deriving the memoized value.
+            for (var _i = 0, _a = inputs.__cachedInputs__; _i < _a.length; _i++) {
+                var input = _a[_i];
+                current = _traverseEdge(current, input);
+            }
+        }
+        else {
+            current = _traverseEdge(current, inputs);
+        }
+    }
+    else if (typeof inputs === 'object') {
+        for (var propName in inputs) {
+            if (inputs.hasOwnProperty(propName)) {
+                current = _traverseEdge(current, inputs[propName]);
+            }
+        }
+    }
+    return current;
+}
+function _normalizeValue(value) {
+    switch (value) {
+        case undefined:
+            return '__undefined__';
+        case null:
+            return '__null__';
+        default:
+            return value;
+    }
+}
+//# sourceMappingURL=classNamesFunction.js.map
+
+/***/ }),
+/* 49 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1720,7 +2075,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "InjectionMode": () => (/* binding */ InjectionMode),
 /* harmony export */   "Stylesheet": () => (/* binding */ Stylesheet)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(37);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(44);
 
 var InjectionMode = {
     /**
@@ -1956,854 +2311,84 @@ var Stylesheet = /** @class */ (function () {
 //# sourceMappingURL=Stylesheet.js.map
 
 /***/ }),
-/* 45 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "useTheme": () => (/* binding */ useTheme)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(46);
-/* harmony import */ var _fluentui_theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(51);
-/* harmony import */ var _ThemeContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(50);
-
-
-
-
-/**
- * Get theme from CustomizerContext or Customizations singleton.
- */
-function useCompatTheme() {
-    return (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__.useCustomizationSettings)(['theme']).theme;
-}
-/**
- * React hook for programmatically accessing the theme.
- */
-var useTheme = function () {
-    var theme = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_ThemeContext__WEBPACK_IMPORTED_MODULE_2__.ThemeContext);
-    var legacyTheme = useCompatTheme();
-    return theme || legacyTheme || (0,_fluentui_theme__WEBPACK_IMPORTED_MODULE_3__.createTheme)({});
-};
-//# sourceMappingURL=useTheme.js.map
-
-/***/ }),
-/* 46 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "useCustomizationSettings": () => (/* binding */ useCustomizationSettings)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _Customizations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(48);
-/* harmony import */ var _CustomizerContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(47);
-
-
-
-/**
- * Hook to get Customizations settings from Customizations singleton or CustomizerContext.
- * It will trigger component state update on settings change observed.
- */
-function useCustomizationSettings(properties, scopeName) {
-    var forceUpdate = useForceUpdate();
-    var customizations = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_CustomizerContext__WEBPACK_IMPORTED_MODULE_1__.CustomizerContext).customizations;
-    var inCustomizerContext = customizations.inCustomizerContext;
-    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {
-        if (!inCustomizerContext) {
-            _Customizations__WEBPACK_IMPORTED_MODULE_2__.Customizations.observe(forceUpdate);
-        }
-        return function () {
-            if (!inCustomizerContext) {
-                _Customizations__WEBPACK_IMPORTED_MODULE_2__.Customizations.unobserve(forceUpdate);
-            }
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps -- exclude forceUpdate
-    }, [inCustomizerContext]);
-    return _Customizations__WEBPACK_IMPORTED_MODULE_2__.Customizations.getSettings(properties, scopeName, customizations);
-}
-function useForceUpdate() {
-    var _a = react__WEBPACK_IMPORTED_MODULE_0__.useState(0), setValue = _a[1];
-    return function () { return setValue(function (value) { return ++value; }); };
-}
-//# sourceMappingURL=useCustomizationSettings.js.map
-
-/***/ }),
-/* 47 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CustomizerContext": () => (/* binding */ CustomizerContext)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-
-var CustomizerContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext({
-    customizations: {
-        inCustomizerContext: false,
-        settings: {},
-        scopedSettings: {},
-    },
-});
-//# sourceMappingURL=CustomizerContext.js.map
-
-/***/ }),
-/* 48 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Customizations": () => (/* binding */ Customizations)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(37);
-/* harmony import */ var _GlobalSettings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49);
-
-
-var CustomizationsGlobalKey = 'customizations';
-var NO_CUSTOMIZATIONS = { settings: {}, scopedSettings: {}, inCustomizerContext: false };
-var _allSettings = _GlobalSettings__WEBPACK_IMPORTED_MODULE_0__.GlobalSettings.getValue(CustomizationsGlobalKey, {
-    settings: {},
-    scopedSettings: {},
-    inCustomizerContext: false,
-});
-var _events = [];
-var Customizations = /** @class */ (function () {
-    function Customizations() {
-    }
-    Customizations.reset = function () {
-        _allSettings.settings = {};
-        _allSettings.scopedSettings = {};
-    };
-    /** Apply global Customization settings.
-     * @example Customizations.applySettings(\{ theme: \{...\} \});
-     */
-    Customizations.applySettings = function (settings) {
-        _allSettings.settings = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, _allSettings.settings), settings);
-        Customizations._raiseChange();
-    };
-    /** Apply Customizations to a particular named scope, like a component.
-     * @example Customizations.applyScopedSettings('Nav', \{ styles: () =\> \{\} \});
-     */
-    Customizations.applyScopedSettings = function (scopeName, settings) {
-        _allSettings.scopedSettings[scopeName] = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, _allSettings.scopedSettings[scopeName]), settings);
-        Customizations._raiseChange();
-    };
-    Customizations.getSettings = function (properties, scopeName, localSettings) {
-        if (localSettings === void 0) { localSettings = NO_CUSTOMIZATIONS; }
-        var settings = {};
-        var localScopedSettings = (scopeName && localSettings.scopedSettings[scopeName]) || {};
-        var globalScopedSettings = (scopeName && _allSettings.scopedSettings[scopeName]) || {};
-        for (var _i = 0, properties_1 = properties; _i < properties_1.length; _i++) {
-            var property = properties_1[_i];
-            settings[property] =
-                localScopedSettings[property] ||
-                    localSettings.settings[property] ||
-                    globalScopedSettings[property] ||
-                    _allSettings.settings[property];
-        }
-        return settings;
-    };
-    /** Used to run some code that sets Customizations without triggering an update until the end.
-     * Useful for applying Customizations that don't affect anything currently rendered, or for
-     * applying many customizations at once.
-     * @param suppressUpdate - Do not raise the change event at the end, preventing all updates
-     */
-    Customizations.applyBatchedUpdates = function (code, suppressUpdate) {
-        Customizations._suppressUpdates = true;
-        try {
-            code();
-        }
-        catch (_a) {
-            /* do nothing */
-        }
-        Customizations._suppressUpdates = false;
-        if (!suppressUpdate) {
-            Customizations._raiseChange();
-        }
-    };
-    Customizations.observe = function (onChange) {
-        _events.push(onChange);
-    };
-    Customizations.unobserve = function (onChange) {
-        _events = _events.filter(function (cb) { return cb !== onChange; });
-    };
-    Customizations._raiseChange = function () {
-        if (!Customizations._suppressUpdates) {
-            _events.forEach(function (cb) { return cb(); });
-        }
-    };
-    return Customizations;
-}());
-
-//# sourceMappingURL=Customizations.js.map
-
-/***/ }),
-/* 49 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "GlobalSettings": () => (/* binding */ GlobalSettings)
-/* harmony export */ });
-/* harmony import */ var _dom_getWindow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(42);
-
-/**
- * Storing global state in local module variables has issues when more than one copy
- * if the module gets loaded on the page (due to a bundling error or simply by consuming
- * a prebundled script.)
- *
- * This file contains helpers to deal with the getting and setting local state, and allows
- * callers to get called back when it mutates.
- */
-var GLOBAL_SETTINGS_PROP_NAME = '__globalSettings__';
-var CALLBACK_STATE_PROP_NAME = '__callbacks__';
-var _counter = 0;
-/**
- * Global settings helper, which stores settings in the global (window) namespace.
- * If window is not provided, it will store settings in module scope. Provides a
- * way to observe changes as well when their values change.
- *
- * @public
- * {@docCategory GlobalSettings}
- */
-var GlobalSettings = /** @class */ (function () {
-    function GlobalSettings() {
-    }
-    GlobalSettings.getValue = function (key, defaultValue) {
-        var globalSettings = _getGlobalSettings();
-        if (globalSettings[key] === undefined) {
-            globalSettings[key] = typeof defaultValue === 'function' ? defaultValue() : defaultValue;
-        }
-        return globalSettings[key];
-    };
-    GlobalSettings.setValue = function (key, value) {
-        var globalSettings = _getGlobalSettings();
-        var callbacks = globalSettings[CALLBACK_STATE_PROP_NAME];
-        var oldValue = globalSettings[key];
-        if (value !== oldValue) {
-            globalSettings[key] = value;
-            var changeDescription = {
-                oldValue: oldValue,
-                value: value,
-                key: key,
-            };
-            for (var id in callbacks) {
-                if (callbacks.hasOwnProperty(id)) {
-                    callbacks[id](changeDescription);
-                }
-            }
-        }
-        return value;
-    };
-    GlobalSettings.addChangeListener = function (cb) {
-        // Note: we use generated ids on the callbacks to create a map of the callbacks, which optimizes removal.
-        // (It's faster to delete a key than it is to look up the index of an object and splice an array.)
-        var id = cb.__id__;
-        var callbacks = _getCallbacks();
-        if (!id) {
-            id = cb.__id__ = String(_counter++);
-        }
-        callbacks[id] = cb;
-    };
-    GlobalSettings.removeChangeListener = function (cb) {
-        var callbacks = _getCallbacks();
-        delete callbacks[cb.__id__];
-    };
-    return GlobalSettings;
-}());
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function _getGlobalSettings() {
-    var _a;
-    var win = (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    var globalObj = win || {};
-    if (!globalObj[GLOBAL_SETTINGS_PROP_NAME]) {
-        globalObj[GLOBAL_SETTINGS_PROP_NAME] = (_a = {},
-            _a[CALLBACK_STATE_PROP_NAME] = {},
-            _a);
-    }
-    return globalObj[GLOBAL_SETTINGS_PROP_NAME];
-}
-function _getCallbacks() {
-    var globalSettings = _getGlobalSettings();
-    return globalSettings[CALLBACK_STATE_PROP_NAME];
-}
-//# sourceMappingURL=GlobalSettings.js.map
-
-/***/ }),
 /* 50 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ThemeContext": () => (/* binding */ ThemeContext)
+/* harmony export */   "getRTL": () => (/* binding */ getRTL),
+/* harmony export */   "setRTL": () => (/* binding */ setRTL),
+/* harmony export */   "getRTLSafeKeyCode": () => (/* binding */ getRTLSafeKeyCode)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _KeyCodes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(54);
+/* harmony import */ var _dom_getDocument__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(52);
+/* harmony import */ var _sessionStorage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(51);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(53);
 
-var ThemeContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext(undefined);
-//# sourceMappingURL=ThemeContext.js.map
+
+
+
+var RTL_LOCAL_STORAGE_KEY = 'isRTL';
+// Default to undefined so that we initialize on first read.
+var _isRTL;
+/**
+ * Gets the rtl state of the page (returns true if in rtl.)
+ */
+function getRTL(theme) {
+    if (theme === void 0) { theme = {}; }
+    if (theme.rtl !== undefined) {
+        return theme.rtl;
+    }
+    if (_isRTL === undefined) {
+        // Fabric supports persisting the RTL setting between page refreshes via session storage
+        var savedRTL = (0,_sessionStorage__WEBPACK_IMPORTED_MODULE_0__.getItem)(RTL_LOCAL_STORAGE_KEY);
+        if (savedRTL !== null) {
+            _isRTL = savedRTL === '1';
+            setRTL(_isRTL);
+        }
+        var doc = (0,_dom_getDocument__WEBPACK_IMPORTED_MODULE_1__.getDocument)();
+        if (_isRTL === undefined && doc) {
+            _isRTL = ((doc.body && doc.body.getAttribute('dir')) || doc.documentElement.getAttribute('dir')) === 'rtl';
+            (0,_fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_2__.setRTL)(_isRTL);
+        }
+    }
+    return !!_isRTL;
+}
+/**
+ * Sets the rtl state of the page (by adjusting the dir attribute of the html element.)
+ */
+function setRTL(isRTL, persistSetting) {
+    if (persistSetting === void 0) { persistSetting = false; }
+    var doc = (0,_dom_getDocument__WEBPACK_IMPORTED_MODULE_1__.getDocument)();
+    if (doc) {
+        doc.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+    }
+    if (persistSetting) {
+        (0,_sessionStorage__WEBPACK_IMPORTED_MODULE_0__.setItem)(RTL_LOCAL_STORAGE_KEY, isRTL ? '1' : '0');
+    }
+    _isRTL = isRTL;
+    (0,_fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_2__.setRTL)(_isRTL);
+}
+/**
+ * Returns the given key, but flips right/left arrows if necessary.
+ */
+function getRTLSafeKeyCode(key, theme) {
+    if (theme === void 0) { theme = {}; }
+    if (getRTL(theme)) {
+        if (key === _KeyCodes__WEBPACK_IMPORTED_MODULE_3__.KeyCodes.left) {
+            key = _KeyCodes__WEBPACK_IMPORTED_MODULE_3__.KeyCodes.right;
+        }
+        else if (key === _KeyCodes__WEBPACK_IMPORTED_MODULE_3__.KeyCodes.right) {
+            key = _KeyCodes__WEBPACK_IMPORTED_MODULE_3__.KeyCodes.left;
+        }
+    }
+    return key;
+}
+//# sourceMappingURL=rtl.js.map
 
 /***/ }),
 /* 51 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createTheme": () => (/* binding */ createTheme)
-/* harmony export */ });
-/* harmony import */ var _colors_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(52);
-/* harmony import */ var _effects_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(53);
-/* harmony import */ var _fonts_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(55);
-/* harmony import */ var _mergeThemes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(73);
-/* harmony import */ var _spacing_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(71);
-/* harmony import */ var _utilities_makeSemanticColors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(72);
-
-
-
-
-
-
-/**
- * Creates a custom theme definition.
- * @param theme - Partial theme object.
- * @param depComments - Whether to include deprecated tags as comments for deprecated slots.
- */
-function createTheme(theme, depComments) {
-    if (theme === void 0) { theme = {}; }
-    if (depComments === void 0) { depComments = false; }
-    var isInverted = !!theme.isInverted;
-    var baseTheme = {
-        palette: _colors_index__WEBPACK_IMPORTED_MODULE_0__.DefaultPalette,
-        effects: _effects_index__WEBPACK_IMPORTED_MODULE_1__.DefaultEffects,
-        fonts: _fonts_index__WEBPACK_IMPORTED_MODULE_2__.DefaultFontStyles,
-        spacing: _spacing_index__WEBPACK_IMPORTED_MODULE_3__.DefaultSpacing,
-        isInverted: isInverted,
-        disableGlobalClassNames: false,
-        semanticColors: (0,_utilities_makeSemanticColors__WEBPACK_IMPORTED_MODULE_4__.makeSemanticColors)(_colors_index__WEBPACK_IMPORTED_MODULE_0__.DefaultPalette, _effects_index__WEBPACK_IMPORTED_MODULE_1__.DefaultEffects, undefined, isInverted, depComments),
-        rtl: undefined,
-    };
-    return (0,_mergeThemes__WEBPACK_IMPORTED_MODULE_5__.mergeThemes)(baseTheme, theme);
-}
-//# sourceMappingURL=createTheme.js.map
-
-/***/ }),
-/* 52 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DefaultPalette": () => (/* binding */ DefaultPalette)
-/* harmony export */ });
-// When adding or removing a color, make sure you keep this consistent with IColorClassNames
-// by adding the color variants.
-var DefaultPalette = {
-    themeDarker: '#004578',
-    themeDark: '#005a9e',
-    themeDarkAlt: '#106ebe',
-    themePrimary: '#0078d4',
-    themeSecondary: '#2b88d8',
-    themeTertiary: '#71afe5',
-    themeLight: '#c7e0f4',
-    themeLighter: '#deecf9',
-    themeLighterAlt: '#eff6fc',
-    black: '#000000',
-    blackTranslucent40: 'rgba(0,0,0,.4)',
-    neutralDark: '#201f1e',
-    neutralPrimary: '#323130',
-    neutralPrimaryAlt: '#3b3a39',
-    neutralSecondary: '#605e5c',
-    neutralSecondaryAlt: '#8a8886',
-    neutralTertiary: '#a19f9d',
-    neutralTertiaryAlt: '#c8c6c4',
-    neutralQuaternary: '#d2d0ce',
-    neutralQuaternaryAlt: '#e1dfdd',
-    neutralLight: '#edebe9',
-    neutralLighter: '#f3f2f1',
-    neutralLighterAlt: '#faf9f8',
-    accent: '#0078d4',
-    white: '#ffffff',
-    whiteTranslucent40: 'rgba(255,255,255,.4)',
-    yellowDark: '#d29200',
-    yellow: '#ffb900',
-    yellowLight: '#fff100',
-    orange: '#d83b01',
-    orangeLight: '#ea4300',
-    orangeLighter: '#ff8c00',
-    redDark: '#a4262c',
-    red: '#e81123',
-    magentaDark: '#5c005c',
-    magenta: '#b4009e',
-    magentaLight: '#e3008c',
-    purpleDark: '#32145a',
-    purple: '#5c2d91',
-    purpleLight: '#b4a0ff',
-    blueDark: '#002050',
-    blueMid: '#00188f',
-    blue: '#0078d4',
-    blueLight: '#00bcf2',
-    tealDark: '#004b50',
-    teal: '#008272',
-    tealLight: '#00b294',
-    greenDark: '#004b1c',
-    green: '#107c10',
-    greenLight: '#bad80a',
-};
-//# sourceMappingURL=DefaultPalette.js.map
-
-/***/ }),
-/* 53 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DefaultEffects": () => (/* binding */ DefaultEffects)
-/* harmony export */ });
-/* harmony import */ var _FluentDepths__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(54);
-
-var DefaultEffects = {
-    elevation4: _FluentDepths__WEBPACK_IMPORTED_MODULE_0__.Depths.depth4,
-    elevation8: _FluentDepths__WEBPACK_IMPORTED_MODULE_0__.Depths.depth8,
-    elevation16: _FluentDepths__WEBPACK_IMPORTED_MODULE_0__.Depths.depth16,
-    elevation64: _FluentDepths__WEBPACK_IMPORTED_MODULE_0__.Depths.depth64,
-    roundedCorner2: '2px',
-    roundedCorner4: '4px',
-    roundedCorner6: '6px',
-};
-//# sourceMappingURL=DefaultEffects.js.map
-
-/***/ }),
-/* 54 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Depths": () => (/* binding */ Depths)
-/* harmony export */ });
-var Depths;
-(function (Depths) {
-    Depths.depth0 = '0 0 0 0 transparent';
-    Depths.depth4 = '0 1.6px 3.6px 0 rgba(0, 0, 0, 0.132), 0 0.3px 0.9px 0 rgba(0, 0, 0, 0.108)';
-    Depths.depth8 = '0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108)';
-    Depths.depth16 = '0 6.4px 14.4px 0 rgba(0, 0, 0, 0.132), 0 1.2px 3.6px 0 rgba(0, 0, 0, 0.108)';
-    Depths.depth64 = '0 25.6px 57.6px 0 rgba(0, 0, 0, 0.22), 0 4.8px 14.4px 0 rgba(0, 0, 0, 0.18)';
-})(Depths || (Depths = {}));
-//# sourceMappingURL=FluentDepths.js.map
-
-/***/ }),
-/* 55 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DefaultFontStyles": () => (/* binding */ DefaultFontStyles),
-/* harmony export */   "registerDefaultFontFaces": () => (/* binding */ registerDefaultFontFaces)
-/* harmony export */ });
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(62);
-/* harmony import */ var _FluentFonts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(57);
-/* harmony import */ var _createFontStyles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(56);
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(58);
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(42);
-
-
-
-
-// Default urls.
-var DefaultBaseUrl = 'https://static2.sharepointonline.com/files/fabric/assets';
-// Standard font styling.
-var DefaultFontStyles = (0,_createFontStyles__WEBPACK_IMPORTED_MODULE_0__.createFontStyles)((0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__.getLanguage)());
-function _registerFontFace(fontFamily, url, fontWeight, localFontName) {
-    fontFamily = "'" + fontFamily + "'";
-    var localFontSrc = localFontName !== undefined ? "local('" + localFontName + "')," : '';
-    (0,_fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_2__.fontFace)({
-        fontFamily: fontFamily,
-        src: localFontSrc + ("url('" + url + ".woff2') format('woff2'),") + ("url('" + url + ".woff') format('woff')"),
-        fontWeight: fontWeight,
-        fontStyle: 'normal',
-        fontDisplay: 'swap',
-    });
-}
-function _registerFontFaceSet(baseUrl, fontFamily, cdnFolder, cdnFontName, localFontName) {
-    if (cdnFontName === void 0) { cdnFontName = 'segoeui'; }
-    var urlBase = baseUrl + "/" + cdnFolder + "/" + cdnFontName;
-    _registerFontFace(fontFamily, urlBase + '-light', _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.FontWeights.light, localFontName && localFontName + ' Light');
-    _registerFontFace(fontFamily, urlBase + '-semilight', _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.FontWeights.semilight, localFontName && localFontName + ' SemiLight');
-    _registerFontFace(fontFamily, urlBase + '-regular', _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.FontWeights.regular, localFontName);
-    _registerFontFace(fontFamily, urlBase + '-semibold', _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.FontWeights.semibold, localFontName && localFontName + ' SemiBold');
-    _registerFontFace(fontFamily, urlBase + '-bold', _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.FontWeights.bold, localFontName && localFontName + ' Bold');
-}
-function registerDefaultFontFaces(baseUrl) {
-    if (baseUrl) {
-        var fontUrl = baseUrl + "/fonts";
-        // Produce @font-face definitions for all supported web fonts.
-        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.Thai, 'leelawadeeui-thai', 'leelawadeeui');
-        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.Arabic, 'segoeui-arabic');
-        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.Cyrillic, 'segoeui-cyrillic');
-        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.EastEuropean, 'segoeui-easteuropean');
-        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.Greek, 'segoeui-greek');
-        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.Hebrew, 'segoeui-hebrew');
-        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.Vietnamese, 'segoeui-vietnamese');
-        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.WestEuropean, 'segoeui-westeuropean', 'segoeui', 'Segoe UI');
-        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontFamilies.Selawik, 'selawik', 'selawik');
-        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.Armenian, 'segoeui-armenian');
-        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.Georgian, 'segoeui-georgian');
-        // Leelawadee UI (Thai) does not have a 'light' weight, so we override
-        // the font-face generated above to use the 'semilight' weight instead.
-        _registerFontFace('Leelawadee UI Web', fontUrl + "/leelawadeeui-thai/leelawadeeui-semilight", _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.FontWeights.light);
-        // Leelawadee UI (Thai) does not have a 'semibold' weight, so we override
-        // the font-face generated above to use the 'bold' weight instead.
-        _registerFontFace('Leelawadee UI Web', fontUrl + "/leelawadeeui-thai/leelawadeeui-bold", _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.FontWeights.semibold);
-    }
-}
-/**
- * Reads the fontBaseUrl from window.FabricConfig.fontBaseUrl or falls back to a default.
- */
-function _getFontBaseUrl() {
-    var _a, _b;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    var fabricConfig = (_a = (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_4__.getWindow)()) === null || _a === void 0 ? void 0 : _a.FabricConfig;
-    return (_b = fabricConfig === null || fabricConfig === void 0 ? void 0 : fabricConfig.fontBaseUrl) !== null && _b !== void 0 ? _b : DefaultBaseUrl;
-}
-/**
- * Register the font faces.
- */
-registerDefaultFontFaces(_getFontBaseUrl());
-//# sourceMappingURL=DefaultFontStyles.js.map
-
-/***/ }),
-/* 56 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createFontStyles": () => (/* binding */ createFontStyles)
-/* harmony export */ });
-/* harmony import */ var _FluentFonts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(57);
-
-// Fallback fonts, if specified system or web fonts are unavailable.
-var FontFamilyFallbacks = "'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif";
-// By default, we favor system fonts for the default.
-// All localized fonts use a web font and never use the system font.
-var defaultFontFamily = "'Segoe UI', '" + _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontNames.WestEuropean + "'";
-// Mapping of language prefix to to font family.
-var LanguageToFontMap = {
-    ar: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Arabic,
-    bg: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Cyrillic,
-    cs: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
-    el: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Greek,
-    et: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
-    he: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Hebrew,
-    hi: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Hindi,
-    hr: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
-    hu: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
-    ja: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Japanese,
-    kk: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
-    ko: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Korean,
-    lt: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
-    lv: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
-    pl: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
-    ru: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Cyrillic,
-    sk: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
-    'sr-latn': _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
-    th: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Thai,
-    tr: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
-    uk: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Cyrillic,
-    vi: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Vietnamese,
-    'zh-hans': _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.ChineseSimplified,
-    'zh-hant': _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.ChineseTraditional,
-    hy: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Armenian,
-    ka: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Georgian,
-};
-function _fontFamilyWithFallbacks(fontFamily) {
-    return fontFamily + ", " + FontFamilyFallbacks;
-}
-/**
- * If there is a localized font for this language, return that.
- * Returns undefined if there is no localized font for that language.
- */
-function _getLocalizedFontFamily(language) {
-    for (var lang in LanguageToFontMap) {
-        if (LanguageToFontMap.hasOwnProperty(lang) && language && lang.indexOf(language) === 0) {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            return LanguageToFontMap[lang];
-        }
-    }
-    return defaultFontFamily;
-}
-function _createFont(size, weight, fontFamily) {
-    return {
-        fontFamily: fontFamily,
-        MozOsxFontSmoothing: 'grayscale',
-        WebkitFontSmoothing: 'antialiased',
-        fontSize: size,
-        fontWeight: weight,
-    };
-}
-function createFontStyles(localeCode) {
-    var localizedFont = _getLocalizedFontFamily(localeCode);
-    var fontFamilyWithFallback = _fontFamilyWithFallbacks(localizedFont);
-    var fontStyles = {
-        tiny: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.mini, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.regular, fontFamilyWithFallback),
-        xSmall: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.xSmall, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.regular, fontFamilyWithFallback),
-        small: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.small, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.regular, fontFamilyWithFallback),
-        smallPlus: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.smallPlus, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.regular, fontFamilyWithFallback),
-        medium: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.medium, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.regular, fontFamilyWithFallback),
-        mediumPlus: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.mediumPlus, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.regular, fontFamilyWithFallback),
-        large: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.large, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.regular, fontFamilyWithFallback),
-        xLarge: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.xLarge, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.semibold, fontFamilyWithFallback),
-        xLargePlus: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.xLargePlus, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.semibold, fontFamilyWithFallback),
-        xxLarge: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.xxLarge, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.semibold, fontFamilyWithFallback),
-        xxLargePlus: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.xxLargePlus, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.semibold, fontFamilyWithFallback),
-        superLarge: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.superLarge, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.semibold, fontFamilyWithFallback),
-        mega: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.mega, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.semibold, fontFamilyWithFallback),
-    };
-    return fontStyles;
-}
-//# sourceMappingURL=createFontStyles.js.map
-
-/***/ }),
-/* 57 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "LocalizedFontNames": () => (/* binding */ LocalizedFontNames),
-/* harmony export */   "LocalizedFontFamilies": () => (/* binding */ LocalizedFontFamilies),
-/* harmony export */   "FontSizes": () => (/* binding */ FontSizes),
-/* harmony export */   "FontWeights": () => (/* binding */ FontWeights),
-/* harmony export */   "IconFontSizes": () => (/* binding */ IconFontSizes)
-/* harmony export */ });
-// Font face names to be registered.
-var LocalizedFontNames;
-(function (LocalizedFontNames) {
-    LocalizedFontNames.Arabic = 'Segoe UI Web (Arabic)';
-    LocalizedFontNames.Cyrillic = 'Segoe UI Web (Cyrillic)';
-    LocalizedFontNames.EastEuropean = 'Segoe UI Web (East European)';
-    LocalizedFontNames.Greek = 'Segoe UI Web (Greek)';
-    LocalizedFontNames.Hebrew = 'Segoe UI Web (Hebrew)';
-    LocalizedFontNames.Thai = 'Leelawadee UI Web';
-    LocalizedFontNames.Vietnamese = 'Segoe UI Web (Vietnamese)';
-    LocalizedFontNames.WestEuropean = 'Segoe UI Web (West European)';
-    LocalizedFontNames.Selawik = 'Selawik Web';
-    LocalizedFontNames.Armenian = 'Segoe UI Web (Armenian)';
-    LocalizedFontNames.Georgian = 'Segoe UI Web (Georgian)';
-})(LocalizedFontNames || (LocalizedFontNames = {}));
-// Font families with fallbacks, for the general regions.
-var LocalizedFontFamilies;
-(function (LocalizedFontFamilies) {
-    LocalizedFontFamilies.Arabic = "'" + LocalizedFontNames.Arabic + "'";
-    LocalizedFontFamilies.ChineseSimplified = "'Microsoft Yahei UI', Verdana, Simsun";
-    LocalizedFontFamilies.ChineseTraditional = "'Microsoft Jhenghei UI', Pmingliu";
-    LocalizedFontFamilies.Cyrillic = "'" + LocalizedFontNames.Cyrillic + "'";
-    LocalizedFontFamilies.EastEuropean = "'" + LocalizedFontNames.EastEuropean + "'";
-    LocalizedFontFamilies.Greek = "'" + LocalizedFontNames.Greek + "'";
-    LocalizedFontFamilies.Hebrew = "'" + LocalizedFontNames.Hebrew + "'";
-    LocalizedFontFamilies.Hindi = "'Nirmala UI'";
-    LocalizedFontFamilies.Japanese = "'Yu Gothic UI', 'Meiryo UI', Meiryo, 'MS Pgothic', Osaka";
-    LocalizedFontFamilies.Korean = "'Malgun Gothic', Gulim";
-    LocalizedFontFamilies.Selawik = "'" + LocalizedFontNames.Selawik + "'";
-    LocalizedFontFamilies.Thai = "'Leelawadee UI Web', 'Kmer UI'";
-    LocalizedFontFamilies.Vietnamese = "'" + LocalizedFontNames.Vietnamese + "'";
-    LocalizedFontFamilies.WestEuropean = "'" + LocalizedFontNames.WestEuropean + "'";
-    LocalizedFontFamilies.Armenian = "'" + LocalizedFontNames.Armenian + "'";
-    LocalizedFontFamilies.Georgian = "'" + LocalizedFontNames.Georgian + "'";
-})(LocalizedFontFamilies || (LocalizedFontFamilies = {}));
-// Standard font sizes.
-var FontSizes;
-(function (FontSizes) {
-    FontSizes.size10 = '10px';
-    FontSizes.size12 = '12px';
-    FontSizes.size14 = '14px';
-    FontSizes.size16 = '16px';
-    FontSizes.size18 = '18px';
-    FontSizes.size20 = '20px';
-    FontSizes.size24 = '24px';
-    FontSizes.size28 = '28px';
-    FontSizes.size32 = '32px';
-    FontSizes.size42 = '42px';
-    FontSizes.size68 = '68px';
-    FontSizes.mini = '10px';
-    FontSizes.xSmall = '10px';
-    FontSizes.small = '12px';
-    FontSizes.smallPlus = '12px';
-    FontSizes.medium = '14px';
-    FontSizes.mediumPlus = '16px';
-    FontSizes.icon = '16px';
-    FontSizes.large = '18px';
-    FontSizes.xLarge = '20px';
-    FontSizes.xLargePlus = '24px';
-    FontSizes.xxLarge = '28px';
-    FontSizes.xxLargePlus = '32px';
-    FontSizes.superLarge = '42px';
-    FontSizes.mega = '68px';
-})(FontSizes || (FontSizes = {}));
-// Standard font weights.
-var FontWeights;
-(function (FontWeights) {
-    FontWeights.light = 100;
-    FontWeights.semilight = 300;
-    FontWeights.regular = 400;
-    FontWeights.semibold = 600;
-    FontWeights.bold = 700;
-})(FontWeights || (FontWeights = {}));
-// Standard Icon Sizes.
-var IconFontSizes;
-(function (IconFontSizes) {
-    IconFontSizes.xSmall = '10px';
-    IconFontSizes.small = '12px';
-    IconFontSizes.medium = '16px';
-    IconFontSizes.large = '20px';
-})(IconFontSizes || (IconFontSizes = {}));
-//# sourceMappingURL=FluentFonts.js.map
-
-/***/ }),
-/* 58 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getLanguage": () => (/* binding */ getLanguage),
-/* harmony export */   "setLanguage": () => (/* binding */ setLanguage)
-/* harmony export */ });
-/* harmony import */ var _dom_getDocument__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(59);
-/* harmony import */ var _localStorage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(60);
-/* harmony import */ var _sessionStorage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(61);
-
-
-
-// Default to undefined so that we initialize on first read.
-var _language;
-var STORAGE_KEY = 'language';
-/**
- * Gets the language set for the page.
- * @param persistenceType - Where to persist the value. Default is `sessionStorage` if available.
- */
-function getLanguage(persistenceType) {
-    if (persistenceType === void 0) { persistenceType = 'sessionStorage'; }
-    if (_language === undefined) {
-        var doc = (0,_dom_getDocument__WEBPACK_IMPORTED_MODULE_0__.getDocument)();
-        var savedLanguage = persistenceType === 'localStorage'
-            ? _localStorage__WEBPACK_IMPORTED_MODULE_1__.getItem(STORAGE_KEY)
-            : persistenceType === 'sessionStorage'
-                ? _sessionStorage__WEBPACK_IMPORTED_MODULE_2__.getItem(STORAGE_KEY)
-                : undefined;
-        if (savedLanguage) {
-            _language = savedLanguage;
-        }
-        if (_language === undefined && doc) {
-            _language = doc.documentElement.getAttribute('lang');
-        }
-        if (_language === undefined) {
-            _language = 'en';
-        }
-    }
-    return _language;
-}
-function setLanguage(language, persistenceParam) {
-    var doc = (0,_dom_getDocument__WEBPACK_IMPORTED_MODULE_0__.getDocument)();
-    if (doc) {
-        doc.documentElement.setAttribute('lang', language);
-    }
-    var persistenceType = persistenceParam === true ? 'none' : !persistenceParam ? 'sessionStorage' : persistenceParam;
-    if (persistenceType === 'localStorage') {
-        _localStorage__WEBPACK_IMPORTED_MODULE_1__.setItem(STORAGE_KEY, language);
-    }
-    else if (persistenceType === 'sessionStorage') {
-        _sessionStorage__WEBPACK_IMPORTED_MODULE_2__.setItem(STORAGE_KEY, language);
-    }
-    _language = language;
-}
-//# sourceMappingURL=language.js.map
-
-/***/ }),
-/* 59 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getDocument": () => (/* binding */ getDocument)
-/* harmony export */ });
-/* harmony import */ var _setSSR__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(43);
-
-/**
- * Helper to get the document object. Note that in popup window cases, document
- * might be the wrong document, which is why we look at ownerDocument for the
- * truth. Also note that the SSR flag is used to test ssr scenarios even if
- * document is defined (from JSDOM for example.)
- *
- * @public
- */
-function getDocument(rootElement) {
-    if (_setSSR__WEBPACK_IMPORTED_MODULE_0__._isSSR || typeof document === 'undefined') {
-        return undefined;
-    }
-    else {
-        var el = rootElement;
-        return el && el.ownerDocument ? el.ownerDocument : document;
-    }
-}
-//# sourceMappingURL=getDocument.js.map
-
-/***/ }),
-/* 60 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getItem": () => (/* binding */ getItem),
-/* harmony export */   "setItem": () => (/* binding */ setItem)
-/* harmony export */ });
-/* harmony import */ var _dom_getWindow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(42);
-
-/**
- * Fetches an item from local storage without throwing an exception
- * @param key The key of the item to fetch from local storage
- */
-function getItem(key) {
-    var result = null;
-    try {
-        var win = (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
-        result = win ? win.localStorage.getItem(key) : null;
-    }
-    catch (e) {
-        /* Eat the exception */
-    }
-    return result;
-}
-/**
- * Inserts an item into local storage without throwing an exception
- * @param key The key of the item to add to local storage
- * @param data The data to put into local storage
- */
-function setItem(key, data) {
-    try {
-        var win = (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
-        win && win.localStorage.setItem(key, data);
-    }
-    catch (e) {
-        /* Eat the exception */
-    }
-}
-//# sourceMappingURL=localStorage.js.map
-
-/***/ }),
-/* 61 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2846,31 +2431,342 @@ function setItem(key, data) {
 //# sourceMappingURL=sessionStorage.js.map
 
 /***/ }),
-/* 62 */
+/* 52 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "fontFace": () => (/* binding */ fontFace)
+/* harmony export */   "getDocument": () => (/* binding */ getDocument)
 /* harmony export */ });
-/* harmony import */ var _StyleOptionsState__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(70);
-/* harmony import */ var _Stylesheet__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(44);
-/* harmony import */ var _styleToClassName__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(63);
+/* harmony import */ var _setSSR__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(43);
+
+/**
+ * Helper to get the document object. Note that in popup window cases, document
+ * might be the wrong document, which is why we look at ownerDocument for the
+ * truth. Also note that the SSR flag is used to test ssr scenarios even if
+ * document is defined (from JSDOM for example.)
+ *
+ * @public
+ */
+function getDocument(rootElement) {
+    if (_setSSR__WEBPACK_IMPORTED_MODULE_0__._isSSR || typeof document === 'undefined') {
+        return undefined;
+    }
+    else {
+        var el = rootElement;
+        return el && el.ownerDocument ? el.ownerDocument : document;
+    }
+}
+//# sourceMappingURL=getDocument.js.map
+
+/***/ }),
+/* 53 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setRTL": () => (/* binding */ setRTL),
+/* harmony export */   "getRTL": () => (/* binding */ getRTL),
+/* harmony export */   "getStyleOptions": () => (/* binding */ getStyleOptions)
+/* harmony export */ });
+/**
+ * Sets the current RTL value.
+ */
+function setRTL(isRTL) {
+    if (_rtl !== isRTL) {
+        _rtl = isRTL;
+    }
+}
+/**
+ * Gets the current RTL value.
+ */
+function getRTL() {
+    if (_rtl === undefined) {
+        _rtl =
+            typeof document !== 'undefined' &&
+                !!document.documentElement &&
+                document.documentElement.getAttribute('dir') === 'rtl';
+    }
+    return _rtl;
+}
+// This has been split into 2 lines because it was working in Fabric due to the code being transpiled to es5, so this
+// was converted to var while not working in Fluent that uses babel to transpile the code to be es6-like. Splitting the
+// logic into two lines, however, allows it to work in both scenarios.
+var _rtl;
+_rtl = getRTL();
+function getStyleOptions() {
+    return {
+        rtl: getRTL(),
+    };
+}
+//# sourceMappingURL=StyleOptionsState.js.map
+
+/***/ }),
+/* 54 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "KeyCodes": () => (/* binding */ KeyCodes)
+/* harmony export */ });
+/**
+ * Simulated enum for keycodes. These will get inlined by uglify when used much like an enum
+ *
+ * @public
+ * {@docCategory KeyCodes}
+ */
+var KeyCodes = {
+    backspace: 8,
+    tab: 9,
+    enter: 13,
+    shift: 16,
+    ctrl: 17,
+    alt: 18,
+    pauseBreak: 19,
+    capslock: 20,
+    escape: 27,
+    space: 32,
+    pageUp: 33,
+    pageDown: 34,
+    end: 35,
+    home: 36,
+    left: 37,
+    up: 38,
+    right: 39,
+    down: 40,
+    insert: 45,
+    del: 46,
+    zero: 48,
+    one: 49,
+    two: 50,
+    three: 51,
+    four: 52,
+    five: 53,
+    six: 54,
+    seven: 55,
+    eight: 56,
+    nine: 57,
+    colon: 58,
+    a: 65,
+    b: 66,
+    c: 67,
+    d: 68,
+    e: 69,
+    f: 70,
+    g: 71,
+    h: 72,
+    i: 73,
+    j: 74,
+    k: 75,
+    l: 76,
+    m: 77,
+    n: 78,
+    o: 79,
+    p: 80,
+    q: 81,
+    r: 82,
+    s: 83,
+    t: 84,
+    u: 85,
+    v: 86,
+    w: 87,
+    x: 88,
+    y: 89,
+    z: 90,
+    leftWindow: 91,
+    rightWindow: 92,
+    select: 93,
+    /* eslint-disable @typescript-eslint/naming-convention */
+    zero_numpad: 96,
+    one_numpad: 97,
+    two_numpad: 98,
+    three_numpad: 99,
+    four_numpad: 100,
+    five_numpad: 101,
+    six_numpad: 102,
+    seven_numpad: 103,
+    eight_numpad: 104,
+    nine_numpad: 105,
+    /* eslint-enable @typescript-eslint/naming-convention */
+    multiply: 106,
+    add: 107,
+    subtract: 109,
+    decimalPoint: 110,
+    divide: 111,
+    f1: 112,
+    f2: 113,
+    f3: 114,
+    f4: 115,
+    f5: 116,
+    f6: 117,
+    f7: 118,
+    f8: 119,
+    f9: 120,
+    f10: 121,
+    f11: 122,
+    f12: 123,
+    numlock: 144,
+    scrollLock: 145,
+    semicolon: 186,
+    equalSign: 187,
+    comma: 188,
+    dash: 189,
+    period: 190,
+    forwardSlash: 191,
+    graveAccent: 192,
+    openBracket: 219,
+    backSlash: 220,
+    closeBracket: 221,
+    singleQuote: 222,
+};
+//# sourceMappingURL=KeyCodes.js.map
+
+/***/ }),
+/* 55 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "mergeStyleSets": () => (/* binding */ mergeStyleSets),
+/* harmony export */   "mergeCssSets": () => (/* binding */ mergeCssSets)
+/* harmony export */ });
+/* harmony import */ var _concatStyleSets__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(46);
+/* harmony import */ var _extractStyleParts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(56);
+/* harmony import */ var _StyleOptionsState__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(53);
+/* harmony import */ var _styleToClassName__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(57);
+
 
 
 
 /**
- * Registers a font face.
- * @public
+ * Takes in one or more style set objects, each consisting of a set of areas,
+ * each which will produce a class name. Using this is analogous to calling
+ * `mergeStyles` for each property in the object, but ensures we maintain the
+ * set ordering when multiple style sets are merged.
+ *
+ * @param styleSets - One or more style sets to be merged.
  */
-function fontFace(font) {
-    _Stylesheet__WEBPACK_IMPORTED_MODULE_0__.Stylesheet.getInstance().insertRule("@font-face{" + (0,_styleToClassName__WEBPACK_IMPORTED_MODULE_1__.serializeRuleEntries)((0,_StyleOptionsState__WEBPACK_IMPORTED_MODULE_2__.getStyleOptions)(), font) + "}", true);
+function mergeStyleSets() {
+    var styleSets = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        styleSets[_i] = arguments[_i];
+    }
+    return mergeCssSets(styleSets, (0,_StyleOptionsState__WEBPACK_IMPORTED_MODULE_0__.getStyleOptions)());
 }
-//# sourceMappingURL=fontFace.js.map
+/**
+ * Takes in one or more style set objects, each1consisting of a set of areas,
+ * each which will produce a class name. Using this is analogous to calling
+ * `mergeCss` for each property in the object, but ensures the
+ * set ordering when multiple style sets are merged.
+ *
+ * @param styleSets - One or more style sets to be merged.
+ * @param options - (optional) Options to use when creating rules.
+ */
+function mergeCssSets(styleSets, options) {
+    var classNameSet = { subComponentStyles: {} };
+    var styleSet = styleSets[0];
+    if (!styleSet && styleSets.length <= 1) {
+        return { subComponentStyles: {} };
+    }
+    var concatenatedStyleSet = _concatStyleSets__WEBPACK_IMPORTED_MODULE_1__.concatStyleSets.apply(void 0, styleSets);
+    var registrations = [];
+    for (var styleSetArea in concatenatedStyleSet) {
+        if (concatenatedStyleSet.hasOwnProperty(styleSetArea)) {
+            if (styleSetArea === 'subComponentStyles') {
+                classNameSet.subComponentStyles = concatenatedStyleSet.subComponentStyles || {};
+                continue;
+            }
+            var styles = concatenatedStyleSet[styleSetArea];
+            var _a = (0,_extractStyleParts__WEBPACK_IMPORTED_MODULE_2__.extractStyleParts)(styles), classes = _a.classes, objects = _a.objects;
+            if (objects === null || objects === void 0 ? void 0 : objects.length) {
+                var registration = (0,_styleToClassName__WEBPACK_IMPORTED_MODULE_3__.styleToRegistration)(options || {}, { displayName: styleSetArea }, objects);
+                if (registration) {
+                    registrations.push(registration);
+                    classNameSet[styleSetArea] = classes.concat([registration.className]).join(' ');
+                }
+            }
+            else {
+                classNameSet[styleSetArea] = classes.join(' ');
+            }
+        }
+    }
+    for (var _i = 0, registrations_1 = registrations; _i < registrations_1.length; _i++) {
+        var registration = registrations_1[_i];
+        if (registration) {
+            (0,_styleToClassName__WEBPACK_IMPORTED_MODULE_3__.applyRegistration)(registration, options === null || options === void 0 ? void 0 : options.specificityMultiplier);
+        }
+    }
+    return classNameSet;
+}
+//# sourceMappingURL=mergeStyleSets.js.map
 
 /***/ }),
-/* 63 */
+/* 56 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "extractStyleParts": () => (/* binding */ extractStyleParts)
+/* harmony export */ });
+/* harmony import */ var _Stylesheet__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49);
+
+/**
+ * Separates the classes and style objects. Any classes that are pre-registered
+ * args are auto expanded into objects.
+ */
+function extractStyleParts() {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    var classes = [];
+    var objects = [];
+    var stylesheet = _Stylesheet__WEBPACK_IMPORTED_MODULE_0__.Stylesheet.getInstance();
+    function _processArgs(argsList) {
+        for (var _i = 0, argsList_1 = argsList; _i < argsList_1.length; _i++) {
+            var arg = argsList_1[_i];
+            if (arg) {
+                if (typeof arg === 'string') {
+                    if (arg.indexOf(' ') >= 0) {
+                        _processArgs(arg.split(' '));
+                    }
+                    else {
+                        var translatedArgs = stylesheet.argsFromClassName(arg);
+                        if (translatedArgs) {
+                            _processArgs(translatedArgs);
+                        }
+                        else {
+                            // Avoid adding the same class twice.
+                            if (classes.indexOf(arg) === -1) {
+                                classes.push(arg);
+                            }
+                        }
+                    }
+                }
+                else if (Array.isArray(arg)) {
+                    _processArgs(arg);
+                }
+                else if (typeof arg === 'object') {
+                    objects.push(arg);
+                }
+            }
+        }
+    }
+    _processArgs(args);
+    return {
+        classes: classes,
+        objects: objects,
+    };
+}
+//# sourceMappingURL=extractStyleParts.js.map
+
+/***/ }),
+/* 57 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2881,13 +2777,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "applyRegistration": () => (/* binding */ applyRegistration),
 /* harmony export */   "styleToClassName": () => (/* binding */ styleToClassName)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(37);
-/* harmony import */ var _Stylesheet__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(44);
-/* harmony import */ var _transforms_kebabRules__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(65);
-/* harmony import */ var _transforms_prefixRules__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(68);
-/* harmony import */ var _transforms_provideUnits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(66);
-/* harmony import */ var _transforms_rtlifyRules__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(67);
-/* harmony import */ var _tokenizeWithParentheses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(64);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(44);
+/* harmony import */ var _Stylesheet__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49);
+/* harmony import */ var _transforms_kebabRules__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(59);
+/* harmony import */ var _transforms_prefixRules__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(62);
+/* harmony import */ var _transforms_provideUnits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(60);
+/* harmony import */ var _transforms_rtlifyRules__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(61);
+/* harmony import */ var _tokenizeWithParentheses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(58);
 
 
 
@@ -3159,7 +3055,7 @@ function styleToClassName(options) {
 //# sourceMappingURL=styleToClassName.js.map
 
 /***/ }),
-/* 64 */
+/* 58 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3215,7 +3111,7 @@ function tokenizeWithParentheses(value) {
 //# sourceMappingURL=tokenizeWithParentheses.js.map
 
 /***/ }),
-/* 65 */
+/* 59 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3233,7 +3129,7 @@ function kebabRules(rulePairs, index) {
 //# sourceMappingURL=kebabRules.js.map
 
 /***/ }),
-/* 66 */
+/* 60 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3266,7 +3162,7 @@ function provideUnits(rulePairs, index) {
 //# sourceMappingURL=provideUnits.js.map
 
 /***/ }),
-/* 67 */
+/* 61 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3356,7 +3252,7 @@ function flipQuad(value) {
 //# sourceMappingURL=rtlifyRules.js.map
 
 /***/ }),
-/* 68 */
+/* 62 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3364,7 +3260,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "prefixRules": () => (/* binding */ prefixRules)
 /* harmony export */ });
-/* harmony import */ var _getVendorSettings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(69);
+/* harmony import */ var _getVendorSettings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(63);
 
 var autoPrefixNames = {
     'user-select': 1,
@@ -3393,7 +3289,7 @@ function prefixRules(rulePairs, index) {
 //# sourceMappingURL=prefixRules.js.map
 
 /***/ }),
-/* 69 */
+/* 63 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3436,417 +3332,28 @@ function setVendorSettings(vendorSettings) {
 //# sourceMappingURL=getVendorSettings.js.map
 
 /***/ }),
-/* 70 */
+/* 64 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "setRTL": () => (/* binding */ setRTL),
-/* harmony export */   "getRTL": () => (/* binding */ getRTL),
-/* harmony export */   "getStyleOptions": () => (/* binding */ getStyleOptions)
+/* harmony export */   "Label": () => (/* binding */ Label)
 /* harmony export */ });
-/**
- * Sets the current RTL value.
- */
-function setRTL(isRTL) {
-    if (_rtl !== isRTL) {
-        _rtl = isRTL;
-    }
-}
-/**
- * Gets the current RTL value.
- */
-function getRTL() {
-    if (_rtl === undefined) {
-        _rtl =
-            typeof document !== 'undefined' &&
-                !!document.documentElement &&
-                document.documentElement.getAttribute('dir') === 'rtl';
-    }
-    return _rtl;
-}
-// This has been split into 2 lines because it was working in Fabric due to the code being transpiled to es5, so this
-// was converted to var while not working in Fluent that uses babel to transpile the code to be es6-like. Splitting the
-// logic into two lines, however, allows it to work in both scenarios.
-var _rtl;
-_rtl = getRTL();
-function getStyleOptions() {
-    return {
-        rtl: getRTL(),
-    };
-}
-//# sourceMappingURL=StyleOptionsState.js.map
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(37);
+/* harmony import */ var _Label_base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(65);
+/* harmony import */ var _Label_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(67);
+
+
+
+var Label = (0,_Utilities__WEBPACK_IMPORTED_MODULE_0__.styled)(_Label_base__WEBPACK_IMPORTED_MODULE_1__.LabelBase, _Label_styles__WEBPACK_IMPORTED_MODULE_2__.getStyles, undefined, {
+    scope: 'Label',
+});
+//# sourceMappingURL=Label.js.map
 
 /***/ }),
-/* 71 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DefaultSpacing": () => (/* binding */ DefaultSpacing)
-/* harmony export */ });
-var DefaultSpacing = {
-    s2: '4px',
-    s1: '8px',
-    m: '16px',
-    l1: '20px',
-    l2: '32px',
-};
-//# sourceMappingURL=DefaultSpacing.js.map
-
-/***/ }),
-/* 72 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "makeSemanticColors": () => (/* binding */ makeSemanticColors),
-/* harmony export */   "getSemanticColors": () => (/* binding */ getSemanticColors)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(37);
-
-/** Generates all the semantic slot colors based on the theme so far
- * We'll use these as fallbacks for semantic slots that the passed in theme did not define.
- * The caller must still mix in the customized semantic slots at the end.
- */
-function makeSemanticColors(p, e, s, isInverted, depComments) {
-    if (depComments === void 0) { depComments = false; }
-    var semanticColors = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({ primaryButtonBorder: 'transparent', errorText: !isInverted ? '#a4262c' : '#F1707B', messageText: !isInverted ? '#323130' : '#F3F2F1', messageLink: !isInverted ? '#005A9E' : '#6CB8F6', messageLinkHovered: !isInverted ? '#004578' : '#82C7FF', infoIcon: !isInverted ? '#605e5c' : '#C8C6C4', errorIcon: !isInverted ? '#A80000' : '#F1707B', blockingIcon: !isInverted ? '#FDE7E9' : '#442726', warningIcon: !isInverted ? '#797775' : '#C8C6C4', severeWarningIcon: !isInverted ? '#D83B01' : '#FCE100', successIcon: !isInverted ? '#107C10' : '#92C353', infoBackground: !isInverted ? '#f3f2f1' : '#323130', errorBackground: !isInverted ? '#FDE7E9' : '#442726', blockingBackground: !isInverted ? '#FDE7E9' : '#442726', warningBackground: !isInverted ? '#FFF4CE' : '#433519', severeWarningBackground: !isInverted ? '#FED9CC' : '#4F2A0F', successBackground: !isInverted ? '#DFF6DD' : '#393D1B', 
-        // deprecated
-        warningHighlight: !isInverted ? '#ffb900' : '#fff100', successText: !isInverted ? '#107C10' : '#92c353' }, s);
-    var fullSemanticColors = getSemanticColors(p, e, semanticColors, isInverted);
-    return _fixDeprecatedSlots(fullSemanticColors, depComments);
-}
-/**
- * Map partial platte and effects to partial semantic colors.
- */
-function getSemanticColors(p, e, s, isInverted, depComments) {
-    if (depComments === void 0) { depComments = false; }
-    var result = {};
-    // map palette
-    var _a = p || {}, white = _a.white, black = _a.black, themePrimary = _a.themePrimary, themeDark = _a.themeDark, themeDarker = _a.themeDarker, themeDarkAlt = _a.themeDarkAlt, themeLighter = _a.themeLighter, neutralLight = _a.neutralLight, neutralLighter = _a.neutralLighter, neutralDark = _a.neutralDark, neutralQuaternary = _a.neutralQuaternary, neutralQuaternaryAlt = _a.neutralQuaternaryAlt, neutralPrimary = _a.neutralPrimary, neutralSecondary = _a.neutralSecondary, neutralSecondaryAlt = _a.neutralSecondaryAlt, neutralTertiary = _a.neutralTertiary, neutralTertiaryAlt = _a.neutralTertiaryAlt, neutralLighterAlt = _a.neutralLighterAlt, accent = _a.accent;
-    if (white) {
-        result.bodyBackground = white;
-        result.bodyFrameBackground = white;
-        result.accentButtonText = white;
-        result.buttonBackground = white;
-        result.primaryButtonText = white;
-        result.primaryButtonTextHovered = white;
-        result.primaryButtonTextPressed = white;
-        result.inputBackground = white;
-        result.inputForegroundChecked = white;
-        result.listBackground = white;
-        result.menuBackground = white;
-        result.cardStandoutBackground = white;
-    }
-    if (black) {
-        result.bodyTextChecked = black;
-        result.buttonTextCheckedHovered = black;
-    }
-    if (themePrimary) {
-        result.link = themePrimary;
-        result.primaryButtonBackground = themePrimary;
-        result.inputBackgroundChecked = themePrimary;
-        result.inputIcon = themePrimary;
-        result.inputFocusBorderAlt = themePrimary;
-        result.menuIcon = themePrimary;
-        result.menuHeader = themePrimary;
-        result.accentButtonBackground = themePrimary;
-    }
-    if (themeDark) {
-        result.primaryButtonBackgroundPressed = themeDark;
-        result.inputBackgroundCheckedHovered = themeDark;
-        result.inputIconHovered = themeDark;
-    }
-    if (themeDarker) {
-        result.linkHovered = themeDarker;
-    }
-    if (themeDarkAlt) {
-        result.primaryButtonBackgroundHovered = themeDarkAlt;
-    }
-    if (themeLighter) {
-        result.inputPlaceholderBackgroundChecked = themeLighter;
-    }
-    if (neutralLight) {
-        result.bodyBackgroundChecked = neutralLight;
-        result.bodyFrameDivider = neutralLight;
-        result.bodyDivider = neutralLight;
-        result.variantBorder = neutralLight;
-        result.buttonBackgroundCheckedHovered = neutralLight;
-        result.buttonBackgroundPressed = neutralLight;
-        result.listItemBackgroundChecked = neutralLight;
-        result.listHeaderBackgroundPressed = neutralLight;
-        result.menuItemBackgroundPressed = neutralLight;
-        // eslint-disable-next-line deprecation/deprecation
-        result.menuItemBackgroundChecked = neutralLight;
-    }
-    if (neutralLighter) {
-        result.bodyBackgroundHovered = neutralLighter;
-        result.buttonBackgroundHovered = neutralLighter;
-        result.buttonBackgroundDisabled = neutralLighter;
-        result.buttonBorderDisabled = neutralLighter;
-        result.primaryButtonBackgroundDisabled = neutralLighter;
-        result.disabledBackground = neutralLighter;
-        result.listItemBackgroundHovered = neutralLighter;
-        result.listHeaderBackgroundHovered = neutralLighter;
-        result.menuItemBackgroundHovered = neutralLighter;
-    }
-    if (neutralQuaternary) {
-        result.primaryButtonTextDisabled = neutralQuaternary;
-        result.disabledSubtext = neutralQuaternary;
-    }
-    if (neutralQuaternaryAlt) {
-        result.listItemBackgroundCheckedHovered = neutralQuaternaryAlt;
-    }
-    if (neutralTertiary) {
-        result.disabledBodyText = neutralTertiary;
-        result.variantBorderHovered = (s === null || s === void 0 ? void 0 : s.variantBorderHovered) || neutralTertiary;
-        result.buttonTextDisabled = neutralTertiary;
-        result.inputIconDisabled = neutralTertiary;
-        result.disabledText = neutralTertiary;
-    }
-    if (neutralPrimary) {
-        result.bodyText = neutralPrimary;
-        result.actionLink = neutralPrimary;
-        result.buttonText = neutralPrimary;
-        result.inputBorderHovered = neutralPrimary;
-        result.inputText = neutralPrimary;
-        result.listText = neutralPrimary;
-        result.menuItemText = neutralPrimary;
-    }
-    if (neutralLighterAlt) {
-        result.bodyStandoutBackground = neutralLighterAlt;
-        result.defaultStateBackground = neutralLighterAlt;
-    }
-    if (neutralDark) {
-        result.actionLinkHovered = neutralDark;
-        result.buttonTextHovered = neutralDark;
-        result.buttonTextChecked = neutralDark;
-        result.buttonTextPressed = neutralDark;
-        result.inputTextHovered = neutralDark;
-        result.menuItemTextHovered = neutralDark;
-    }
-    if (neutralSecondary) {
-        result.bodySubtext = neutralSecondary;
-        result.focusBorder = neutralSecondary;
-        result.inputBorder = neutralSecondary;
-        result.smallInputBorder = neutralSecondary;
-        result.inputPlaceholderText = neutralSecondary;
-    }
-    if (neutralSecondaryAlt) {
-        result.buttonBorder = neutralSecondaryAlt;
-    }
-    if (neutralTertiaryAlt) {
-        result.disabledBodySubtext = neutralTertiaryAlt;
-        result.disabledBorder = neutralTertiaryAlt;
-        result.buttonBackgroundChecked = neutralTertiaryAlt;
-        result.menuDivider = neutralTertiaryAlt;
-    }
-    if (accent) {
-        result.accentButtonBackground = accent;
-    }
-    // map effects
-    if (e === null || e === void 0 ? void 0 : e.elevation4) {
-        result.cardShadow = e.elevation4;
-    }
-    if (!isInverted && (e === null || e === void 0 ? void 0 : e.elevation8)) {
-        result.cardShadowHovered = e.elevation8;
-    }
-    else if (result.variantBorderHovered) {
-        result.cardShadowHovered = '0 0 1px ' + result.variantBorderHovered;
-    }
-    result = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, result), s);
-    return result;
-}
-function _fixDeprecatedSlots(s, depComments) {
-    // Add @deprecated tag as comment if enabled
-    var dep = '';
-    if (depComments === true) {
-        dep = ' /* @deprecated */';
-    }
-    /* eslint-disable deprecation/deprecation */
-    s.listTextColor = s.listText + dep;
-    s.menuItemBackgroundChecked += dep;
-    s.warningHighlight += dep;
-    s.warningText = s.messageText + dep;
-    s.successText += dep;
-    /* eslint-enable deprecation/deprecation */
-    return s;
-}
-//# sourceMappingURL=makeSemanticColors.js.map
-
-/***/ }),
-/* 73 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "mergeThemes": () => (/* binding */ mergeThemes)
-/* harmony export */ });
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(74);
-/* harmony import */ var _utilities_makeSemanticColors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72);
-
-
-/**
- * Merge a partial/full theme into a full theme and returns a merged full theme.
- */
-function mergeThemes(theme, partialTheme) {
-    var _a, _b, _c;
-    if (partialTheme === void 0) { partialTheme = {}; }
-    var mergedTheme = (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__.merge)({}, theme, partialTheme, {
-        semanticColors: (0,_utilities_makeSemanticColors__WEBPACK_IMPORTED_MODULE_1__.getSemanticColors)(partialTheme.palette, partialTheme.effects, partialTheme.semanticColors, partialTheme.isInverted === undefined ? theme.isInverted : partialTheme.isInverted),
-    });
-    if (((_a = partialTheme.palette) === null || _a === void 0 ? void 0 : _a.themePrimary) && !((_b = partialTheme.palette) === null || _b === void 0 ? void 0 : _b.accent)) {
-        mergedTheme.palette.accent = partialTheme.palette.themePrimary;
-    }
-    if (partialTheme.defaultFontStyle) {
-        for (var _i = 0, _d = Object.keys(mergedTheme.fonts); _i < _d.length; _i++) {
-            var fontStyle = _d[_i];
-            mergedTheme.fonts[fontStyle] = (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__.merge)(mergedTheme.fonts[fontStyle], partialTheme.defaultFontStyle, (_c = partialTheme === null || partialTheme === void 0 ? void 0 : partialTheme.fonts) === null || _c === void 0 ? void 0 : _c[fontStyle]);
-        }
-    }
-    return mergedTheme;
-}
-//# sourceMappingURL=mergeThemes.js.map
-
-/***/ }),
-/* 74 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "merge": () => (/* binding */ merge)
-/* harmony export */ });
-/**
- * Simple deep merge function. Takes all arguments and returns a deep copy of the objects merged
- * together in the order provided. If an object creates a circular reference, it will assign the
- * original reference.
- */
-function merge(target) {
-    var args = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        args[_i - 1] = arguments[_i];
-    }
-    for (var _a = 0, args_1 = args; _a < args_1.length; _a++) {
-        var arg = args_1[_a];
-        _merge(target || {}, arg);
-    }
-    return target;
-}
-/**
- * The _merge helper iterates through all props on source and assigns them to target.
- * When the value is an object, we will create a deep clone of the object. However if
- * there is a circular reference, the value will not be deep cloned and will persist
- * the reference.
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function _merge(target, source, circularReferences) {
-    if (circularReferences === void 0) { circularReferences = []; }
-    circularReferences.push(source);
-    for (var name_1 in source) {
-        if (source.hasOwnProperty(name_1)) {
-            if (name_1 !== '__proto__' && name_1 !== 'constructor' && name_1 !== 'prototype') {
-                var value = source[name_1];
-                if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
-                    var isCircularReference = circularReferences.indexOf(value) > -1;
-                    target[name_1] = (isCircularReference
-                        ? value
-                        : _merge(target[name_1] || {}, value, circularReferences));
-                }
-                else {
-                    target[name_1] = value;
-                }
-            }
-        }
-    }
-    circularReferences.pop();
-    return target;
-}
-//# sourceMappingURL=merge.js.map
-
-/***/ }),
-/* 75 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "renderThemeProvider": () => (/* binding */ renderThemeProvider)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(37);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(76);
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(78);
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(47);
-/* harmony import */ var _ThemeContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(50);
-
-
-
-
-var renderThemeProvider = function (state) {
-    var theme = state.theme, customizerContext = state.customizerContext;
-    var Root = state.as || 'div';
-    var rootProps = typeof state.as === 'string' ? (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__.getNativeElementProps)(state.as, state) : (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_2__.omit)(state, ['as']);
-    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ThemeContext__WEBPACK_IMPORTED_MODULE_3__.ThemeContext.Provider, { value: theme },
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fluentui_utilities__WEBPACK_IMPORTED_MODULE_4__.CustomizerContext.Provider, { value: customizerContext },
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(Root, (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__assign)({}, rootProps)))));
-};
-//# sourceMappingURL=renderThemeProvider.js.map
-
-/***/ }),
-/* 76 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getNativeElementProps": () => (/* binding */ getNativeElementProps)
-/* harmony export */ });
-/* harmony import */ var _properties__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(77);
-
-var nativeElementMap = {
-    label: _properties__WEBPACK_IMPORTED_MODULE_0__.labelProperties,
-    audio: _properties__WEBPACK_IMPORTED_MODULE_0__.audioProperties,
-    video: _properties__WEBPACK_IMPORTED_MODULE_0__.videoProperties,
-    ol: _properties__WEBPACK_IMPORTED_MODULE_0__.olProperties,
-    li: _properties__WEBPACK_IMPORTED_MODULE_0__.liProperties,
-    a: _properties__WEBPACK_IMPORTED_MODULE_0__.anchorProperties,
-    button: _properties__WEBPACK_IMPORTED_MODULE_0__.buttonProperties,
-    input: _properties__WEBPACK_IMPORTED_MODULE_0__.inputProperties,
-    textarea: _properties__WEBPACK_IMPORTED_MODULE_0__.textAreaProperties,
-    select: _properties__WEBPACK_IMPORTED_MODULE_0__.selectProperties,
-    option: _properties__WEBPACK_IMPORTED_MODULE_0__.optionProperties,
-    table: _properties__WEBPACK_IMPORTED_MODULE_0__.tableProperties,
-    tr: _properties__WEBPACK_IMPORTED_MODULE_0__.trProperties,
-    th: _properties__WEBPACK_IMPORTED_MODULE_0__.thProperties,
-    td: _properties__WEBPACK_IMPORTED_MODULE_0__.tdProperties,
-    colGroup: _properties__WEBPACK_IMPORTED_MODULE_0__.colGroupProperties,
-    col: _properties__WEBPACK_IMPORTED_MODULE_0__.colProperties,
-    form: _properties__WEBPACK_IMPORTED_MODULE_0__.formProperties,
-    iframe: _properties__WEBPACK_IMPORTED_MODULE_0__.iframeProperties,
-    img: _properties__WEBPACK_IMPORTED_MODULE_0__.imgProperties,
-};
-/**
- * Given an element tagname and user props, filters the props to only allowed props for the given
- * element type.
- * @param tagName - Tag name (e.g. "div")
- * @param props - Props object
- * @param excludedPropNames - List of props to disallow
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function getNativeElementProps(tagName, props, excludedPropNames) {
-    var allowedPropNames = (tagName && nativeElementMap[tagName]) || _properties__WEBPACK_IMPORTED_MODULE_0__.htmlElementProperties;
-    return (0,_properties__WEBPACK_IMPORTED_MODULE_0__.getNativeProps)(props, allowedPropNames, excludedPropNames);
-}
-//# sourceMappingURL=getNativeElementProps.js.map
-
-/***/ }),
-/* 77 */
+/* 65 */,
+/* 66 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4291,1135 +3798,8 @@ props, allowedPropNames, excludedPropNames) {
 //# sourceMappingURL=properties.js.map
 
 /***/ }),
-/* 78 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "shallowCompare": () => (/* binding */ shallowCompare),
-/* harmony export */   "assign": () => (/* binding */ assign),
-/* harmony export */   "filteredAssign": () => (/* binding */ filteredAssign),
-/* harmony export */   "mapEnumByName": () => (/* binding */ mapEnumByName),
-/* harmony export */   "values": () => (/* binding */ values),
-/* harmony export */   "omit": () => (/* binding */ omit)
-/* harmony export */ });
-/**
- * Compares a to b and b to a.
- *
- * @public
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function shallowCompare(a, b) {
-    for (var propName in a) {
-        if (a.hasOwnProperty(propName)) {
-            if (!b.hasOwnProperty(propName) || b[propName] !== a[propName]) {
-                return false;
-            }
-        }
-    }
-    for (var propName in b) {
-        if (b.hasOwnProperty(propName)) {
-            if (!a.hasOwnProperty(propName)) {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-/**
- * Makes a resulting merge of a bunch of objects. Pass in the target object followed by 1 or more
- * objects as arguments and they will be merged sequentially into the target. Note that this will
- * shallow merge; it will not create new cloned values for target members.
- *
- * @public
- * @param target - Target object to merge following object arguments into.
- * @param args - One or more objects that will be mixed into the target in the order they are provided.
- * @returns Resulting merged target.
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function assign(target) {
-    var args = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        args[_i - 1] = arguments[_i];
-    }
-    return filteredAssign.apply(this, [null, target].concat(args));
-}
-/**
- * Makes a resulting merge of a bunch of objects, but allows a filter function to be passed in to filter
- * the resulting merges. This allows for scenarios where you want to merge "everything except that one thing"
- * or "properties that start with data-". Note that this will shallow merge; it will not create new cloned
- * values for target members.
- *
- * @public
- * @param isAllowed - Callback to determine if the given propName is allowed in the result.
- * @param target - Target object to merge following object arguments into.
- * @param args - One or more objects that will be mixed into the target in the order they are provided.
- * @returns Resulting merged target.
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function filteredAssign(isAllowed, target) {
-    var args = [];
-    for (var _i = 2; _i < arguments.length; _i++) {
-        args[_i - 2] = arguments[_i];
-    }
-    target = target || {};
-    for (var _a = 0, args_1 = args; _a < args_1.length; _a++) {
-        var sourceObject = args_1[_a];
-        if (sourceObject) {
-            for (var propName in sourceObject) {
-                if (sourceObject.hasOwnProperty(propName) && (!isAllowed || isAllowed(propName))) {
-                    target[propName] = sourceObject[propName];
-                }
-            }
-        }
-    }
-    return target;
-}
-/**
- * Takes an enum and iterates over each value of the enum (as a string), running the callback on each,
- * returning a mapped array.
- * @param theEnum - Enum to iterate over
- * @param callback - The first parameter the name of the entry, and the second parameter is the value
- * of that entry, which is the value you'd normally use when using the enum (usually a number).
- */
-function mapEnumByName(
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-theEnum, callback) {
-    // map<any> to satisfy compiler since it doesn't realize we strip out undefineds in the .filter() call
-    return Object.keys(theEnum)
-        .map(function (p) {
-        // map on each property name as a string
-        if (String(Number(p)) !== p) {
-            // if the property is not just a number (because enums in TypeScript will map both ways)
-            return callback(p, theEnum[p]);
-        }
-        return undefined;
-    })
-        .filter(function (v) { return !!v; }); // only return elements with values
-}
-/**
- * Get all values in an object dictionary
- *
- * @param obj - The dictionary to get values for
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function values(obj) {
-    return Object.keys(obj).reduce(function (arr, key) {
-        arr.push(obj[key]);
-        return arr;
-    }, []);
-}
-/**
- * Tiny helper to do the minimal amount of work in duplicating an object but omitting some
- * props. This ends up faster than using object ...rest or reduce to filter.
- *
- * This behaves very much like filteredAssign, but does not merge many objects together,
- * uses an exclusion object map, and avoids spreads all for optimal performance.
- *
- * See perf test for background:
- * https://jsperf.com/omit-vs-rest-vs-reduce/1
- *
- * @param obj - The object to clone
- * @param exclusions - The array of keys to exclude
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function omit(obj, exclusions) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    var result = {};
-    for (var key in obj) {
-        if (exclusions.indexOf(key) === -1 && obj.hasOwnProperty(key)) {
-            result[key] = obj[key];
-        }
-    }
-    return result;
-}
-//# sourceMappingURL=object.js.map
-
-/***/ }),
-/* 79 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "useThemeProviderClasses": () => (/* binding */ useThemeProviderClasses)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(87);
-/* harmony import */ var _fluentui_react_window_provider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(81);
-/* harmony import */ var _makeStyles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(80);
-
-
-
-
-var useThemeProviderStyles = (0,_makeStyles__WEBPACK_IMPORTED_MODULE_1__.makeStyles)(function (theme) {
-    var semanticColors = theme.semanticColors, fonts = theme.fonts;
-    return {
-        body: [
-            {
-                color: semanticColors.bodyText,
-                background: semanticColors.bodyBackground,
-                fontFamily: fonts.medium.fontFamily,
-                fontWeight: fonts.medium.fontWeight,
-                fontSize: fonts.medium.fontSize,
-                MozOsxFontSmoothing: fonts.medium.MozOsxFontSmoothing,
-                WebkitFontSmoothing: fonts.medium.WebkitFontSmoothing,
-            },
-        ],
-    };
-});
-/**
- * Hook to add class to body element.
- */
-function useApplyClassToBody(state, classesToApply) {
-    var _a;
-    var applyTo = state.applyTo;
-    var applyToBody = applyTo === 'body';
-    var body = (_a = (0,_fluentui_react_window_provider__WEBPACK_IMPORTED_MODULE_2__.useDocument)()) === null || _a === void 0 ? void 0 : _a.body;
-    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {
-        if (!applyToBody || !body) {
-            return;
-        }
-        for (var _i = 0, classesToApply_1 = classesToApply; _i < classesToApply_1.length; _i++) {
-            var classToApply = classesToApply_1[_i];
-            if (classToApply) {
-                body.classList.add(classToApply);
-            }
-        }
-        return function () {
-            if (!applyToBody || !body) {
-                return;
-            }
-            for (var _i = 0, classesToApply_2 = classesToApply; _i < classesToApply_2.length; _i++) {
-                var classToApply = classesToApply_2[_i];
-                if (classToApply) {
-                    body.classList.remove(classToApply);
-                }
-            }
-        };
-    }, [applyToBody, body, classesToApply]);
-}
-function useThemeProviderClasses(state) {
-    var classes = useThemeProviderStyles(state);
-    var className = state.className, applyTo = state.applyTo;
-    useApplyClassToBody(state, [classes.root, classes.body]);
-    state.className = (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_3__.css)(className, classes.root, applyTo === 'element' && classes.body);
-}
-//# sourceMappingURL=useThemeProviderClasses.js.map
-
-/***/ }),
-/* 80 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "makeStyles": () => (/* binding */ makeStyles)
-/* harmony export */ });
-/* harmony import */ var _useTheme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(45);
-/* harmony import */ var _fluentui_react_window_provider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(81);
-/* harmony import */ var _styleRenderers_mergeStylesRenderer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(82);
-
-
-
-var graphGet = function (graphNode, path) {
-    for (var _i = 0, path_1 = path; _i < path_1.length; _i++) {
-        var key = path_1[_i];
-        graphNode = graphNode.get(key);
-        if (!graphNode) {
-            return;
-        }
-    }
-    return graphNode;
-};
-var graphSet = function (graphNode, path, value) {
-    for (var i = 0; i < path.length - 1; i++) {
-        var key = path[i];
-        var current = graphNode.get(key);
-        if (!current) {
-            current = new Map();
-            graphNode.set(key, current);
-        }
-        graphNode = current;
-    }
-    graphNode.set(path[path.length - 1], value);
-};
-/**
- * Registers a css object, optionally as a function of the theme.
- *
- * @param styleOrFunction - Either a css javascript object, or a function which takes in `ITheme`
- * and returns a css javascript object.
- */
-function makeStyles(styleOrFunction) {
-    // Create graph of inputs to map to output.
-    var graph = new Map();
-    return function (options) {
-        if (options === void 0) { options = {}; }
-        var theme = options.theme;
-        var win = (0,_fluentui_react_window_provider__WEBPACK_IMPORTED_MODULE_0__.useWindow)();
-        var contextualTheme = (0,_useTheme__WEBPACK_IMPORTED_MODULE_1__.useTheme)();
-        theme = theme || contextualTheme;
-        var renderer = _styleRenderers_mergeStylesRenderer__WEBPACK_IMPORTED_MODULE_2__.mergeStylesRenderer;
-        var id = renderer.getId();
-        var isStyleFunction = typeof styleOrFunction === 'function';
-        var path = isStyleFunction ? [id, win, theme] : [id, win];
-        var value = graphGet(graph, path);
-        if (!value) {
-            var styles = isStyleFunction ? styleOrFunction(theme) : styleOrFunction;
-            value = _styleRenderers_mergeStylesRenderer__WEBPACK_IMPORTED_MODULE_2__.mergeStylesRenderer.renderStyles(styles, { targetWindow: win, rtl: !!theme.rtl });
-            graphSet(graph, path, value);
-        }
-        return value;
-    };
-}
-//# sourceMappingURL=makeStyles.js.map
-
-/***/ }),
-/* 81 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "WindowContext": () => (/* binding */ WindowContext),
-/* harmony export */   "useWindow": () => (/* binding */ useWindow),
-/* harmony export */   "useDocument": () => (/* binding */ useDocument),
-/* harmony export */   "WindowProvider": () => (/* binding */ WindowProvider)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-
-/**
- * Context for providing the window.
- */
-var WindowContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext({
-    window: typeof window === 'object' ? window : undefined,
-});
-/**
- * Hook to access the window object. This can be overridden contextually using the `WindowProvider`.
- */
-var useWindow = function () { return react__WEBPACK_IMPORTED_MODULE_0__.useContext(WindowContext).window; };
-/**
- * Hook to access the document object. This can be overridden contextually using the `WindowProvider`.
- */
-var useDocument = function () { var _a; return (_a = react__WEBPACK_IMPORTED_MODULE_0__.useContext(WindowContext).window) === null || _a === void 0 ? void 0 : _a.document; };
-/**
- * Component to provide the window object contextually. This is useful when rendering content to an element
- * contained within a child window or iframe element, where event handlers and styling must be projected
- * to an alternative window or document.
- */
-var WindowProvider = function (props) {
-    return react__WEBPACK_IMPORTED_MODULE_0__.createElement(WindowContext.Provider, { value: props }, props.children);
-};
-//# sourceMappingURL=WindowProvider.js.map
-
-/***/ }),
-/* 82 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "mergeStylesRenderer": () => (/* binding */ mergeStylesRenderer)
-/* harmony export */ });
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(44);
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(83);
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(62);
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(86);
-
-var _seed = 0;
-var mergeStylesRenderer = {
-    reset: function () {
-        // If the stylesheet reset call is made, invalidate the cache keys.
-        _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_0__.Stylesheet.getInstance().onReset(function () { return _seed++; });
-    },
-    getId: function () { return _seed; },
-    renderStyles: function (styleSet, options) {
-        return (0,_fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__.mergeCssSets)((Array.isArray(styleSet) ? styleSet : [styleSet]), options);
-    },
-    renderFontFace: function (fontFace, options) {
-        return (0,_fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_2__.fontFace)(fontFace);
-    },
-    renderKeyframes: function (keyframes) {
-        return (0,_fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_3__.keyframes)(keyframes);
-    },
-};
-//# sourceMappingURL=mergeStylesRenderer.js.map
-
-/***/ }),
-/* 83 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "mergeStyleSets": () => (/* binding */ mergeStyleSets),
-/* harmony export */   "mergeCssSets": () => (/* binding */ mergeCssSets)
-/* harmony export */ });
-/* harmony import */ var _concatStyleSets__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(84);
-/* harmony import */ var _extractStyleParts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(85);
-/* harmony import */ var _StyleOptionsState__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(70);
-/* harmony import */ var _styleToClassName__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(63);
-
-
-
-
-/**
- * Takes in one or more style set objects, each consisting of a set of areas,
- * each which will produce a class name. Using this is analogous to calling
- * `mergeStyles` for each property in the object, but ensures we maintain the
- * set ordering when multiple style sets are merged.
- *
- * @param styleSets - One or more style sets to be merged.
- */
-function mergeStyleSets() {
-    var styleSets = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        styleSets[_i] = arguments[_i];
-    }
-    return mergeCssSets(styleSets, (0,_StyleOptionsState__WEBPACK_IMPORTED_MODULE_0__.getStyleOptions)());
-}
-/**
- * Takes in one or more style set objects, each1consisting of a set of areas,
- * each which will produce a class name. Using this is analogous to calling
- * `mergeCss` for each property in the object, but ensures the
- * set ordering when multiple style sets are merged.
- *
- * @param styleSets - One or more style sets to be merged.
- * @param options - (optional) Options to use when creating rules.
- */
-function mergeCssSets(styleSets, options) {
-    var classNameSet = { subComponentStyles: {} };
-    var styleSet = styleSets[0];
-    if (!styleSet && styleSets.length <= 1) {
-        return { subComponentStyles: {} };
-    }
-    var concatenatedStyleSet = _concatStyleSets__WEBPACK_IMPORTED_MODULE_1__.concatStyleSets.apply(void 0, styleSets);
-    var registrations = [];
-    for (var styleSetArea in concatenatedStyleSet) {
-        if (concatenatedStyleSet.hasOwnProperty(styleSetArea)) {
-            if (styleSetArea === 'subComponentStyles') {
-                classNameSet.subComponentStyles = concatenatedStyleSet.subComponentStyles || {};
-                continue;
-            }
-            var styles = concatenatedStyleSet[styleSetArea];
-            var _a = (0,_extractStyleParts__WEBPACK_IMPORTED_MODULE_2__.extractStyleParts)(styles), classes = _a.classes, objects = _a.objects;
-            if (objects === null || objects === void 0 ? void 0 : objects.length) {
-                var registration = (0,_styleToClassName__WEBPACK_IMPORTED_MODULE_3__.styleToRegistration)(options || {}, { displayName: styleSetArea }, objects);
-                if (registration) {
-                    registrations.push(registration);
-                    classNameSet[styleSetArea] = classes.concat([registration.className]).join(' ');
-                }
-            }
-            else {
-                classNameSet[styleSetArea] = classes.join(' ');
-            }
-        }
-    }
-    for (var _i = 0, registrations_1 = registrations; _i < registrations_1.length; _i++) {
-        var registration = registrations_1[_i];
-        if (registration) {
-            (0,_styleToClassName__WEBPACK_IMPORTED_MODULE_3__.applyRegistration)(registration, options === null || options === void 0 ? void 0 : options.specificityMultiplier);
-        }
-    }
-    return classNameSet;
-}
-//# sourceMappingURL=mergeStyleSets.js.map
-
-/***/ }),
-/* 84 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "concatStyleSets": () => (/* binding */ concatStyleSets)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(37);
-
-/**
- * Combine a set of styles together (but does not register css classes).
- * @param styleSets - One or more stylesets to be merged (each param can also be falsy).
- */
-function concatStyleSets() {
-    var styleSets = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        styleSets[_i] = arguments[_i];
-    }
-    if (styleSets && styleSets.length === 1 && styleSets[0] && !styleSets[0].subComponentStyles) {
-        return styleSets[0];
-    }
-    var mergedSet = {};
-    // We process sub component styles in two phases. First we collect them, then we combine them into 1 style function.
-    var workingSubcomponentStyles = {};
-    for (var _a = 0, styleSets_1 = styleSets; _a < styleSets_1.length; _a++) {
-        var currentSet = styleSets_1[_a];
-        if (currentSet) {
-            for (var prop in currentSet) {
-                if (currentSet.hasOwnProperty(prop)) {
-                    if (prop === 'subComponentStyles' && currentSet.subComponentStyles !== undefined) {
-                        // subcomponent styles - style functions or objects
-                        var currentComponentStyles = currentSet.subComponentStyles;
-                        for (var subCompProp in currentComponentStyles) {
-                            if (currentComponentStyles.hasOwnProperty(subCompProp)) {
-                                if (workingSubcomponentStyles.hasOwnProperty(subCompProp)) {
-                                    workingSubcomponentStyles[subCompProp].push(currentComponentStyles[subCompProp]);
-                                }
-                                else {
-                                    workingSubcomponentStyles[subCompProp] = [currentComponentStyles[subCompProp]];
-                                }
-                            }
-                        }
-                        continue;
-                    }
-                    // the as any casts below is a workaround for ts 2.8.
-                    // todo: remove cast to any in ts 2.9.
-                    var mergedValue = mergedSet[prop];
-                    var currentValue = currentSet[prop];
-                    if (mergedValue === undefined) {
-                        mergedSet[prop] = currentValue;
-                    }
-                    else {
-                        mergedSet[prop] = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__spreadArrays)((Array.isArray(mergedValue) ? mergedValue : [mergedValue]), (Array.isArray(currentValue) ? currentValue : [currentValue]));
-                    }
-                }
-            }
-        }
-    }
-    if (Object.keys(workingSubcomponentStyles).length > 0) {
-        mergedSet.subComponentStyles = {};
-        var mergedSubStyles = mergedSet.subComponentStyles;
-        var _loop_1 = function (subCompProp) {
-            if (workingSubcomponentStyles.hasOwnProperty(subCompProp)) {
-                var workingSet_1 = workingSubcomponentStyles[subCompProp];
-                mergedSubStyles[subCompProp] = function (styleProps) {
-                    return concatStyleSets.apply(void 0, workingSet_1.map(function (styleFunctionOrObject) {
-                        return typeof styleFunctionOrObject === 'function' ? styleFunctionOrObject(styleProps) : styleFunctionOrObject;
-                    }));
-                };
-            }
-        };
-        // now we process the subcomponent styles if there are any
-        for (var subCompProp in workingSubcomponentStyles) {
-            _loop_1(subCompProp);
-        }
-    }
-    return mergedSet;
-}
-//# sourceMappingURL=concatStyleSets.js.map
-
-/***/ }),
-/* 85 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "extractStyleParts": () => (/* binding */ extractStyleParts)
-/* harmony export */ });
-/* harmony import */ var _Stylesheet__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(44);
-
-/**
- * Separates the classes and style objects. Any classes that are pre-registered
- * args are auto expanded into objects.
- */
-function extractStyleParts() {
-    var args = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
-    }
-    var classes = [];
-    var objects = [];
-    var stylesheet = _Stylesheet__WEBPACK_IMPORTED_MODULE_0__.Stylesheet.getInstance();
-    function _processArgs(argsList) {
-        for (var _i = 0, argsList_1 = argsList; _i < argsList_1.length; _i++) {
-            var arg = argsList_1[_i];
-            if (arg) {
-                if (typeof arg === 'string') {
-                    if (arg.indexOf(' ') >= 0) {
-                        _processArgs(arg.split(' '));
-                    }
-                    else {
-                        var translatedArgs = stylesheet.argsFromClassName(arg);
-                        if (translatedArgs) {
-                            _processArgs(translatedArgs);
-                        }
-                        else {
-                            // Avoid adding the same class twice.
-                            if (classes.indexOf(arg) === -1) {
-                                classes.push(arg);
-                            }
-                        }
-                    }
-                }
-                else if (Array.isArray(arg)) {
-                    _processArgs(arg);
-                }
-                else if (typeof arg === 'object') {
-                    objects.push(arg);
-                }
-            }
-        }
-    }
-    _processArgs(args);
-    return {
-        classes: classes,
-        objects: objects,
-    };
-}
-//# sourceMappingURL=extractStyleParts.js.map
-
-/***/ }),
-/* 86 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "keyframes": () => (/* binding */ keyframes)
-/* harmony export */ });
-/* harmony import */ var _StyleOptionsState__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(70);
-/* harmony import */ var _Stylesheet__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(44);
-/* harmony import */ var _styleToClassName__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(63);
-
-
-
-/**
- * Registers keyframe definitions.
- *
- * @public
- */
-function keyframes(timeline) {
-    var stylesheet = _Stylesheet__WEBPACK_IMPORTED_MODULE_0__.Stylesheet.getInstance();
-    var name = stylesheet.getClassName();
-    var rulesArray = [];
-    for (var prop in timeline) {
-        if (timeline.hasOwnProperty(prop)) {
-            rulesArray.push(prop, '{', (0,_styleToClassName__WEBPACK_IMPORTED_MODULE_1__.serializeRuleEntries)((0,_StyleOptionsState__WEBPACK_IMPORTED_MODULE_2__.getStyleOptions)(), timeline[prop]), '}');
-        }
-    }
-    var rules = rulesArray.join('');
-    stylesheet.insertRule("@keyframes " + name + "{" + rules + "}", true);
-    stylesheet.cacheClassName(name, rules, [], ['keyframes', rules]);
-    return name;
-}
-//# sourceMappingURL=keyframes.js.map
-
-/***/ }),
-/* 87 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "css": () => (/* binding */ css)
-/* harmony export */ });
-/**
- * Concatination helper, which can merge class names together. Skips over falsey values.
- *
- * @public
- */
-function css() {
-    var args = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
-    }
-    var classes = [];
-    for (var _a = 0, args_1 = args; _a < args_1.length; _a++) {
-        var arg = args_1[_a];
-        if (arg) {
-            if (typeof arg === 'string') {
-                classes.push(arg);
-            }
-            else if (arg.hasOwnProperty('toString') && typeof arg.toString === 'function') {
-                classes.push(arg.toString());
-            }
-            else {
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                for (var key in arg) {
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    if (arg[key]) {
-                        classes.push(key);
-                    }
-                }
-            }
-        }
-    }
-    return classes.join(' ');
-}
-//# sourceMappingURL=css.js.map
-
-/***/ }),
-/* 88 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "useFocusRects": () => (/* binding */ useFocusRects),
-/* harmony export */   "FocusRects": () => (/* binding */ FocusRects)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _dom_getWindow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(42);
-/* harmony import */ var _keyboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(90);
-/* harmony import */ var _setFocusVisibility__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(89);
-
-
-
-
-/**
- * Counter for mounted component that uses focus rectangle.
- * We want to cleanup the listners before last component that uses focus rectangle unmounts.
- */
-var mountCounters = new WeakMap();
-function setMountCounters(key, delta) {
-    var newValue;
-    var currValue = mountCounters.get(key);
-    if (currValue) {
-        newValue = currValue + delta;
-    }
-    else {
-        newValue = 1;
-    }
-    mountCounters.set(key, newValue);
-    return newValue;
-}
-/**
- * Initializes the logic which:
- *
- * 1. Subscribes keydown and mousedown events. (It will only do it once per window,
- *    so it's safe to call this method multiple times.)
- * 2. When the user presses directional keyboard keys, adds the 'ms-Fabric--isFocusVisible' classname
- *    to the document body, removes the 'ms-Fabric-isFocusHidden' classname.
- * 3. When the user clicks a mouse button, adds the 'ms-Fabric-isFocusHidden' classname to the
- *    document body, removes the 'ms-Fabric--isFocusVisible' classname.
- *
- * This logic allows components on the page to conditionally render focus treatments based on
- * the existence of global classnames, which simplifies logic overall.
- *
- * @param rootRef - A Ref object. Focus rectangle can be applied on itself and all its children.
- */
-function useFocusRects(rootRef) {
-    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {
-        var _a;
-        var win = (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_1__.getWindow)(rootRef === null || rootRef === void 0 ? void 0 : rootRef.current);
-        if (!win || ((_a = win.FabricConfig) === null || _a === void 0 ? void 0 : _a.disableFocusRects) === true) {
-            return undefined;
-        }
-        var count = setMountCounters(win, 1);
-        if (count <= 1) {
-            win.addEventListener('mousedown', _onMouseDown, true);
-            win.addEventListener('pointerdown', _onPointerDown, true);
-            win.addEventListener('keydown', _onKeyDown, true);
-        }
-        return function () {
-            var _a;
-            if (!win || ((_a = win.FabricConfig) === null || _a === void 0 ? void 0 : _a.disableFocusRects) === true) {
-                return;
-            }
-            count = setMountCounters(win, -1);
-            if (count === 0) {
-                win.removeEventListener('mousedown', _onMouseDown, true);
-                win.removeEventListener('pointerdown', _onPointerDown, true);
-                win.removeEventListener('keydown', _onKeyDown, true);
-            }
-        };
-    }, [rootRef]);
-}
-/**
- * Function Component wrapper which enables calling `useFocusRects` hook.
- * Renders nothing.
- */
-var FocusRects = function (props) {
-    useFocusRects(props.rootRef);
-    return null;
-};
-function _onMouseDown(ev) {
-    (0,_setFocusVisibility__WEBPACK_IMPORTED_MODULE_2__.setFocusVisibility)(false, ev.target);
-}
-function _onPointerDown(ev) {
-    if (ev.pointerType !== 'mouse') {
-        (0,_setFocusVisibility__WEBPACK_IMPORTED_MODULE_2__.setFocusVisibility)(false, ev.target);
-    }
-}
-function _onKeyDown(ev) {
-    // eslint-disable-next-line deprecation/deprecation
-    if ((0,_keyboard__WEBPACK_IMPORTED_MODULE_3__.isDirectionalKeyCode)(ev.which)) {
-        (0,_setFocusVisibility__WEBPACK_IMPORTED_MODULE_2__.setFocusVisibility)(true, ev.target);
-    }
-}
-//# sourceMappingURL=useFocusRects.js.map
-
-/***/ }),
-/* 89 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "IsFocusVisibleClassName": () => (/* binding */ IsFocusVisibleClassName),
-/* harmony export */   "IsFocusHiddenClassName": () => (/* binding */ IsFocusHiddenClassName),
-/* harmony export */   "setFocusVisibility": () => (/* binding */ setFocusVisibility)
-/* harmony export */ });
-/* harmony import */ var _dom_getWindow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(42);
-
-var IsFocusVisibleClassName = 'ms-Fabric--isFocusVisible';
-var IsFocusHiddenClassName = 'ms-Fabric--isFocusHidden';
-/**
- * Sets the visibility of focus styling.
- *
- * By default, focus styles (the box surrounding a focused Button, for example) only show up when navigational
- * keypresses occur (through Tab, arrows, PgUp/PgDn, Home and End), and are hidden when mouse interactions occur.
- * This API provides an imperative way to turn them on/off.
- *
- * A use case might be when you have a keypress like ctrl-f6 navigate to a particular region on the page,
- * and want focus to show up.
- *
- * @param enabled - whether to remove or add focus
- * @param target - optional target
- */
-function setFocusVisibility(enabled, target) {
-    var win = target ? (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_0__.getWindow)(target) : (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
-    if (win) {
-        var classList = win.document.body.classList;
-        classList.add(enabled ? IsFocusVisibleClassName : IsFocusHiddenClassName);
-        classList.remove(enabled ? IsFocusHiddenClassName : IsFocusVisibleClassName);
-    }
-}
-//# sourceMappingURL=setFocusVisibility.js.map
-
-/***/ }),
-/* 90 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "isDirectionalKeyCode": () => (/* binding */ isDirectionalKeyCode),
-/* harmony export */   "addDirectionalKeyCode": () => (/* binding */ addDirectionalKeyCode)
-/* harmony export */ });
-/* harmony import */ var _KeyCodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(91);
-var _a;
-
-var DirectionalKeyCodes = (_a = {},
-    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.up] = 1,
-    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.down] = 1,
-    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.left] = 1,
-    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.right] = 1,
-    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.home] = 1,
-    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.end] = 1,
-    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.tab] = 1,
-    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.pageUp] = 1,
-    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.pageDown] = 1,
-    _a);
-/**
- * Returns true if the keycode is a directional keyboard key.
- */
-function isDirectionalKeyCode(which) {
-    return !!DirectionalKeyCodes[which];
-}
-/**
- * Adds a keycode to the list of keys that, when pressed, should cause the focus outlines to be visible.
- * This can be used to add global shortcut keys that directionally move from section to section within
- * an app or between focus trap zones.
- */
-function addDirectionalKeyCode(which) {
-    DirectionalKeyCodes[which] = 1;
-}
-//# sourceMappingURL=keyboard.js.map
-
-/***/ }),
-/* 91 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "KeyCodes": () => (/* binding */ KeyCodes)
-/* harmony export */ });
-/**
- * Simulated enum for keycodes. These will get inlined by uglify when used much like an enum
- *
- * @public
- * {@docCategory KeyCodes}
- */
-var KeyCodes = {
-    backspace: 8,
-    tab: 9,
-    enter: 13,
-    shift: 16,
-    ctrl: 17,
-    alt: 18,
-    pauseBreak: 19,
-    capslock: 20,
-    escape: 27,
-    space: 32,
-    pageUp: 33,
-    pageDown: 34,
-    end: 35,
-    home: 36,
-    left: 37,
-    up: 38,
-    right: 39,
-    down: 40,
-    insert: 45,
-    del: 46,
-    zero: 48,
-    one: 49,
-    two: 50,
-    three: 51,
-    four: 52,
-    five: 53,
-    six: 54,
-    seven: 55,
-    eight: 56,
-    nine: 57,
-    colon: 58,
-    a: 65,
-    b: 66,
-    c: 67,
-    d: 68,
-    e: 69,
-    f: 70,
-    g: 71,
-    h: 72,
-    i: 73,
-    j: 74,
-    k: 75,
-    l: 76,
-    m: 77,
-    n: 78,
-    o: 79,
-    p: 80,
-    q: 81,
-    r: 82,
-    s: 83,
-    t: 84,
-    u: 85,
-    v: 86,
-    w: 87,
-    x: 88,
-    y: 89,
-    z: 90,
-    leftWindow: 91,
-    rightWindow: 92,
-    select: 93,
-    /* eslint-disable @typescript-eslint/naming-convention */
-    zero_numpad: 96,
-    one_numpad: 97,
-    two_numpad: 98,
-    three_numpad: 99,
-    four_numpad: 100,
-    five_numpad: 101,
-    six_numpad: 102,
-    seven_numpad: 103,
-    eight_numpad: 104,
-    nine_numpad: 105,
-    /* eslint-enable @typescript-eslint/naming-convention */
-    multiply: 106,
-    add: 107,
-    subtract: 109,
-    decimalPoint: 110,
-    divide: 111,
-    f1: 112,
-    f2: 113,
-    f3: 114,
-    f4: 115,
-    f5: 116,
-    f6: 117,
-    f7: 118,
-    f8: 119,
-    f9: 120,
-    f10: 121,
-    f11: 122,
-    f12: 123,
-    numlock: 144,
-    scrollLock: 145,
-    semicolon: 186,
-    equalSign: 187,
-    comma: 188,
-    dash: 189,
-    period: 190,
-    forwardSlash: 191,
-    graveAccent: 192,
-    openBracket: 219,
-    backSlash: 220,
-    closeBracket: 221,
-    singleQuote: 222,
-};
-//# sourceMappingURL=KeyCodes.js.map
-
-/***/ }),
-/* 92 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
-/* harmony export */ });
-/* harmony import */ var _fabric_icons__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(93);
-/* harmony import */ var _fabric_icons_0__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(126);
-/* harmony import */ var _fabric_icons_1__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(127);
-/* harmony import */ var _fabric_icons_2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(128);
-/* harmony import */ var _fabric_icons_3__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(129);
-/* harmony import */ var _fabric_icons_4__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(130);
-/* harmony import */ var _fabric_icons_5__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(131);
-/* harmony import */ var _fabric_icons_6__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(132);
-/* harmony import */ var _fabric_icons_7__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(133);
-/* harmony import */ var _fabric_icons_8__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(134);
-/* harmony import */ var _fabric_icons_9__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(135);
-/* harmony import */ var _fabric_icons_10__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(136);
-/* harmony import */ var _fabric_icons_11__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(137);
-/* harmony import */ var _fabric_icons_12__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(138);
-/* harmony import */ var _fabric_icons_13__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(139);
-/* harmony import */ var _fabric_icons_14__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(140);
-/* harmony import */ var _fabric_icons_15__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(141);
-/* harmony import */ var _fabric_icons_16__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(142);
-/* harmony import */ var _fabric_icons_17__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(143);
-/* harmony import */ var _iconAliases__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(144);
-/* harmony import */ var _version__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(145);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var DEFAULT_BASE_URL = 'https://spoprod-a.akamaihd.net/files/fabric/assets/icons/';
-function initializeIcons(baseUrl, options) {
-    if (baseUrl === void 0) { baseUrl = DEFAULT_BASE_URL; }
-    [
-        _fabric_icons__WEBPACK_IMPORTED_MODULE_0__.initializeIcons,
-        _fabric_icons_0__WEBPACK_IMPORTED_MODULE_1__.initializeIcons,
-        _fabric_icons_1__WEBPACK_IMPORTED_MODULE_2__.initializeIcons,
-        _fabric_icons_2__WEBPACK_IMPORTED_MODULE_3__.initializeIcons,
-        _fabric_icons_3__WEBPACK_IMPORTED_MODULE_4__.initializeIcons,
-        _fabric_icons_4__WEBPACK_IMPORTED_MODULE_5__.initializeIcons,
-        _fabric_icons_5__WEBPACK_IMPORTED_MODULE_6__.initializeIcons,
-        _fabric_icons_6__WEBPACK_IMPORTED_MODULE_7__.initializeIcons,
-        _fabric_icons_7__WEBPACK_IMPORTED_MODULE_8__.initializeIcons,
-        _fabric_icons_8__WEBPACK_IMPORTED_MODULE_9__.initializeIcons,
-        _fabric_icons_9__WEBPACK_IMPORTED_MODULE_10__.initializeIcons,
-        _fabric_icons_10__WEBPACK_IMPORTED_MODULE_11__.initializeIcons,
-        _fabric_icons_11__WEBPACK_IMPORTED_MODULE_12__.initializeIcons,
-        _fabric_icons_12__WEBPACK_IMPORTED_MODULE_13__.initializeIcons,
-        _fabric_icons_13__WEBPACK_IMPORTED_MODULE_14__.initializeIcons,
-        _fabric_icons_14__WEBPACK_IMPORTED_MODULE_15__.initializeIcons,
-        _fabric_icons_15__WEBPACK_IMPORTED_MODULE_16__.initializeIcons,
-        _fabric_icons_16__WEBPACK_IMPORTED_MODULE_17__.initializeIcons,
-        _fabric_icons_17__WEBPACK_IMPORTED_MODULE_18__.initializeIcons,
-    ].forEach(function (initialize) { return initialize(baseUrl, options); });
-    (0,_iconAliases__WEBPACK_IMPORTED_MODULE_19__.registerIconAliases)();
-}
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 93 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
-/* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
-// Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
-
-function initializeIcons(baseUrl, options) {
-    if (baseUrl === void 0) { baseUrl = ''; }
-    var subset = {
-        style: {
-            MozOsxFontSmoothing: 'grayscale',
-            WebkitFontSmoothing: 'antialiased',
-            fontStyle: 'normal',
-            fontWeight: 'normal',
-            speak: 'none',
-        },
-        fontFace: {
-            fontFamily: "\"FabricMDL2Icons\"",
-            src: "url('" + baseUrl + "fabric-icons-a13498cf.woff') format('woff')",
-        },
-        icons: {
-            GlobalNavButton: '\uE700',
-            ChevronDown: '\uE70D',
-            ChevronUp: '\uE70E',
-            Edit: '\uE70F',
-            Add: '\uE710',
-            Cancel: '\uE711',
-            More: '\uE712',
-            Settings: '\uE713',
-            Mail: '\uE715',
-            Filter: '\uE71C',
-            Search: '\uE721',
-            Share: '\uE72D',
-            BlockedSite: '\uE72F',
-            FavoriteStar: '\uE734',
-            FavoriteStarFill: '\uE735',
-            CheckMark: '\uE73E',
-            Delete: '\uE74D',
-            ChevronLeft: '\uE76B',
-            ChevronRight: '\uE76C',
-            Calendar: '\uE787',
-            Megaphone: '\uE789',
-            Undo: '\uE7A7',
-            Flag: '\uE7C1',
-            Page: '\uE7C3',
-            Pinned: '\uE840',
-            View: '\uE890',
-            Clear: '\uE894',
-            Download: '\uE896',
-            Upload: '\uE898',
-            Folder: '\uE8B7',
-            Sort: '\uE8CB',
-            AlignRight: '\uE8E2',
-            AlignLeft: '\uE8E4',
-            Tag: '\uE8EC',
-            AddFriend: '\uE8FA',
-            Info: '\uE946',
-            SortLines: '\uE9D0',
-            List: '\uEA37',
-            CircleRing: '\uEA3A',
-            Heart: '\uEB51',
-            HeartFill: '\uEB52',
-            Tiles: '\uECA5',
-            Embed: '\uECCE',
-            Glimmer: '\uECF4',
-            Ascending: '\uEDC0',
-            Descending: '\uEDC1',
-            SortUp: '\uEE68',
-            SortDown: '\uEE69',
-            SyncToPC: '\uEE6E',
-            LargeGrid: '\uEECB',
-            SkypeCheck: '\uEF80',
-            SkypeClock: '\uEF81',
-            SkypeMinus: '\uEF82',
-            ClearFilter: '\uEF8F',
-            Flow: '\uEF90',
-            StatusCircleCheckmark: '\uF13E',
-            MoreVertical: '\uF2BC',
-        },
-    };
-    (0,_fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__.registerIcons)(subset, options);
-}
-//# sourceMappingURL=fabric-icons.js.map
-
-/***/ }),
-/* 94 */
+/* 67 */,
+/* 68 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5492,12 +3872,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "mergeStyleSets": () => (/* reexport safe */ _MergeStyles__WEBPACK_IMPORTED_MODULE_3__.mergeStyleSets),
 /* harmony export */   "mergeStyles": () => (/* reexport safe */ _MergeStyles__WEBPACK_IMPORTED_MODULE_3__.mergeStyles)
 /* harmony export */ });
-/* harmony import */ var _classNames_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(95);
-/* harmony import */ var _styles_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(104);
-/* harmony import */ var _utilities_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(117);
-/* harmony import */ var _MergeStyles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(121);
-/* harmony import */ var _version__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(123);
-/* harmony import */ var _styles_theme__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(102);
+/* harmony import */ var _classNames_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(69);
+/* harmony import */ var _styles_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(93);
+/* harmony import */ var _utilities_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(107);
+/* harmony import */ var _MergeStyles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(111);
+/* harmony import */ var _version__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(112);
+/* harmony import */ var _styles_theme__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(84);
 
 
 
@@ -5510,7 +3890,7 @@ __webpack_require__.r(__webpack_exports__);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 95 */
+/* 69 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5520,16 +3900,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "FontClassNames": () => (/* reexport safe */ _FontClassNames__WEBPACK_IMPORTED_MODULE_1__.FontClassNames),
 /* harmony export */   "ColorClassNames": () => (/* reexport safe */ _ColorClassNames__WEBPACK_IMPORTED_MODULE_2__.ColorClassNames)
 /* harmony export */ });
-/* harmony import */ var _AnimationClassNames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(96);
-/* harmony import */ var _FontClassNames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(100);
-/* harmony import */ var _ColorClassNames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(101);
+/* harmony import */ var _AnimationClassNames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(70);
+/* harmony import */ var _FontClassNames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(75);
+/* harmony import */ var _ColorClassNames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(82);
 
 
 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 96 */
+/* 70 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5537,8 +3917,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AnimationClassNames": () => (/* binding */ AnimationClassNames)
 /* harmony export */ });
-/* harmony import */ var _utilities_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(97);
-/* harmony import */ var _styles_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(99);
+/* harmony import */ var _utilities_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(71);
+/* harmony import */ var _styles_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(73);
 
 
 /**
@@ -5548,7 +3928,7 @@ var AnimationClassNames = (0,_utilities_index__WEBPACK_IMPORTED_MODULE_0__.build
 //# sourceMappingURL=AnimationClassNames.js.map
 
 /***/ }),
-/* 97 */
+/* 71 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5556,7 +3936,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "buildClassMap": () => (/* binding */ buildClassMap)
 /* harmony export */ });
-/* harmony import */ var _MergeStyles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(98);
+/* harmony import */ var _MergeStyles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(72);
 
 /**
  * Builds a class names object from a given map.
@@ -5590,7 +3970,7 @@ function buildClassMap(styles) {
 //# sourceMappingURL=buildClassMap.js.map
 
 /***/ }),
-/* 98 */
+/* 72 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5599,9 +3979,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "mergeStyles": () => (/* binding */ mergeStyles),
 /* harmony export */   "mergeCss": () => (/* binding */ mergeCss)
 /* harmony export */ });
-/* harmony import */ var _extractStyleParts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(85);
-/* harmony import */ var _StyleOptionsState__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(70);
-/* harmony import */ var _styleToClassName__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(63);
+/* harmony import */ var _extractStyleParts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(56);
+/* harmony import */ var _StyleOptionsState__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(53);
+/* harmony import */ var _styleToClassName__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(57);
 
 
 
@@ -5634,7 +4014,7 @@ function mergeCss(args, options) {
 //# sourceMappingURL=mergeStyles.js.map
 
 /***/ }),
-/* 99 */
+/* 73 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5643,7 +4023,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "AnimationVariables": () => (/* binding */ AnimationVariables),
 /* harmony export */   "AnimationStyles": () => (/* binding */ AnimationStyles)
 /* harmony export */ });
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(86);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(74);
 
 /* Register the keyframes */
 var EASING_FUNCTION_1 = 'cubic-bezier(.1,.9,.2,1)';
@@ -5798,7 +4178,43 @@ function _createSlideOutY(toY) {
 //# sourceMappingURL=AnimationStyles.js.map
 
 /***/ }),
-/* 100 */
+/* 74 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "keyframes": () => (/* binding */ keyframes)
+/* harmony export */ });
+/* harmony import */ var _StyleOptionsState__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(53);
+/* harmony import */ var _Stylesheet__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49);
+/* harmony import */ var _styleToClassName__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(57);
+
+
+
+/**
+ * Registers keyframe definitions.
+ *
+ * @public
+ */
+function keyframes(timeline) {
+    var stylesheet = _Stylesheet__WEBPACK_IMPORTED_MODULE_0__.Stylesheet.getInstance();
+    var name = stylesheet.getClassName();
+    var rulesArray = [];
+    for (var prop in timeline) {
+        if (timeline.hasOwnProperty(prop)) {
+            rulesArray.push(prop, '{', (0,_styleToClassName__WEBPACK_IMPORTED_MODULE_1__.serializeRuleEntries)((0,_StyleOptionsState__WEBPACK_IMPORTED_MODULE_2__.getStyleOptions)(), timeline[prop]), '}');
+        }
+    }
+    var rules = rulesArray.join('');
+    stylesheet.insertRule("@keyframes " + name + "{" + rules + "}", true);
+    stylesheet.cacheClassName(name, rules, [], ['keyframes', rules]);
+    return name;
+}
+//# sourceMappingURL=keyframes.js.map
+
+/***/ }),
+/* 75 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5806,8 +4222,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "FontClassNames": () => (/* binding */ FontClassNames)
 /* harmony export */ });
-/* harmony import */ var _utilities_buildClassMap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(97);
-/* harmony import */ var _styles_DefaultFontStyles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55);
+/* harmony import */ var _utilities_buildClassMap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(71);
+/* harmony import */ var _styles_DefaultFontStyles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(76);
 
 
 /**
@@ -5817,7 +4233,403 @@ var FontClassNames = (0,_utilities_buildClassMap__WEBPACK_IMPORTED_MODULE_0__.bu
 //# sourceMappingURL=FontClassNames.js.map
 
 /***/ }),
-/* 101 */
+/* 76 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DefaultFontStyles": () => (/* binding */ DefaultFontStyles),
+/* harmony export */   "registerDefaultFontFaces": () => (/* binding */ registerDefaultFontFaces)
+/* harmony export */ });
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(81);
+/* harmony import */ var _FluentFonts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(78);
+/* harmony import */ var _createFontStyles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(77);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(79);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(42);
+
+
+
+
+// Default urls.
+var DefaultBaseUrl = 'https://static2.sharepointonline.com/files/fabric/assets';
+// Standard font styling.
+var DefaultFontStyles = (0,_createFontStyles__WEBPACK_IMPORTED_MODULE_0__.createFontStyles)((0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__.getLanguage)());
+function _registerFontFace(fontFamily, url, fontWeight, localFontName) {
+    fontFamily = "'" + fontFamily + "'";
+    var localFontSrc = localFontName !== undefined ? "local('" + localFontName + "')," : '';
+    (0,_fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_2__.fontFace)({
+        fontFamily: fontFamily,
+        src: localFontSrc + ("url('" + url + ".woff2') format('woff2'),") + ("url('" + url + ".woff') format('woff')"),
+        fontWeight: fontWeight,
+        fontStyle: 'normal',
+        fontDisplay: 'swap',
+    });
+}
+function _registerFontFaceSet(baseUrl, fontFamily, cdnFolder, cdnFontName, localFontName) {
+    if (cdnFontName === void 0) { cdnFontName = 'segoeui'; }
+    var urlBase = baseUrl + "/" + cdnFolder + "/" + cdnFontName;
+    _registerFontFace(fontFamily, urlBase + '-light', _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.FontWeights.light, localFontName && localFontName + ' Light');
+    _registerFontFace(fontFamily, urlBase + '-semilight', _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.FontWeights.semilight, localFontName && localFontName + ' SemiLight');
+    _registerFontFace(fontFamily, urlBase + '-regular', _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.FontWeights.regular, localFontName);
+    _registerFontFace(fontFamily, urlBase + '-semibold', _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.FontWeights.semibold, localFontName && localFontName + ' SemiBold');
+    _registerFontFace(fontFamily, urlBase + '-bold', _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.FontWeights.bold, localFontName && localFontName + ' Bold');
+}
+function registerDefaultFontFaces(baseUrl) {
+    if (baseUrl) {
+        var fontUrl = baseUrl + "/fonts";
+        // Produce @font-face definitions for all supported web fonts.
+        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.Thai, 'leelawadeeui-thai', 'leelawadeeui');
+        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.Arabic, 'segoeui-arabic');
+        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.Cyrillic, 'segoeui-cyrillic');
+        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.EastEuropean, 'segoeui-easteuropean');
+        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.Greek, 'segoeui-greek');
+        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.Hebrew, 'segoeui-hebrew');
+        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.Vietnamese, 'segoeui-vietnamese');
+        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.WestEuropean, 'segoeui-westeuropean', 'segoeui', 'Segoe UI');
+        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontFamilies.Selawik, 'selawik', 'selawik');
+        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.Armenian, 'segoeui-armenian');
+        _registerFontFaceSet(fontUrl, _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.LocalizedFontNames.Georgian, 'segoeui-georgian');
+        // Leelawadee UI (Thai) does not have a 'light' weight, so we override
+        // the font-face generated above to use the 'semilight' weight instead.
+        _registerFontFace('Leelawadee UI Web', fontUrl + "/leelawadeeui-thai/leelawadeeui-semilight", _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.FontWeights.light);
+        // Leelawadee UI (Thai) does not have a 'semibold' weight, so we override
+        // the font-face generated above to use the 'bold' weight instead.
+        _registerFontFace('Leelawadee UI Web', fontUrl + "/leelawadeeui-thai/leelawadeeui-bold", _FluentFonts__WEBPACK_IMPORTED_MODULE_3__.FontWeights.semibold);
+    }
+}
+/**
+ * Reads the fontBaseUrl from window.FabricConfig.fontBaseUrl or falls back to a default.
+ */
+function _getFontBaseUrl() {
+    var _a, _b;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    var fabricConfig = (_a = (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_4__.getWindow)()) === null || _a === void 0 ? void 0 : _a.FabricConfig;
+    return (_b = fabricConfig === null || fabricConfig === void 0 ? void 0 : fabricConfig.fontBaseUrl) !== null && _b !== void 0 ? _b : DefaultBaseUrl;
+}
+/**
+ * Register the font faces.
+ */
+registerDefaultFontFaces(_getFontBaseUrl());
+//# sourceMappingURL=DefaultFontStyles.js.map
+
+/***/ }),
+/* 77 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createFontStyles": () => (/* binding */ createFontStyles)
+/* harmony export */ });
+/* harmony import */ var _FluentFonts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(78);
+
+// Fallback fonts, if specified system or web fonts are unavailable.
+var FontFamilyFallbacks = "'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif";
+// By default, we favor system fonts for the default.
+// All localized fonts use a web font and never use the system font.
+var defaultFontFamily = "'Segoe UI', '" + _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontNames.WestEuropean + "'";
+// Mapping of language prefix to to font family.
+var LanguageToFontMap = {
+    ar: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Arabic,
+    bg: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Cyrillic,
+    cs: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
+    el: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Greek,
+    et: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
+    he: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Hebrew,
+    hi: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Hindi,
+    hr: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
+    hu: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
+    ja: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Japanese,
+    kk: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
+    ko: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Korean,
+    lt: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
+    lv: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
+    pl: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
+    ru: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Cyrillic,
+    sk: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
+    'sr-latn': _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
+    th: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Thai,
+    tr: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.EastEuropean,
+    uk: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Cyrillic,
+    vi: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Vietnamese,
+    'zh-hans': _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.ChineseSimplified,
+    'zh-hant': _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.ChineseTraditional,
+    hy: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Armenian,
+    ka: _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.LocalizedFontFamilies.Georgian,
+};
+function _fontFamilyWithFallbacks(fontFamily) {
+    return fontFamily + ", " + FontFamilyFallbacks;
+}
+/**
+ * If there is a localized font for this language, return that.
+ * Returns undefined if there is no localized font for that language.
+ */
+function _getLocalizedFontFamily(language) {
+    for (var lang in LanguageToFontMap) {
+        if (LanguageToFontMap.hasOwnProperty(lang) && language && lang.indexOf(language) === 0) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            return LanguageToFontMap[lang];
+        }
+    }
+    return defaultFontFamily;
+}
+function _createFont(size, weight, fontFamily) {
+    return {
+        fontFamily: fontFamily,
+        MozOsxFontSmoothing: 'grayscale',
+        WebkitFontSmoothing: 'antialiased',
+        fontSize: size,
+        fontWeight: weight,
+    };
+}
+function createFontStyles(localeCode) {
+    var localizedFont = _getLocalizedFontFamily(localeCode);
+    var fontFamilyWithFallback = _fontFamilyWithFallbacks(localizedFont);
+    var fontStyles = {
+        tiny: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.mini, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.regular, fontFamilyWithFallback),
+        xSmall: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.xSmall, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.regular, fontFamilyWithFallback),
+        small: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.small, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.regular, fontFamilyWithFallback),
+        smallPlus: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.smallPlus, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.regular, fontFamilyWithFallback),
+        medium: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.medium, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.regular, fontFamilyWithFallback),
+        mediumPlus: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.mediumPlus, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.regular, fontFamilyWithFallback),
+        large: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.large, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.regular, fontFamilyWithFallback),
+        xLarge: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.xLarge, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.semibold, fontFamilyWithFallback),
+        xLargePlus: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.xLargePlus, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.semibold, fontFamilyWithFallback),
+        xxLarge: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.xxLarge, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.semibold, fontFamilyWithFallback),
+        xxLargePlus: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.xxLargePlus, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.semibold, fontFamilyWithFallback),
+        superLarge: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.superLarge, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.semibold, fontFamilyWithFallback),
+        mega: _createFont(_FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontSizes.mega, _FluentFonts__WEBPACK_IMPORTED_MODULE_0__.FontWeights.semibold, fontFamilyWithFallback),
+    };
+    return fontStyles;
+}
+//# sourceMappingURL=createFontStyles.js.map
+
+/***/ }),
+/* 78 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "LocalizedFontNames": () => (/* binding */ LocalizedFontNames),
+/* harmony export */   "LocalizedFontFamilies": () => (/* binding */ LocalizedFontFamilies),
+/* harmony export */   "FontSizes": () => (/* binding */ FontSizes),
+/* harmony export */   "FontWeights": () => (/* binding */ FontWeights),
+/* harmony export */   "IconFontSizes": () => (/* binding */ IconFontSizes)
+/* harmony export */ });
+// Font face names to be registered.
+var LocalizedFontNames;
+(function (LocalizedFontNames) {
+    LocalizedFontNames.Arabic = 'Segoe UI Web (Arabic)';
+    LocalizedFontNames.Cyrillic = 'Segoe UI Web (Cyrillic)';
+    LocalizedFontNames.EastEuropean = 'Segoe UI Web (East European)';
+    LocalizedFontNames.Greek = 'Segoe UI Web (Greek)';
+    LocalizedFontNames.Hebrew = 'Segoe UI Web (Hebrew)';
+    LocalizedFontNames.Thai = 'Leelawadee UI Web';
+    LocalizedFontNames.Vietnamese = 'Segoe UI Web (Vietnamese)';
+    LocalizedFontNames.WestEuropean = 'Segoe UI Web (West European)';
+    LocalizedFontNames.Selawik = 'Selawik Web';
+    LocalizedFontNames.Armenian = 'Segoe UI Web (Armenian)';
+    LocalizedFontNames.Georgian = 'Segoe UI Web (Georgian)';
+})(LocalizedFontNames || (LocalizedFontNames = {}));
+// Font families with fallbacks, for the general regions.
+var LocalizedFontFamilies;
+(function (LocalizedFontFamilies) {
+    LocalizedFontFamilies.Arabic = "'" + LocalizedFontNames.Arabic + "'";
+    LocalizedFontFamilies.ChineseSimplified = "'Microsoft Yahei UI', Verdana, Simsun";
+    LocalizedFontFamilies.ChineseTraditional = "'Microsoft Jhenghei UI', Pmingliu";
+    LocalizedFontFamilies.Cyrillic = "'" + LocalizedFontNames.Cyrillic + "'";
+    LocalizedFontFamilies.EastEuropean = "'" + LocalizedFontNames.EastEuropean + "'";
+    LocalizedFontFamilies.Greek = "'" + LocalizedFontNames.Greek + "'";
+    LocalizedFontFamilies.Hebrew = "'" + LocalizedFontNames.Hebrew + "'";
+    LocalizedFontFamilies.Hindi = "'Nirmala UI'";
+    LocalizedFontFamilies.Japanese = "'Yu Gothic UI', 'Meiryo UI', Meiryo, 'MS Pgothic', Osaka";
+    LocalizedFontFamilies.Korean = "'Malgun Gothic', Gulim";
+    LocalizedFontFamilies.Selawik = "'" + LocalizedFontNames.Selawik + "'";
+    LocalizedFontFamilies.Thai = "'Leelawadee UI Web', 'Kmer UI'";
+    LocalizedFontFamilies.Vietnamese = "'" + LocalizedFontNames.Vietnamese + "'";
+    LocalizedFontFamilies.WestEuropean = "'" + LocalizedFontNames.WestEuropean + "'";
+    LocalizedFontFamilies.Armenian = "'" + LocalizedFontNames.Armenian + "'";
+    LocalizedFontFamilies.Georgian = "'" + LocalizedFontNames.Georgian + "'";
+})(LocalizedFontFamilies || (LocalizedFontFamilies = {}));
+// Standard font sizes.
+var FontSizes;
+(function (FontSizes) {
+    FontSizes.size10 = '10px';
+    FontSizes.size12 = '12px';
+    FontSizes.size14 = '14px';
+    FontSizes.size16 = '16px';
+    FontSizes.size18 = '18px';
+    FontSizes.size20 = '20px';
+    FontSizes.size24 = '24px';
+    FontSizes.size28 = '28px';
+    FontSizes.size32 = '32px';
+    FontSizes.size42 = '42px';
+    FontSizes.size68 = '68px';
+    FontSizes.mini = '10px';
+    FontSizes.xSmall = '10px';
+    FontSizes.small = '12px';
+    FontSizes.smallPlus = '12px';
+    FontSizes.medium = '14px';
+    FontSizes.mediumPlus = '16px';
+    FontSizes.icon = '16px';
+    FontSizes.large = '18px';
+    FontSizes.xLarge = '20px';
+    FontSizes.xLargePlus = '24px';
+    FontSizes.xxLarge = '28px';
+    FontSizes.xxLargePlus = '32px';
+    FontSizes.superLarge = '42px';
+    FontSizes.mega = '68px';
+})(FontSizes || (FontSizes = {}));
+// Standard font weights.
+var FontWeights;
+(function (FontWeights) {
+    FontWeights.light = 100;
+    FontWeights.semilight = 300;
+    FontWeights.regular = 400;
+    FontWeights.semibold = 600;
+    FontWeights.bold = 700;
+})(FontWeights || (FontWeights = {}));
+// Standard Icon Sizes.
+var IconFontSizes;
+(function (IconFontSizes) {
+    IconFontSizes.xSmall = '10px';
+    IconFontSizes.small = '12px';
+    IconFontSizes.medium = '16px';
+    IconFontSizes.large = '20px';
+})(IconFontSizes || (IconFontSizes = {}));
+//# sourceMappingURL=FluentFonts.js.map
+
+/***/ }),
+/* 79 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getLanguage": () => (/* binding */ getLanguage),
+/* harmony export */   "setLanguage": () => (/* binding */ setLanguage)
+/* harmony export */ });
+/* harmony import */ var _dom_getDocument__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(52);
+/* harmony import */ var _localStorage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(80);
+/* harmony import */ var _sessionStorage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(51);
+
+
+
+// Default to undefined so that we initialize on first read.
+var _language;
+var STORAGE_KEY = 'language';
+/**
+ * Gets the language set for the page.
+ * @param persistenceType - Where to persist the value. Default is `sessionStorage` if available.
+ */
+function getLanguage(persistenceType) {
+    if (persistenceType === void 0) { persistenceType = 'sessionStorage'; }
+    if (_language === undefined) {
+        var doc = (0,_dom_getDocument__WEBPACK_IMPORTED_MODULE_0__.getDocument)();
+        var savedLanguage = persistenceType === 'localStorage'
+            ? _localStorage__WEBPACK_IMPORTED_MODULE_1__.getItem(STORAGE_KEY)
+            : persistenceType === 'sessionStorage'
+                ? _sessionStorage__WEBPACK_IMPORTED_MODULE_2__.getItem(STORAGE_KEY)
+                : undefined;
+        if (savedLanguage) {
+            _language = savedLanguage;
+        }
+        if (_language === undefined && doc) {
+            _language = doc.documentElement.getAttribute('lang');
+        }
+        if (_language === undefined) {
+            _language = 'en';
+        }
+    }
+    return _language;
+}
+function setLanguage(language, persistenceParam) {
+    var doc = (0,_dom_getDocument__WEBPACK_IMPORTED_MODULE_0__.getDocument)();
+    if (doc) {
+        doc.documentElement.setAttribute('lang', language);
+    }
+    var persistenceType = persistenceParam === true ? 'none' : !persistenceParam ? 'sessionStorage' : persistenceParam;
+    if (persistenceType === 'localStorage') {
+        _localStorage__WEBPACK_IMPORTED_MODULE_1__.setItem(STORAGE_KEY, language);
+    }
+    else if (persistenceType === 'sessionStorage') {
+        _sessionStorage__WEBPACK_IMPORTED_MODULE_2__.setItem(STORAGE_KEY, language);
+    }
+    _language = language;
+}
+//# sourceMappingURL=language.js.map
+
+/***/ }),
+/* 80 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getItem": () => (/* binding */ getItem),
+/* harmony export */   "setItem": () => (/* binding */ setItem)
+/* harmony export */ });
+/* harmony import */ var _dom_getWindow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(42);
+
+/**
+ * Fetches an item from local storage without throwing an exception
+ * @param key The key of the item to fetch from local storage
+ */
+function getItem(key) {
+    var result = null;
+    try {
+        var win = (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
+        result = win ? win.localStorage.getItem(key) : null;
+    }
+    catch (e) {
+        /* Eat the exception */
+    }
+    return result;
+}
+/**
+ * Inserts an item into local storage without throwing an exception
+ * @param key The key of the item to add to local storage
+ * @param data The data to put into local storage
+ */
+function setItem(key, data) {
+    try {
+        var win = (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
+        win && win.localStorage.setItem(key, data);
+    }
+    catch (e) {
+        /* Eat the exception */
+    }
+}
+//# sourceMappingURL=localStorage.js.map
+
+/***/ }),
+/* 81 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fontFace": () => (/* binding */ fontFace)
+/* harmony export */ });
+/* harmony import */ var _StyleOptionsState__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(53);
+/* harmony import */ var _Stylesheet__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49);
+/* harmony import */ var _styleToClassName__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(57);
+
+
+
+/**
+ * Registers a font face.
+ * @public
+ */
+function fontFace(font) {
+    _Stylesheet__WEBPACK_IMPORTED_MODULE_0__.Stylesheet.getInstance().insertRule("@font-face{" + (0,_styleToClassName__WEBPACK_IMPORTED_MODULE_1__.serializeRuleEntries)((0,_StyleOptionsState__WEBPACK_IMPORTED_MODULE_2__.getStyleOptions)(), font) + "}", true);
+}
+//# sourceMappingURL=fontFace.js.map
+
+/***/ }),
+/* 82 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5825,9 +4637,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ColorClassNames": () => (/* binding */ ColorClassNames)
 /* harmony export */ });
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(98);
-/* harmony import */ var _styles_DefaultPalette__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(52);
-/* harmony import */ var _styles_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(102);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(72);
+/* harmony import */ var _styles_DefaultPalette__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(83);
+/* harmony import */ var _styles_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(84);
 
 
 
@@ -5866,7 +4678,72 @@ function _defineGetter(obj, colorName, suffix, isHover, cssProperty) {
 //# sourceMappingURL=ColorClassNames.js.map
 
 /***/ }),
-/* 102 */
+/* 83 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DefaultPalette": () => (/* binding */ DefaultPalette)
+/* harmony export */ });
+// When adding or removing a color, make sure you keep this consistent with IColorClassNames
+// by adding the color variants.
+var DefaultPalette = {
+    themeDarker: '#004578',
+    themeDark: '#005a9e',
+    themeDarkAlt: '#106ebe',
+    themePrimary: '#0078d4',
+    themeSecondary: '#2b88d8',
+    themeTertiary: '#71afe5',
+    themeLight: '#c7e0f4',
+    themeLighter: '#deecf9',
+    themeLighterAlt: '#eff6fc',
+    black: '#000000',
+    blackTranslucent40: 'rgba(0,0,0,.4)',
+    neutralDark: '#201f1e',
+    neutralPrimary: '#323130',
+    neutralPrimaryAlt: '#3b3a39',
+    neutralSecondary: '#605e5c',
+    neutralSecondaryAlt: '#8a8886',
+    neutralTertiary: '#a19f9d',
+    neutralTertiaryAlt: '#c8c6c4',
+    neutralQuaternary: '#d2d0ce',
+    neutralQuaternaryAlt: '#e1dfdd',
+    neutralLight: '#edebe9',
+    neutralLighter: '#f3f2f1',
+    neutralLighterAlt: '#faf9f8',
+    accent: '#0078d4',
+    white: '#ffffff',
+    whiteTranslucent40: 'rgba(255,255,255,.4)',
+    yellowDark: '#d29200',
+    yellow: '#ffb900',
+    yellowLight: '#fff100',
+    orange: '#d83b01',
+    orangeLight: '#ea4300',
+    orangeLighter: '#ff8c00',
+    redDark: '#a4262c',
+    red: '#e81123',
+    magentaDark: '#5c005c',
+    magenta: '#b4009e',
+    magentaLight: '#e3008c',
+    purpleDark: '#32145a',
+    purple: '#5c2d91',
+    purpleLight: '#b4a0ff',
+    blueDark: '#002050',
+    blueMid: '#00188f',
+    blue: '#0078d4',
+    blueLight: '#00bcf2',
+    tealDark: '#004b50',
+    teal: '#008272',
+    tealLight: '#00b294',
+    greenDark: '#004b1c',
+    green: '#107c10',
+    greenLight: '#bad80a',
+};
+//# sourceMappingURL=DefaultPalette.js.map
+
+/***/ }),
+/* 84 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5880,11 +4757,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "removeOnThemeChangeCallback": () => (/* binding */ removeOnThemeChangeCallback),
 /* harmony export */   "loadTheme": () => (/* binding */ loadTheme)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(37);
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(48);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(44);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(40);
 /* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(42);
-/* harmony import */ var _microsoft_load_themed_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(103);
-/* harmony import */ var _fluentui_theme_lib_createTheme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(51);
+/* harmony import */ var _microsoft_load_themed_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(85);
+/* harmony import */ var _fluentui_theme_lib_createTheme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(86);
 
 
 
@@ -5986,7 +4863,7 @@ function _loadFonts(theme) {
 //# sourceMappingURL=theme.js.map
 
 /***/ }),
-/* 103 */
+/* 85 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6299,7 +5176,383 @@ function registerStyles(styleArray) {
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 104 */
+/* 86 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createTheme": () => (/* binding */ createTheme)
+/* harmony export */ });
+/* harmony import */ var _colors_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(83);
+/* harmony import */ var _effects_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(87);
+/* harmony import */ var _fonts_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(76);
+/* harmony import */ var _mergeThemes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(91);
+/* harmony import */ var _spacing_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(89);
+/* harmony import */ var _utilities_makeSemanticColors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(90);
+
+
+
+
+
+
+/**
+ * Creates a custom theme definition.
+ * @param theme - Partial theme object.
+ * @param depComments - Whether to include deprecated tags as comments for deprecated slots.
+ */
+function createTheme(theme, depComments) {
+    if (theme === void 0) { theme = {}; }
+    if (depComments === void 0) { depComments = false; }
+    var isInverted = !!theme.isInverted;
+    var baseTheme = {
+        palette: _colors_index__WEBPACK_IMPORTED_MODULE_0__.DefaultPalette,
+        effects: _effects_index__WEBPACK_IMPORTED_MODULE_1__.DefaultEffects,
+        fonts: _fonts_index__WEBPACK_IMPORTED_MODULE_2__.DefaultFontStyles,
+        spacing: _spacing_index__WEBPACK_IMPORTED_MODULE_3__.DefaultSpacing,
+        isInverted: isInverted,
+        disableGlobalClassNames: false,
+        semanticColors: (0,_utilities_makeSemanticColors__WEBPACK_IMPORTED_MODULE_4__.makeSemanticColors)(_colors_index__WEBPACK_IMPORTED_MODULE_0__.DefaultPalette, _effects_index__WEBPACK_IMPORTED_MODULE_1__.DefaultEffects, undefined, isInverted, depComments),
+        rtl: undefined,
+    };
+    return (0,_mergeThemes__WEBPACK_IMPORTED_MODULE_5__.mergeThemes)(baseTheme, theme);
+}
+//# sourceMappingURL=createTheme.js.map
+
+/***/ }),
+/* 87 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DefaultEffects": () => (/* binding */ DefaultEffects)
+/* harmony export */ });
+/* harmony import */ var _FluentDepths__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(88);
+
+var DefaultEffects = {
+    elevation4: _FluentDepths__WEBPACK_IMPORTED_MODULE_0__.Depths.depth4,
+    elevation8: _FluentDepths__WEBPACK_IMPORTED_MODULE_0__.Depths.depth8,
+    elevation16: _FluentDepths__WEBPACK_IMPORTED_MODULE_0__.Depths.depth16,
+    elevation64: _FluentDepths__WEBPACK_IMPORTED_MODULE_0__.Depths.depth64,
+    roundedCorner2: '2px',
+    roundedCorner4: '4px',
+    roundedCorner6: '6px',
+};
+//# sourceMappingURL=DefaultEffects.js.map
+
+/***/ }),
+/* 88 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Depths": () => (/* binding */ Depths)
+/* harmony export */ });
+var Depths;
+(function (Depths) {
+    Depths.depth0 = '0 0 0 0 transparent';
+    Depths.depth4 = '0 1.6px 3.6px 0 rgba(0, 0, 0, 0.132), 0 0.3px 0.9px 0 rgba(0, 0, 0, 0.108)';
+    Depths.depth8 = '0 3.2px 7.2px 0 rgba(0, 0, 0, 0.132), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.108)';
+    Depths.depth16 = '0 6.4px 14.4px 0 rgba(0, 0, 0, 0.132), 0 1.2px 3.6px 0 rgba(0, 0, 0, 0.108)';
+    Depths.depth64 = '0 25.6px 57.6px 0 rgba(0, 0, 0, 0.22), 0 4.8px 14.4px 0 rgba(0, 0, 0, 0.18)';
+})(Depths || (Depths = {}));
+//# sourceMappingURL=FluentDepths.js.map
+
+/***/ }),
+/* 89 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DefaultSpacing": () => (/* binding */ DefaultSpacing)
+/* harmony export */ });
+var DefaultSpacing = {
+    s2: '4px',
+    s1: '8px',
+    m: '16px',
+    l1: '20px',
+    l2: '32px',
+};
+//# sourceMappingURL=DefaultSpacing.js.map
+
+/***/ }),
+/* 90 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "makeSemanticColors": () => (/* binding */ makeSemanticColors),
+/* harmony export */   "getSemanticColors": () => (/* binding */ getSemanticColors)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(44);
+
+/** Generates all the semantic slot colors based on the theme so far
+ * We'll use these as fallbacks for semantic slots that the passed in theme did not define.
+ * The caller must still mix in the customized semantic slots at the end.
+ */
+function makeSemanticColors(p, e, s, isInverted, depComments) {
+    if (depComments === void 0) { depComments = false; }
+    var semanticColors = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({ primaryButtonBorder: 'transparent', errorText: !isInverted ? '#a4262c' : '#F1707B', messageText: !isInverted ? '#323130' : '#F3F2F1', messageLink: !isInverted ? '#005A9E' : '#6CB8F6', messageLinkHovered: !isInverted ? '#004578' : '#82C7FF', infoIcon: !isInverted ? '#605e5c' : '#C8C6C4', errorIcon: !isInverted ? '#A80000' : '#F1707B', blockingIcon: !isInverted ? '#FDE7E9' : '#442726', warningIcon: !isInverted ? '#797775' : '#C8C6C4', severeWarningIcon: !isInverted ? '#D83B01' : '#FCE100', successIcon: !isInverted ? '#107C10' : '#92C353', infoBackground: !isInverted ? '#f3f2f1' : '#323130', errorBackground: !isInverted ? '#FDE7E9' : '#442726', blockingBackground: !isInverted ? '#FDE7E9' : '#442726', warningBackground: !isInverted ? '#FFF4CE' : '#433519', severeWarningBackground: !isInverted ? '#FED9CC' : '#4F2A0F', successBackground: !isInverted ? '#DFF6DD' : '#393D1B', 
+        // deprecated
+        warningHighlight: !isInverted ? '#ffb900' : '#fff100', successText: !isInverted ? '#107C10' : '#92c353' }, s);
+    var fullSemanticColors = getSemanticColors(p, e, semanticColors, isInverted);
+    return _fixDeprecatedSlots(fullSemanticColors, depComments);
+}
+/**
+ * Map partial platte and effects to partial semantic colors.
+ */
+function getSemanticColors(p, e, s, isInverted, depComments) {
+    if (depComments === void 0) { depComments = false; }
+    var result = {};
+    // map palette
+    var _a = p || {}, white = _a.white, black = _a.black, themePrimary = _a.themePrimary, themeDark = _a.themeDark, themeDarker = _a.themeDarker, themeDarkAlt = _a.themeDarkAlt, themeLighter = _a.themeLighter, neutralLight = _a.neutralLight, neutralLighter = _a.neutralLighter, neutralDark = _a.neutralDark, neutralQuaternary = _a.neutralQuaternary, neutralQuaternaryAlt = _a.neutralQuaternaryAlt, neutralPrimary = _a.neutralPrimary, neutralSecondary = _a.neutralSecondary, neutralSecondaryAlt = _a.neutralSecondaryAlt, neutralTertiary = _a.neutralTertiary, neutralTertiaryAlt = _a.neutralTertiaryAlt, neutralLighterAlt = _a.neutralLighterAlt, accent = _a.accent;
+    if (white) {
+        result.bodyBackground = white;
+        result.bodyFrameBackground = white;
+        result.accentButtonText = white;
+        result.buttonBackground = white;
+        result.primaryButtonText = white;
+        result.primaryButtonTextHovered = white;
+        result.primaryButtonTextPressed = white;
+        result.inputBackground = white;
+        result.inputForegroundChecked = white;
+        result.listBackground = white;
+        result.menuBackground = white;
+        result.cardStandoutBackground = white;
+    }
+    if (black) {
+        result.bodyTextChecked = black;
+        result.buttonTextCheckedHovered = black;
+    }
+    if (themePrimary) {
+        result.link = themePrimary;
+        result.primaryButtonBackground = themePrimary;
+        result.inputBackgroundChecked = themePrimary;
+        result.inputIcon = themePrimary;
+        result.inputFocusBorderAlt = themePrimary;
+        result.menuIcon = themePrimary;
+        result.menuHeader = themePrimary;
+        result.accentButtonBackground = themePrimary;
+    }
+    if (themeDark) {
+        result.primaryButtonBackgroundPressed = themeDark;
+        result.inputBackgroundCheckedHovered = themeDark;
+        result.inputIconHovered = themeDark;
+    }
+    if (themeDarker) {
+        result.linkHovered = themeDarker;
+    }
+    if (themeDarkAlt) {
+        result.primaryButtonBackgroundHovered = themeDarkAlt;
+    }
+    if (themeLighter) {
+        result.inputPlaceholderBackgroundChecked = themeLighter;
+    }
+    if (neutralLight) {
+        result.bodyBackgroundChecked = neutralLight;
+        result.bodyFrameDivider = neutralLight;
+        result.bodyDivider = neutralLight;
+        result.variantBorder = neutralLight;
+        result.buttonBackgroundCheckedHovered = neutralLight;
+        result.buttonBackgroundPressed = neutralLight;
+        result.listItemBackgroundChecked = neutralLight;
+        result.listHeaderBackgroundPressed = neutralLight;
+        result.menuItemBackgroundPressed = neutralLight;
+        // eslint-disable-next-line deprecation/deprecation
+        result.menuItemBackgroundChecked = neutralLight;
+    }
+    if (neutralLighter) {
+        result.bodyBackgroundHovered = neutralLighter;
+        result.buttonBackgroundHovered = neutralLighter;
+        result.buttonBackgroundDisabled = neutralLighter;
+        result.buttonBorderDisabled = neutralLighter;
+        result.primaryButtonBackgroundDisabled = neutralLighter;
+        result.disabledBackground = neutralLighter;
+        result.listItemBackgroundHovered = neutralLighter;
+        result.listHeaderBackgroundHovered = neutralLighter;
+        result.menuItemBackgroundHovered = neutralLighter;
+    }
+    if (neutralQuaternary) {
+        result.primaryButtonTextDisabled = neutralQuaternary;
+        result.disabledSubtext = neutralQuaternary;
+    }
+    if (neutralQuaternaryAlt) {
+        result.listItemBackgroundCheckedHovered = neutralQuaternaryAlt;
+    }
+    if (neutralTertiary) {
+        result.disabledBodyText = neutralTertiary;
+        result.variantBorderHovered = (s === null || s === void 0 ? void 0 : s.variantBorderHovered) || neutralTertiary;
+        result.buttonTextDisabled = neutralTertiary;
+        result.inputIconDisabled = neutralTertiary;
+        result.disabledText = neutralTertiary;
+    }
+    if (neutralPrimary) {
+        result.bodyText = neutralPrimary;
+        result.actionLink = neutralPrimary;
+        result.buttonText = neutralPrimary;
+        result.inputBorderHovered = neutralPrimary;
+        result.inputText = neutralPrimary;
+        result.listText = neutralPrimary;
+        result.menuItemText = neutralPrimary;
+    }
+    if (neutralLighterAlt) {
+        result.bodyStandoutBackground = neutralLighterAlt;
+        result.defaultStateBackground = neutralLighterAlt;
+    }
+    if (neutralDark) {
+        result.actionLinkHovered = neutralDark;
+        result.buttonTextHovered = neutralDark;
+        result.buttonTextChecked = neutralDark;
+        result.buttonTextPressed = neutralDark;
+        result.inputTextHovered = neutralDark;
+        result.menuItemTextHovered = neutralDark;
+    }
+    if (neutralSecondary) {
+        result.bodySubtext = neutralSecondary;
+        result.focusBorder = neutralSecondary;
+        result.inputBorder = neutralSecondary;
+        result.smallInputBorder = neutralSecondary;
+        result.inputPlaceholderText = neutralSecondary;
+    }
+    if (neutralSecondaryAlt) {
+        result.buttonBorder = neutralSecondaryAlt;
+    }
+    if (neutralTertiaryAlt) {
+        result.disabledBodySubtext = neutralTertiaryAlt;
+        result.disabledBorder = neutralTertiaryAlt;
+        result.buttonBackgroundChecked = neutralTertiaryAlt;
+        result.menuDivider = neutralTertiaryAlt;
+    }
+    if (accent) {
+        result.accentButtonBackground = accent;
+    }
+    // map effects
+    if (e === null || e === void 0 ? void 0 : e.elevation4) {
+        result.cardShadow = e.elevation4;
+    }
+    if (!isInverted && (e === null || e === void 0 ? void 0 : e.elevation8)) {
+        result.cardShadowHovered = e.elevation8;
+    }
+    else if (result.variantBorderHovered) {
+        result.cardShadowHovered = '0 0 1px ' + result.variantBorderHovered;
+    }
+    result = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, result), s);
+    return result;
+}
+function _fixDeprecatedSlots(s, depComments) {
+    // Add @deprecated tag as comment if enabled
+    var dep = '';
+    if (depComments === true) {
+        dep = ' /* @deprecated */';
+    }
+    /* eslint-disable deprecation/deprecation */
+    s.listTextColor = s.listText + dep;
+    s.menuItemBackgroundChecked += dep;
+    s.warningHighlight += dep;
+    s.warningText = s.messageText + dep;
+    s.successText += dep;
+    /* eslint-enable deprecation/deprecation */
+    return s;
+}
+//# sourceMappingURL=makeSemanticColors.js.map
+
+/***/ }),
+/* 91 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "mergeThemes": () => (/* binding */ mergeThemes)
+/* harmony export */ });
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(92);
+/* harmony import */ var _utilities_makeSemanticColors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(90);
+
+
+/**
+ * Merge a partial/full theme into a full theme and returns a merged full theme.
+ */
+function mergeThemes(theme, partialTheme) {
+    var _a, _b, _c;
+    if (partialTheme === void 0) { partialTheme = {}; }
+    var mergedTheme = (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__.merge)({}, theme, partialTheme, {
+        semanticColors: (0,_utilities_makeSemanticColors__WEBPACK_IMPORTED_MODULE_1__.getSemanticColors)(partialTheme.palette, partialTheme.effects, partialTheme.semanticColors, partialTheme.isInverted === undefined ? theme.isInverted : partialTheme.isInverted),
+    });
+    if (((_a = partialTheme.palette) === null || _a === void 0 ? void 0 : _a.themePrimary) && !((_b = partialTheme.palette) === null || _b === void 0 ? void 0 : _b.accent)) {
+        mergedTheme.palette.accent = partialTheme.palette.themePrimary;
+    }
+    if (partialTheme.defaultFontStyle) {
+        for (var _i = 0, _d = Object.keys(mergedTheme.fonts); _i < _d.length; _i++) {
+            var fontStyle = _d[_i];
+            mergedTheme.fonts[fontStyle] = (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__.merge)(mergedTheme.fonts[fontStyle], partialTheme.defaultFontStyle, (_c = partialTheme === null || partialTheme === void 0 ? void 0 : partialTheme.fonts) === null || _c === void 0 ? void 0 : _c[fontStyle]);
+        }
+    }
+    return mergedTheme;
+}
+//# sourceMappingURL=mergeThemes.js.map
+
+/***/ }),
+/* 92 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "merge": () => (/* binding */ merge)
+/* harmony export */ });
+/**
+ * Simple deep merge function. Takes all arguments and returns a deep copy of the objects merged
+ * together in the order provided. If an object creates a circular reference, it will assign the
+ * original reference.
+ */
+function merge(target) {
+    var args = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        args[_i - 1] = arguments[_i];
+    }
+    for (var _a = 0, args_1 = args; _a < args_1.length; _a++) {
+        var arg = args_1[_a];
+        _merge(target || {}, arg);
+    }
+    return target;
+}
+/**
+ * The _merge helper iterates through all props on source and assigns them to target.
+ * When the value is an object, we will create a deep clone of the object. However if
+ * there is a circular reference, the value will not be deep cloned and will persist
+ * the reference.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function _merge(target, source, circularReferences) {
+    if (circularReferences === void 0) { circularReferences = []; }
+    circularReferences.push(source);
+    for (var name_1 in source) {
+        if (source.hasOwnProperty(name_1)) {
+            if (name_1 !== '__proto__' && name_1 !== 'constructor' && name_1 !== 'prototype') {
+                var value = source[name_1];
+                if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+                    var isCircularReference = circularReferences.indexOf(value) > -1;
+                    target[name_1] = (isCircularReference
+                        ? value
+                        : _merge(target[name_1] || {}, value, circularReferences));
+                }
+                else {
+                    target[name_1] = value;
+                }
+            }
+        }
+    }
+    circularReferences.pop();
+    return target;
+}
+//# sourceMappingURL=merge.js.map
+
+/***/ }),
+/* 93 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6354,24 +5607,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getPlaceholderStyles": () => (/* reexport safe */ _getPlaceholderStyles__WEBPACK_IMPORTED_MODULE_16__.getPlaceholderStyles),
 /* harmony export */   "ZIndexes": () => (/* reexport safe */ _zIndexes__WEBPACK_IMPORTED_MODULE_17__.ZIndexes)
 /* harmony export */ });
-/* harmony import */ var _AnimationStyles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(99);
-/* harmony import */ var _DefaultPalette__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(52);
-/* harmony import */ var _DefaultEffects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(53);
-/* harmony import */ var _DefaultFontStyles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(55);
-/* harmony import */ var _fonts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(57);
-/* harmony import */ var _fonts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(56);
-/* harmony import */ var _getFocusStyle__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(105);
-/* harmony import */ var _hiddenContentStyle__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(108);
-/* harmony import */ var _PulsingBeaconAnimationStyles__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(109);
-/* harmony import */ var _getGlobalClassNames__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(110);
-/* harmony import */ var _scheme__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(112);
-/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(102);
-/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(51);
-/* harmony import */ var _CommonStyles__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(107);
-/* harmony import */ var _GeneralStyles__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(114);
-/* harmony import */ var _getFadedOverflowStyle__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(115);
-/* harmony import */ var _getPlaceholderStyles__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(116);
-/* harmony import */ var _zIndexes__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(106);
+/* harmony import */ var _AnimationStyles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(73);
+/* harmony import */ var _DefaultPalette__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(83);
+/* harmony import */ var _DefaultEffects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(87);
+/* harmony import */ var _DefaultFontStyles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(76);
+/* harmony import */ var _fonts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(78);
+/* harmony import */ var _fonts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(77);
+/* harmony import */ var _getFocusStyle__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(94);
+/* harmony import */ var _hiddenContentStyle__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(98);
+/* harmony import */ var _PulsingBeaconAnimationStyles__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(99);
+/* harmony import */ var _getGlobalClassNames__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(100);
+/* harmony import */ var _scheme__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(102);
+/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(84);
+/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(86);
+/* harmony import */ var _CommonStyles__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(97);
+/* harmony import */ var _GeneralStyles__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(104);
+/* harmony import */ var _getFadedOverflowStyle__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(105);
+/* harmony import */ var _getPlaceholderStyles__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(106);
+/* harmony import */ var _zIndexes__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(96);
 
 
 
@@ -6391,7 +5644,7 @@ __webpack_require__.r(__webpack_exports__);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 105 */
+/* 94 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6402,9 +5655,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getFocusOutlineStyle": () => (/* binding */ getFocusOutlineStyle),
 /* harmony export */   "getInputFocusStyle": () => (/* binding */ getInputFocusStyle)
 /* harmony export */ });
-/* harmony import */ var _CommonStyles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(107);
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(89);
-/* harmony import */ var _zIndexes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(106);
+/* harmony import */ var _CommonStyles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(97);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(95);
+/* harmony import */ var _zIndexes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(96);
 
 
 
@@ -6539,7 +5792,45 @@ var getInputFocusStyle = function (borderColor, borderRadius, borderType, border
 //# sourceMappingURL=getFocusStyle.js.map
 
 /***/ }),
-/* 106 */
+/* 95 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IsFocusVisibleClassName": () => (/* binding */ IsFocusVisibleClassName),
+/* harmony export */   "IsFocusHiddenClassName": () => (/* binding */ IsFocusHiddenClassName),
+/* harmony export */   "setFocusVisibility": () => (/* binding */ setFocusVisibility)
+/* harmony export */ });
+/* harmony import */ var _dom_getWindow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(42);
+
+var IsFocusVisibleClassName = 'ms-Fabric--isFocusVisible';
+var IsFocusHiddenClassName = 'ms-Fabric--isFocusHidden';
+/**
+ * Sets the visibility of focus styling.
+ *
+ * By default, focus styles (the box surrounding a focused Button, for example) only show up when navigational
+ * keypresses occur (through Tab, arrows, PgUp/PgDn, Home and End), and are hidden when mouse interactions occur.
+ * This API provides an imperative way to turn them on/off.
+ *
+ * A use case might be when you have a keypress like ctrl-f6 navigate to a particular region on the page,
+ * and want focus to show up.
+ *
+ * @param enabled - whether to remove or add focus
+ * @param target - optional target
+ */
+function setFocusVisibility(enabled, target) {
+    var win = target ? (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_0__.getWindow)(target) : (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
+    if (win) {
+        var classList = win.document.body.classList;
+        classList.add(enabled ? IsFocusVisibleClassName : IsFocusHiddenClassName);
+        classList.remove(enabled ? IsFocusHiddenClassName : IsFocusVisibleClassName);
+    }
+}
+//# sourceMappingURL=setFocusVisibility.js.map
+
+/***/ }),
+/* 96 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6562,7 +5853,7 @@ var ZIndexes;
 //# sourceMappingURL=zIndexes.js.map
 
 /***/ }),
-/* 107 */
+/* 97 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6633,7 +5924,7 @@ function getEdgeChromiumNoHighContrastAdjustSelector() {
 //# sourceMappingURL=CommonStyles.js.map
 
 /***/ }),
-/* 108 */
+/* 98 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6654,7 +5945,7 @@ var hiddenContentStyle = {
 //# sourceMappingURL=hiddenContentStyle.js.map
 
 /***/ }),
-/* 109 */
+/* 99 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6662,8 +5953,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "PulsingBeaconAnimationStyles": () => (/* binding */ PulsingBeaconAnimationStyles)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(37);
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(86);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(44);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(74);
 
 
 var DEFAULT_DURATION = '14s';
@@ -6748,7 +6039,7 @@ var PulsingBeaconAnimationStyles = {
 //# sourceMappingURL=PulsingBeaconAnimationStyles.js.map
 
 /***/ }),
-/* 110 */
+/* 100 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6756,8 +6047,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getGlobalClassNames": () => (/* binding */ getGlobalClassNames)
 /* harmony export */ });
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(44);
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(111);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(101);
 
 
 /**
@@ -6791,7 +6082,7 @@ function getGlobalClassNames(classNames, theme, disableGlobalClassNames) {
 //# sourceMappingURL=getGlobalClassNames.js.map
 
 /***/ }),
-/* 111 */
+/* 101 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6803,7 +6094,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "memoizeFunction": () => (/* binding */ memoizeFunction),
 /* harmony export */   "createMemoizer": () => (/* binding */ createMemoizer)
 /* harmony export */ });
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(44);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49);
 
 var _initializedStylesheetResets = false;
 var _resetCounter = 0;
@@ -6962,7 +6253,7 @@ function _createNode() {
 //# sourceMappingURL=memoize.js.map
 
 /***/ }),
-/* 112 */
+/* 102 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6970,8 +6261,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getThemedContext": () => (/* binding */ getThemedContext)
 /* harmony export */ });
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(48);
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(113);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(40);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(103);
 
 /**
  * @internal
@@ -7016,7 +6307,7 @@ function getThemedContext(context, scheme, theme) {
 //# sourceMappingURL=scheme.js.map
 
 /***/ }),
-/* 113 */
+/* 103 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7025,7 +6316,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "mergeSettings": () => (/* binding */ mergeSettings),
 /* harmony export */   "mergeScopedSettings": () => (/* binding */ mergeScopedSettings)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(37);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(44);
 
 /**
  * Merge new and old settings, giving priority to new settings.
@@ -7065,7 +6356,7 @@ function _scopedSettingsMergeWith(scopedSettingsFromProps) {
 //# sourceMappingURL=mergeSettings.js.map
 
 /***/ }),
-/* 114 */
+/* 104 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7089,7 +6380,7 @@ var noWrap = {
 //# sourceMappingURL=GeneralStyles.js.map
 
 /***/ }),
-/* 115 */
+/* 105 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7225,7 +6516,7 @@ function getDefaultValue(style, direction) {
 //# sourceMappingURL=getFadedOverflowStyle.js.map
 
 /***/ }),
-/* 116 */
+/* 106 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7250,7 +6541,7 @@ function getPlaceholderStyles(styles) {
 //# sourceMappingURL=getPlaceholderStyles.js.map
 
 /***/ }),
-/* 117 */
+/* 107 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7264,16 +6555,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setIconOptions": () => (/* reexport safe */ _icons__WEBPACK_IMPORTED_MODULE_1__.setIconOptions),
 /* harmony export */   "getIconClassName": () => (/* reexport safe */ _getIconClassName__WEBPACK_IMPORTED_MODULE_2__.getIconClassName)
 /* harmony export */ });
-/* harmony import */ var _buildClassMap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(97);
-/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(118);
-/* harmony import */ var _getIconClassName__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(120);
+/* harmony import */ var _buildClassMap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(71);
+/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(108);
+/* harmony import */ var _getIconClassName__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(110);
 
 
 
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 118 */
+/* 108 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7285,12 +6576,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getIcon": () => (/* binding */ getIcon),
 /* harmony export */   "setIconOptions": () => (/* binding */ setIconOptions)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(37);
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49);
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(119);
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(44);
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(62);
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(98);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(44);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(41);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(109);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(81);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(72);
 
 
 
@@ -7458,7 +6749,7 @@ function _warnDuplicateIcon(iconName) {
 //# sourceMappingURL=icons.js.map
 
 /***/ }),
-/* 119 */
+/* 109 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7497,7 +6788,7 @@ function setWarningCallback(warningCallback) {
 //# sourceMappingURL=warn.js.map
 
 /***/ }),
-/* 120 */
+/* 110 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7505,8 +6796,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getIconClassName": () => (/* binding */ getIconClassName)
 /* harmony export */ });
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(98);
-/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(118);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72);
+/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(108);
 
 
 var defaultIconStyles = {
@@ -7535,7 +6826,7 @@ function getIconClassName(name) {
 //# sourceMappingURL=getIconClassName.js.map
 
 /***/ }),
-/* 121 */
+/* 111 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7550,65 +6841,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "mergeStyleSets": () => (/* reexport safe */ _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_5__.mergeStyleSets),
 /* harmony export */   "mergeStyles": () => (/* reexport safe */ _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_6__.mergeStyles)
 /* harmony export */ });
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(44);
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(84);
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(122);
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(62);
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(86);
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(83);
-/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(98);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(46);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(45);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(81);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(74);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(55);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(72);
 
 //# sourceMappingURL=MergeStyles.js.map
 
 /***/ }),
-/* 122 */
+/* 112 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "concatStyleSetsWithProps": () => (/* binding */ concatStyleSetsWithProps)
-/* harmony export */ });
-/* harmony import */ var _concatStyleSets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(84);
-
-/**
- * Concatenates style sets into one, but resolves functional sets using the given props.
- * @param styleProps - Props used to resolve functional sets.
- * @param allStyles - Style sets, which can be functions or objects.
- */
-function concatStyleSetsWithProps(styleProps) {
-    var allStyles = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        allStyles[_i - 1] = arguments[_i];
-    }
-    var result = [];
-    for (var _a = 0, allStyles_1 = allStyles; _a < allStyles_1.length; _a++) {
-        var styles = allStyles_1[_a];
-        if (styles) {
-            result.push(typeof styles === 'function' ? styles(styleProps) : styles);
-        }
-    }
-    if (result.length === 1) {
-        return result[0];
-    }
-    else if (result.length) {
-        // cliffkoh: I cannot figure out how to avoid the cast to any here.
-        // It is something to do with the use of Omit in IStyleSet.
-        // It might not be necessary once  Omit becomes part of lib.d.ts (when we remove our own Omit and rely on
-        // the official version).
-        return _concatStyleSets__WEBPACK_IMPORTED_MODULE_0__.concatStyleSets.apply(void 0, result);
-    }
-    return {};
-}
-//# sourceMappingURL=concatStyleSetsWithProps.js.map
-
-/***/ }),
-/* 123 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _fluentui_set_version__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(124);
+/* harmony import */ var _fluentui_set_version__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(113);
 // Do not modify this file; it is generated as part of publish.
 // The checked in version is a placeholder only and will not be updated.
 
@@ -7616,7 +6865,7 @@ __webpack_require__.r(__webpack_exports__);
 //# sourceMappingURL=version.js.map
 
 /***/ }),
-/* 124 */
+/* 113 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7624,14 +6873,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "setVersion": () => (/* reexport safe */ _setVersion__WEBPACK_IMPORTED_MODULE_0__.setVersion)
 /* harmony export */ });
-/* harmony import */ var _setVersion__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(125);
+/* harmony import */ var _setVersion__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(114);
 
 
 (0,_setVersion__WEBPACK_IMPORTED_MODULE_0__.setVersion)('@fluentui/set-version', '6.0.0');
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 125 */
+/* 114 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7666,7 +6915,1812 @@ function setVersion(packageName, packageVersion) {
 //# sourceMappingURL=setVersion.js.map
 
 /***/ }),
+/* 115 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "initializeComponentRef": () => (/* binding */ initializeComponentRef)
+/* harmony export */ });
+/* harmony import */ var _extendComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(116);
+
+/**
+ * Helper to manage componentRef resolution. Internally appends logic to
+ * lifetime methods to resolve componentRef to the passed in object.
+ *
+ * Usage: call initializeComponentRef(this) in the constructor,
+ */
+function initializeComponentRef(obj) {
+    (0,_extendComponent__WEBPACK_IMPORTED_MODULE_0__.extendComponent)(obj, {
+        componentDidMount: _onMount,
+        componentDidUpdate: _onUpdate,
+        componentWillUnmount: _onUnmount,
+    });
+}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function _onMount() {
+    _setComponentRef(this.props.componentRef, this);
+}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function _onUpdate(prevProps) {
+    if (prevProps.componentRef !== this.props.componentRef) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        _setComponentRef(prevProps.componentRef, null);
+        _setComponentRef(this.props.componentRef, this);
+    }
+}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function _onUnmount() {
+    _setComponentRef(this.props.componentRef, null);
+}
+function _setComponentRef(componentRef, value) {
+    if (componentRef) {
+        if (typeof componentRef === 'object') {
+            componentRef.current = value;
+        }
+        else if (typeof componentRef === 'function') {
+            componentRef(value);
+        }
+    }
+}
+//# sourceMappingURL=initializeComponentRef.js.map
+
+/***/ }),
+/* 116 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "extendComponent": () => (/* binding */ extendComponent)
+/* harmony export */ });
+/* harmony import */ var _appendFunction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(117);
+
+/**
+ * Extends a component's lifetime methods by appending new functions to the existing lifetime functions.
+ */
+function extendComponent(parent, methods) {
+    for (var name_1 in methods) {
+        if (methods.hasOwnProperty(name_1)) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            parent[name_1] = (0,_appendFunction__WEBPACK_IMPORTED_MODULE_0__.appendFunction)(parent, parent[name_1], methods[name_1]);
+        }
+    }
+}
+//# sourceMappingURL=extendComponent.js.map
+
+/***/ }),
+/* 117 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "appendFunction": () => (/* binding */ appendFunction)
+/* harmony export */ });
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/**
+ * Returns a single function which will call each of the given functions in the context of the
+ * parent.
+ */
+function appendFunction(parent) {
+    var functions = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        functions[_i - 1] = arguments[_i];
+    }
+    if (functions.length < 2) {
+        return functions[0];
+    }
+    return function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        functions.forEach(function (f) { return f && f.apply(parent, args); });
+    };
+}
+//# sourceMappingURL=appendFunction.js.map
+
+/***/ }),
+/* 118 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Async": () => (/* binding */ Async)
+/* harmony export */ });
+/* harmony import */ var _dom_getWindow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(42);
+
+/**
+ * Bugs often appear in async code when stuff gets disposed, but async operations don't get canceled.
+ * This Async helper class solves these issues by tying async code to the lifetime of a disposable object.
+ *
+ * Usage: Anything class extending from BaseModel can access this helper via this.async. Otherwise create a
+ * new instance of the class and remember to call dispose() during your code's dispose handler.
+ *
+ * @public
+ */
+var Async = /** @class */ (function () {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    function Async(parent, onError) {
+        this._timeoutIds = null;
+        this._immediateIds = null;
+        this._intervalIds = null;
+        this._animationFrameIds = null;
+        this._isDisposed = false;
+        this._parent = parent || null;
+        this._onErrorHandler = onError;
+        this._noop = function () {
+            /* do nothing */
+        };
+    }
+    /**
+     * Dispose function, clears all async operations.
+     */
+    Async.prototype.dispose = function () {
+        var id;
+        this._isDisposed = true;
+        this._parent = null;
+        // Clear timeouts.
+        if (this._timeoutIds) {
+            for (id in this._timeoutIds) {
+                if (this._timeoutIds.hasOwnProperty(id)) {
+                    this.clearTimeout(parseInt(id, 10));
+                }
+            }
+            this._timeoutIds = null;
+        }
+        // Clear immediates.
+        if (this._immediateIds) {
+            for (id in this._immediateIds) {
+                if (this._immediateIds.hasOwnProperty(id)) {
+                    this.clearImmediate(parseInt(id, 10));
+                }
+            }
+            this._immediateIds = null;
+        }
+        // Clear intervals.
+        if (this._intervalIds) {
+            for (id in this._intervalIds) {
+                if (this._intervalIds.hasOwnProperty(id)) {
+                    this.clearInterval(parseInt(id, 10));
+                }
+            }
+            this._intervalIds = null;
+        }
+        // Clear animation frames.
+        if (this._animationFrameIds) {
+            for (id in this._animationFrameIds) {
+                if (this._animationFrameIds.hasOwnProperty(id)) {
+                    this.cancelAnimationFrame(parseInt(id, 10));
+                }
+            }
+            this._animationFrameIds = null;
+        }
+    };
+    /**
+     * SetTimeout override, which will auto cancel the timeout during dispose.
+     * @param callback - Callback to execute.
+     * @param duration - Duration in milliseconds.
+     * @returns The setTimeout id.
+     */
+    Async.prototype.setTimeout = function (callback, duration) {
+        var _this = this;
+        var timeoutId = 0;
+        if (!this._isDisposed) {
+            if (!this._timeoutIds) {
+                this._timeoutIds = {};
+            }
+            timeoutId = setTimeout(function () {
+                // Time to execute the timeout, enqueue it as a foreground task to be executed.
+                try {
+                    // Now delete the record and call the callback.
+                    if (_this._timeoutIds) {
+                        delete _this._timeoutIds[timeoutId];
+                    }
+                    callback.apply(_this._parent);
+                }
+                catch (e) {
+                    _this._logError(e);
+                }
+            }, duration);
+            this._timeoutIds[timeoutId] = true;
+        }
+        return timeoutId;
+    };
+    /**
+     * Clears the timeout.
+     * @param id - Id to cancel.
+     */
+    Async.prototype.clearTimeout = function (id) {
+        if (this._timeoutIds && this._timeoutIds[id]) {
+            clearTimeout(id);
+            delete this._timeoutIds[id];
+        }
+    };
+    /**
+     * SetImmediate override, which will auto cancel the immediate during dispose.
+     * @param callback - Callback to execute.
+     * @param targetElement - Optional target element to use for identifying the correct window.
+     * @returns The setTimeout id.
+     */
+    Async.prototype.setImmediate = function (callback, targetElement) {
+        var _this = this;
+        var immediateId = 0;
+        var win = (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_0__.getWindow)(targetElement);
+        if (!this._isDisposed) {
+            if (!this._immediateIds) {
+                this._immediateIds = {};
+            }
+            var setImmediateCallback = function () {
+                // Time to execute the timeout, enqueue it as a foreground task to be executed.
+                try {
+                    // Now delete the record and call the callback.
+                    if (_this._immediateIds) {
+                        delete _this._immediateIds[immediateId];
+                    }
+                    callback.apply(_this._parent);
+                }
+                catch (e) {
+                    _this._logError(e);
+                }
+            };
+            immediateId = win.setTimeout(setImmediateCallback, 0);
+            this._immediateIds[immediateId] = true;
+        }
+        return immediateId;
+    };
+    /**
+     * Clears the immediate.
+     * @param id - Id to cancel.
+     * @param targetElement - Optional target element to use for identifying the correct window.
+     */
+    Async.prototype.clearImmediate = function (id, targetElement) {
+        var win = (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_0__.getWindow)(targetElement);
+        if (this._immediateIds && this._immediateIds[id]) {
+            win.clearTimeout(id);
+            delete this._immediateIds[id];
+        }
+    };
+    /**
+     * SetInterval override, which will auto cancel the timeout during dispose.
+     * @param callback - Callback to execute.
+     * @param duration - Duration in milliseconds.
+     * @returns The setTimeout id.
+     */
+    Async.prototype.setInterval = function (callback, duration) {
+        var _this = this;
+        var intervalId = 0;
+        if (!this._isDisposed) {
+            if (!this._intervalIds) {
+                this._intervalIds = {};
+            }
+            intervalId = setInterval(function () {
+                // Time to execute the interval callback, enqueue it as a foreground task to be executed.
+                try {
+                    callback.apply(_this._parent);
+                }
+                catch (e) {
+                    _this._logError(e);
+                }
+            }, duration);
+            this._intervalIds[intervalId] = true;
+        }
+        return intervalId;
+    };
+    /**
+     * Clears the interval.
+     * @param id - Id to cancel.
+     */
+    Async.prototype.clearInterval = function (id) {
+        if (this._intervalIds && this._intervalIds[id]) {
+            clearInterval(id);
+            delete this._intervalIds[id];
+        }
+    };
+    /**
+     * Creates a function that, when executed, will only call the func function at most once per
+     * every wait milliseconds. Provide an options object to indicate that func should be invoked
+     * on the leading and/or trailing edge of the wait timeout. Subsequent calls to the throttled
+     * function will return the result of the last func call.
+     *
+     * Note: If leading and trailing options are true func will be called on the trailing edge of
+     * the timeout only if the throttled function is invoked more than once during the wait timeout.
+     *
+     * @param func - The function to throttle.
+     * @param wait - The number of milliseconds to throttle executions to. Defaults to 0.
+     * @param options - The options object.
+     * @returns The new throttled function.
+     */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Async.prototype.throttle = function (func, wait, options) {
+        var _this = this;
+        if (this._isDisposed) {
+            return this._noop;
+        }
+        var waitMS = wait || 0;
+        var leading = true;
+        var trailing = true;
+        var lastExecuteTime = 0;
+        var lastResult;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        var lastArgs;
+        var timeoutId = null;
+        if (options && typeof options.leading === 'boolean') {
+            leading = options.leading;
+        }
+        if (options && typeof options.trailing === 'boolean') {
+            trailing = options.trailing;
+        }
+        var callback = function (userCall) {
+            var now = Date.now();
+            var delta = now - lastExecuteTime;
+            var waitLength = leading ? waitMS - delta : waitMS;
+            if (delta >= waitMS && (!userCall || leading)) {
+                lastExecuteTime = now;
+                if (timeoutId) {
+                    _this.clearTimeout(timeoutId);
+                    timeoutId = null;
+                }
+                lastResult = func.apply(_this._parent, lastArgs);
+            }
+            else if (timeoutId === null && trailing) {
+                timeoutId = _this.setTimeout(callback, waitLength);
+            }
+            return lastResult;
+        };
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        var resultFunction = (function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            lastArgs = args;
+            return callback(true);
+        });
+        return resultFunction;
+    };
+    /**
+     * Creates a function that will delay the execution of func until after wait milliseconds have
+     * elapsed since the last time it was invoked. Provide an options object to indicate that func
+     * should be invoked on the leading and/or trailing edge of the wait timeout. Subsequent calls
+     * to the debounced function will return the result of the last func call.
+     *
+     * Note: If leading and trailing options are true func will be called on the trailing edge of
+     * the timeout only if the debounced function is invoked more than once during the wait
+     * timeout.
+     *
+     * @param func - The function to debounce.
+     * @param wait - The number of milliseconds to delay.
+     * @param options - The options object.
+     * @returns The new debounced function.
+     */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Async.prototype.debounce = function (func, wait, options) {
+        var _this = this;
+        if (this._isDisposed) {
+            var noOpFunction = (function () {
+                /** Do nothing */
+            });
+            noOpFunction.cancel = function () {
+                return;
+            };
+            noOpFunction.flush = (function () { return null; });
+            noOpFunction.pending = function () { return false; };
+            return noOpFunction;
+        }
+        var waitMS = wait || 0;
+        var leading = false;
+        var trailing = true;
+        var maxWait = null;
+        var lastCallTime = 0;
+        var lastExecuteTime = Date.now();
+        var lastResult;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        var lastArgs;
+        var timeoutId = null;
+        if (options && typeof options.leading === 'boolean') {
+            leading = options.leading;
+        }
+        if (options && typeof options.trailing === 'boolean') {
+            trailing = options.trailing;
+        }
+        if (options && typeof options.maxWait === 'number' && !isNaN(options.maxWait)) {
+            maxWait = options.maxWait;
+        }
+        var markExecuted = function (time) {
+            if (timeoutId) {
+                _this.clearTimeout(timeoutId);
+                timeoutId = null;
+            }
+            lastExecuteTime = time;
+        };
+        var invokeFunction = function (time) {
+            markExecuted(time);
+            lastResult = func.apply(_this._parent, lastArgs);
+        };
+        var callback = function (userCall) {
+            var now = Date.now();
+            var executeImmediately = false;
+            if (userCall) {
+                if (leading && now - lastCallTime >= waitMS) {
+                    executeImmediately = true;
+                }
+                lastCallTime = now;
+            }
+            var delta = now - lastCallTime;
+            var waitLength = waitMS - delta;
+            var maxWaitDelta = now - lastExecuteTime;
+            var maxWaitExpired = false;
+            if (maxWait !== null) {
+                // maxWait only matters when there is a pending callback
+                if (maxWaitDelta >= maxWait && timeoutId) {
+                    maxWaitExpired = true;
+                }
+                else {
+                    waitLength = Math.min(waitLength, maxWait - maxWaitDelta);
+                }
+            }
+            if (delta >= waitMS || maxWaitExpired || executeImmediately) {
+                invokeFunction(now);
+            }
+            else if ((timeoutId === null || !userCall) && trailing) {
+                timeoutId = _this.setTimeout(callback, waitLength);
+            }
+            return lastResult;
+        };
+        var pending = function () {
+            return !!timeoutId;
+        };
+        var cancel = function () {
+            if (pending()) {
+                // Mark the debounced function as having executed
+                markExecuted(Date.now());
+            }
+        };
+        var flush = function () {
+            if (pending()) {
+                invokeFunction(Date.now());
+            }
+            return lastResult;
+        };
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        var resultFunction = (function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            lastArgs = args;
+            return callback(true);
+        });
+        resultFunction.cancel = cancel;
+        resultFunction.flush = flush;
+        resultFunction.pending = pending;
+        return resultFunction;
+    };
+    Async.prototype.requestAnimationFrame = function (callback, targetElement) {
+        var _this = this;
+        var animationFrameId = 0;
+        var win = (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_0__.getWindow)(targetElement);
+        if (!this._isDisposed) {
+            if (!this._animationFrameIds) {
+                this._animationFrameIds = {};
+            }
+            var animationFrameCallback = function () {
+                try {
+                    // Now delete the record and call the callback.
+                    if (_this._animationFrameIds) {
+                        delete _this._animationFrameIds[animationFrameId];
+                    }
+                    callback.apply(_this._parent);
+                }
+                catch (e) {
+                    _this._logError(e);
+                }
+            };
+            animationFrameId = win.requestAnimationFrame
+                ? win.requestAnimationFrame(animationFrameCallback)
+                : win.setTimeout(animationFrameCallback, 0);
+            this._animationFrameIds[animationFrameId] = true;
+        }
+        return animationFrameId;
+    };
+    Async.prototype.cancelAnimationFrame = function (id, targetElement) {
+        var win = (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_0__.getWindow)(targetElement);
+        if (this._animationFrameIds && this._animationFrameIds[id]) {
+            win.cancelAnimationFrame ? win.cancelAnimationFrame(id) : win.clearTimeout(id);
+            delete this._animationFrameIds[id];
+        }
+    };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Async.prototype._logError = function (e) {
+        if (this._onErrorHandler) {
+            this._onErrorHandler(e);
+        }
+    };
+    return Async;
+}());
+
+//# sourceMappingURL=Async.js.map
+
+/***/ }),
+/* 119 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "warnMutuallyExclusive": () => (/* binding */ warnMutuallyExclusive)
+/* harmony export */ });
+/* harmony import */ var _warn__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(109);
+/* provided dependency */ var process = __webpack_require__(3);
+
+/**
+ * Warns when two props which are mutually exclusive are both being used.
+ *
+ * @public
+ * @param componentName - The name of the component being used.
+ * @param props - The props passed into the component.
+ * @param exclusiveMap - A map where the key is a parameter, and the value is the other parameter.
+ */
+function warnMutuallyExclusive(componentName, props, exclusiveMap) {
+    if (process.env.NODE_ENV !== 'production') {
+        for (var propName in exclusiveMap) {
+            if (props && props[propName] !== undefined) {
+                var propInExclusiveMapValue = exclusiveMap[propName];
+                if (propInExclusiveMapValue && props[propInExclusiveMapValue] !== undefined) {
+                    (0,_warn__WEBPACK_IMPORTED_MODULE_0__.warn)(componentName + " property '" + propName + "' is mutually exclusive with '" + exclusiveMap[propName] + "'. " +
+                        "Use one or the other.");
+                }
+            }
+        }
+    }
+}
+//# sourceMappingURL=warnMutuallyExclusive.js.map
+
+/***/ }),
+/* 120 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getId": () => (/* binding */ getId),
+/* harmony export */   "resetIds": () => (/* binding */ resetIds)
+/* harmony export */ });
+/* harmony import */ var _dom_getWindow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(42);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49);
+
+
+// Initialize global window id.
+var CURRENT_ID_PROPERTY = '__currentId__';
+var DEFAULT_ID_STRING = 'id__';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+var _global = (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_0__.getWindow)() || {};
+if (_global[CURRENT_ID_PROPERTY] === undefined) {
+    _global[CURRENT_ID_PROPERTY] = 0;
+}
+var _initializedStylesheetResets = false;
+/**
+ * Generates a unique id in the global scope (this spans across duplicate copies of the same library.)
+ *
+ * @public
+ */
+function getId(prefix) {
+    if (!_initializedStylesheetResets) {
+        // Configure ids to reset on stylesheet resets.
+        var stylesheet = _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__.Stylesheet.getInstance();
+        if (stylesheet && stylesheet.onReset) {
+            stylesheet.onReset(resetIds);
+        }
+        _initializedStylesheetResets = true;
+    }
+    var index = _global[CURRENT_ID_PROPERTY]++;
+    return (prefix === undefined ? DEFAULT_ID_STRING : prefix) + index;
+}
+/**
+ * Resets id counter to an (optional) number.
+ *
+ * @public
+ */
+function resetIds(counter) {
+    if (counter === void 0) { counter = 0; }
+    _global[CURRENT_ID_PROPERTY] = counter;
+}
+//# sourceMappingURL=getId.js.map
+
+/***/ }),
+/* 121 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Icon": () => (/* binding */ Icon)
+/* harmony export */ });
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(37);
+/* harmony import */ var _Icon_base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(122);
+/* harmony import */ var _Icon_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(127);
+
+
+
+/**
+ * Legacy Icon component which can be targeted by customization. It's recommended to use `FontIcon`
+ * or `ImageIcon` instead, especially in scenarios where rendering performance is important.
+ * {@docCategory Icon}
+ */
+var Icon = (0,_Utilities__WEBPACK_IMPORTED_MODULE_0__.styled)(_Icon_base__WEBPACK_IMPORTED_MODULE_1__.IconBase, _Icon_styles__WEBPACK_IMPORTED_MODULE_2__.getStyles, undefined, {
+    scope: 'Icon',
+}, true);
+Icon.displayName = 'Icon';
+//# sourceMappingURL=Icon.js.map
+
+/***/ }),
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getIconContent": () => (/* binding */ getIconContent),
+/* harmony export */   "FontIcon": () => (/* binding */ FontIcon),
+/* harmony export */   "getFontIcon": () => (/* binding */ getFontIcon)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(44);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _Icon_styles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(127);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(101);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(66);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(126);
+/* harmony import */ var _Styling__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(68);
+
+
+
+
+
+var getIconContent = (0,_Utilities__WEBPACK_IMPORTED_MODULE_1__.memoizeFunction)(function (iconName) {
+    var _a = (0,_Styling__WEBPACK_IMPORTED_MODULE_2__.getIcon)(iconName) || {
+        subset: {},
+        code: undefined,
+    }, code = _a.code, subset = _a.subset;
+    if (!code) {
+        return null;
+    }
+    return {
+        children: code,
+        iconClassName: subset.className,
+        fontFamily: subset.fontFace && subset.fontFace.fontFamily,
+        mergeImageProps: subset.mergeImageProps,
+    };
+}, undefined, true /*ignoreNullOrUndefinedResult */);
+/**
+ * Fast icon component which only supports font glyphs (not images) and can't be targeted by customizations.
+ * To style the icon, use `className` or reference `ms-Icon` in CSS.
+ * {@docCategory Icon}
+ */
+var FontIcon = function (props) {
+    var iconName = props.iconName, className = props.className, _a = props.style, style = _a === void 0 ? {} : _a;
+    var iconContent = getIconContent(iconName) || {};
+    var iconClassName = iconContent.iconClassName, children = iconContent.children, fontFamily = iconContent.fontFamily, mergeImageProps = iconContent.mergeImageProps;
+    var nativeProps = (0,_Utilities__WEBPACK_IMPORTED_MODULE_3__.getNativeProps)(props, _Utilities__WEBPACK_IMPORTED_MODULE_3__.htmlElementProperties);
+    var accessibleName = props['aria-label'] || props.title;
+    var containerProps = props['aria-label'] || props['aria-labelledby'] || props.title
+        ? {
+            role: mergeImageProps ? undefined : 'img',
+        }
+        : {
+            'aria-hidden': true,
+        };
+    var finalChildren = children;
+    if (mergeImageProps) {
+        if (typeof children === 'object' && typeof children.props === 'object' && accessibleName) {
+            finalChildren = react__WEBPACK_IMPORTED_MODULE_0__.cloneElement(children, { alt: accessibleName });
+        }
+    }
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__assign)({ "data-icon-name": iconName }, containerProps, nativeProps, (mergeImageProps
+        ? {
+            title: undefined,
+            'aria-label': undefined,
+        }
+        : {}), { className: (0,_Utilities__WEBPACK_IMPORTED_MODULE_5__.css)(_Icon_styles__WEBPACK_IMPORTED_MODULE_6__.MS_ICON, _Icon_styles__WEBPACK_IMPORTED_MODULE_6__.classNames.root, iconClassName, !iconName && _Icon_styles__WEBPACK_IMPORTED_MODULE_6__.classNames.placeholder, className), 
+        // Apply the font family this way to ensure it doesn't get overridden by Fabric Core ms-Icon styles
+        // https://github.com/microsoft/fluentui/issues/10449
+        style: (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__assign)({ fontFamily: fontFamily }, style) }), finalChildren));
+};
+/**
+ * Memoized helper for rendering a FontIcon.
+ * @param iconName - The name of the icon to use from the icon font.
+ * @param className - Class name for styling the icon.
+ * @param ariaLabel - Label for the icon for the benefit of screen readers.
+ * {@docCategory Icon}
+ */
+var getFontIcon = (0,_Utilities__WEBPACK_IMPORTED_MODULE_1__.memoizeFunction)(function (iconName, className, ariaLabel) {
+    return FontIcon({ iconName: iconName, className: className, 'aria-label': ariaLabel });
+});
+//# sourceMappingURL=FontIcon.js.map
+
+/***/ }),
 /* 126 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "css": () => (/* binding */ css)
+/* harmony export */ });
+/**
+ * Concatination helper, which can merge class names together. Skips over falsey values.
+ *
+ * @public
+ */
+function css() {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    var classes = [];
+    for (var _a = 0, args_1 = args; _a < args_1.length; _a++) {
+        var arg = args_1[_a];
+        if (arg) {
+            if (typeof arg === 'string') {
+                classes.push(arg);
+            }
+            else if (arg.hasOwnProperty('toString') && typeof arg.toString === 'function') {
+                classes.push(arg.toString());
+            }
+            else {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                for (var key in arg) {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    if (arg[key]) {
+                        classes.push(key);
+                    }
+                }
+            }
+        }
+    }
+    return classes.join(' ');
+}
+//# sourceMappingURL=css.js.map
+
+/***/ }),
+/* 127 */,
+/* 128 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Image": () => (/* binding */ Image)
+/* harmony export */ });
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(37);
+/* harmony import */ var _Image_base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(129);
+/* harmony import */ var _Image_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(131);
+
+
+
+var Image = (0,_Utilities__WEBPACK_IMPORTED_MODULE_0__.styled)(_Image_base__WEBPACK_IMPORTED_MODULE_1__.ImageBase, _Image_styles__WEBPACK_IMPORTED_MODULE_2__.getStyles, undefined, {
+    scope: 'Image',
+}, true);
+Image.displayName = 'Image';
+//# sourceMappingURL=Image.js.map
+
+/***/ }),
+/* 129 */,
+/* 130 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useMergedRefs": () => (/* binding */ useMergedRefs)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(44);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+
+
+/**
+ * React hook to merge multiple React refs (either MutableRefObjects or ref callbacks) into a single ref callback that
+ * updates all provided refs
+ * @param refs - Refs to collectively update with one ref value.
+ * @returns A function with an attached "current" prop, so that it can be treated like a RefObject.
+ */
+function useMergedRefs() {
+    var refs = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        refs[_i] = arguments[_i];
+    }
+    var mergedCallback = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(function (value) {
+        // Update the "current" prop hanging on the function.
+        mergedCallback.current = value;
+        for (var _i = 0, refs_1 = refs; _i < refs_1.length; _i++) {
+            var ref = refs_1[_i];
+            if (typeof ref === 'function') {
+                ref(value);
+            }
+            else if (ref) {
+                // work around the immutability of the React.Ref type
+                ref.current = value;
+            }
+        }
+    }, (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__spreadArrays)(refs));
+    return mergedCallback;
+}
+//# sourceMappingURL=useMergedRefs.js.map
+
+/***/ }),
+/* 131 */,
+/* 132 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DelayedRender": () => (/* binding */ DelayedRender)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(44);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+
+
+/**
+ * Utility component for delaying the render of a child component after a given delay. This component
+ * requires a single child component; don't pass in many components. Wrap multiple components in a DIV
+ * if necessary.
+ *
+ * @public
+ * {@docCategory DelayedRender}
+ */
+var DelayedRender = /** @class */ (function (_super) {
+    (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__extends)(DelayedRender, _super);
+    function DelayedRender(props) {
+        var _this = _super.call(this, props) || this;
+        _this.state = {
+            isRendered: false,
+        };
+        return _this;
+    }
+    DelayedRender.prototype.componentDidMount = function () {
+        var _this = this;
+        var delay = this.props.delay;
+        this._timeoutId = window.setTimeout(function () {
+            _this.setState({
+                isRendered: true,
+            });
+        }, delay);
+    };
+    DelayedRender.prototype.componentWillUnmount = function () {
+        if (this._timeoutId) {
+            clearTimeout(this._timeoutId);
+        }
+    };
+    DelayedRender.prototype.render = function () {
+        return this.state.isRendered ? react__WEBPACK_IMPORTED_MODULE_0__.Children.only(this.props.children) : null;
+    };
+    DelayedRender.defaultProps = {
+        delay: 0,
+    };
+    return DelayedRender;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component));
+
+//# sourceMappingURL=DelayedRender.js.map
+
+/***/ }),
+/* 133 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "resetControlledWarnings": () => (/* binding */ resetControlledWarnings),
+/* harmony export */   "warnControlledUsage": () => (/* binding */ warnControlledUsage)
+/* harmony export */ });
+/* harmony import */ var _warn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(109);
+/* harmony import */ var _controlled__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(134);
+/* provided dependency */ var process = __webpack_require__(3);
+
+
+var warningsMap;
+if (process.env.NODE_ENV !== 'production') {
+    warningsMap = {
+        valueOnChange: {},
+        valueDefaultValue: {},
+        controlledToUncontrolled: {},
+        uncontrolledToControlled: {},
+    };
+}
+/** Reset controlled usage warnings for testing purposes. */
+function resetControlledWarnings() {
+    if (process.env.NODE_ENV !== 'production') {
+        warningsMap.valueOnChange = {};
+        warningsMap.valueDefaultValue = {};
+        warningsMap.controlledToUncontrolled = {};
+        warningsMap.uncontrolledToControlled = {};
+    }
+}
+/**
+ * Check for and warn on the following error conditions with a form component:
+ * - A value prop is provided (indicated it's being used as controlled) without a change handler,
+ *    and the component is not read-only
+ * - Both the value and defaultValue props are provided
+ * - The component is attempting to switch between controlled and uncontrolled
+ *
+ * The messages mimic the warnings React gives for these error conditions on input elements.
+ * The warning will only be displayed once per component ID.
+ */
+function warnControlledUsage(params) {
+    if (process.env.NODE_ENV !== 'production') {
+        var componentId = params.componentId, componentName = params.componentName, defaultValueProp = params.defaultValueProp, props = params.props, oldProps = params.oldProps, onChangeProp = params.onChangeProp, readOnlyProp = params.readOnlyProp, valueProp = params.valueProp;
+        // This warning logic closely follows what React does for native <input> elements.
+        var oldIsControlled = oldProps ? (0,_controlled__WEBPACK_IMPORTED_MODULE_0__.isControlled)(oldProps, valueProp) : undefined;
+        var newIsControlled = (0,_controlled__WEBPACK_IMPORTED_MODULE_0__.isControlled)(props, valueProp);
+        if (newIsControlled) {
+            // onChange (or readOnly) must be provided if value is provided
+            var hasOnChange = !!props[onChangeProp];
+            var isReadOnly = !!(readOnlyProp && props[readOnlyProp]);
+            if (!(hasOnChange || isReadOnly) && !warningsMap.valueOnChange[componentId]) {
+                warningsMap.valueOnChange[componentId] = true;
+                (0,_warn__WEBPACK_IMPORTED_MODULE_1__.warn)("Warning: You provided a '" + valueProp + "' prop to a " + componentName + " without an '" + onChangeProp + "' handler. " +
+                    ("This will render a read-only field. If the field should be mutable use '" + defaultValueProp + "'. ") +
+                    ("Otherwise, set '" + onChangeProp + "'" + (readOnlyProp ? " or '" + readOnlyProp + "'" : '') + "."));
+            }
+            // value and defaultValue are mutually exclusive
+            var defaultValue = props[defaultValueProp];
+            if (defaultValue !== undefined && defaultValue !== null && !warningsMap.valueDefaultValue[componentId]) {
+                warningsMap.valueDefaultValue[componentId] = true;
+                (0,_warn__WEBPACK_IMPORTED_MODULE_1__.warn)("Warning: You provided both '" + valueProp + "' and '" + defaultValueProp + "' to a " + componentName + ". " +
+                    ("Form fields must be either controlled or uncontrolled (specify either the '" + valueProp + "' prop, ") +
+                    ("or the '" + defaultValueProp + "' prop, but not both). Decide between using a controlled or uncontrolled ") +
+                    (componentName + " and remove one of these props. More info: https://fb.me/react-controlled-components"));
+            }
+        }
+        // Warn if switching between uncontrolled and controlled. (One difference between this implementation
+        // and React's <input> is that if oldIsControlled is indeterminate and newIsControlled true, we don't warn.)
+        if (oldProps && newIsControlled !== oldIsControlled) {
+            var oldType = oldIsControlled ? 'a controlled' : 'an uncontrolled';
+            var newType = oldIsControlled ? 'uncontrolled' : 'controlled';
+            var warnMap = oldIsControlled ? warningsMap.controlledToUncontrolled : warningsMap.uncontrolledToControlled;
+            if (!warnMap[componentId]) {
+                warnMap[componentId] = true;
+                (0,_warn__WEBPACK_IMPORTED_MODULE_1__.warn)("Warning: A component is changing " + oldType + " " + componentName + " to be " + newType + ". " +
+                    (componentName + "s should not switch from controlled to uncontrolled (or vice versa). ") +
+                    "Decide between using controlled or uncontrolled for the lifetime of the component. " +
+                    "More info: https://fb.me/react-controlled-components");
+            }
+        }
+    }
+}
+//# sourceMappingURL=warnControlledUsage.js.map
+
+/***/ }),
+/* 134 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isControlled": () => (/* binding */ isControlled)
+/* harmony export */ });
+/**
+ * Determines whether a component is controlled.
+ * @param props - Component props
+ * @param valueProp - Prop containing the controlled value
+ * @returns true if controlled, false if uncontrolled
+ */
+function isControlled(props, valueProp) {
+    // React's built-in <input> considers a prop to be provided if its value is non-null/undefined.
+    // Mirror that behavior here (rather than checking for just undefined).
+    return props[valueProp] !== undefined && props[valueProp] !== null;
+}
+//# sourceMappingURL=controlled.js.map
+
+/***/ }),
+/* 135 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isIE11": () => (/* binding */ isIE11)
+/* harmony export */ });
+/* harmony import */ var _dom_getWindow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(42);
+
+var isIE11 = function () {
+    var _a;
+    var win = (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_0__.getWindow)();
+    if (!((_a = win === null || win === void 0 ? void 0 : win.navigator) === null || _a === void 0 ? void 0 : _a.userAgent)) {
+        return false;
+    }
+    return win.navigator.userAgent.indexOf('rv:11.0') > -1;
+};
+//# sourceMappingURL=ie11Detector.js.map
+
+/***/ }),
+/* 136 */,
+/* 137 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ThemeProvider": () => (/* binding */ ThemeProvider)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _useThemeProviderClasses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(146);
+/* harmony import */ var _useThemeProvider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(138);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(150);
+/* harmony import */ var _fluentui_react_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(130);
+
+
+
+
+
+/**
+ * ThemeProvider, used for providing css variables and registering stylesheets.
+ */
+var ThemeProvider = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function (props, ref) {
+    var rootRef = (0,_fluentui_react_hooks__WEBPACK_IMPORTED_MODULE_1__.useMergedRefs)(ref, react__WEBPACK_IMPORTED_MODULE_0__.useRef(null));
+    var _a = (0,_useThemeProvider__WEBPACK_IMPORTED_MODULE_2__.useThemeProvider)(props, {
+        ref: rootRef,
+        as: 'div',
+        applyTo: 'element',
+    }), render = _a.render, state = _a.state;
+    // Render styles.
+    (0,_useThemeProviderClasses__WEBPACK_IMPORTED_MODULE_3__.useThemeProviderClasses)(state);
+    // Apply focus rect class on key presses.
+    (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_4__.useFocusRects)(state.ref);
+    // Return the rendered content.
+    return render(state);
+});
+ThemeProvider.displayName = 'ThemeProvider';
+//# sourceMappingURL=ThemeProvider.js.map
+
+/***/ }),
+/* 138 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useThemeProvider": () => (/* binding */ useThemeProvider)
+/* harmony export */ });
+/* harmony import */ var _renderThemeProvider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(143);
+/* harmony import */ var _useThemeProviderState__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(140);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(139);
+
+
+
+/**
+ * Returns the ThemeProvider render function and calculated state, given user input, ref, and
+ * a set of default prop values.
+ */
+var useThemeProvider = function (props, defaultProps) {
+    var state = (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__.getPropsWithDefaults)(defaultProps, props);
+    // Apply changes to state.
+    (0,_useThemeProviderState__WEBPACK_IMPORTED_MODULE_1__.useThemeProviderState)(state);
+    return {
+        state: state,
+        render: _renderThemeProvider__WEBPACK_IMPORTED_MODULE_2__.renderThemeProvider,
+    };
+};
+//# sourceMappingURL=useThemeProvider.js.map
+
+/***/ }),
+/* 139 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getPropsWithDefaults": () => (/* binding */ getPropsWithDefaults)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(44);
+
+/**
+ * Function to apply default values to a component props object. This function is intended for function components,
+ * to maintain parity with the `defaultProps` feature of class components. It accounts for properties that are
+ * specified, but undefined.
+ * @param defaultProps- An object with default values for various properties
+ * @param propsWithoutDefaults- The props object passed into the component
+ */
+function getPropsWithDefaults(defaultProps, propsWithoutDefaults) {
+    var props = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, propsWithoutDefaults);
+    for (var _i = 0, _a = Object.keys(defaultProps); _i < _a.length; _i++) {
+        var key = _a[_i];
+        if (props[key] === undefined) {
+            props[key] = defaultProps[key];
+        }
+    }
+    return props;
+}
+//# sourceMappingURL=getPropsWithDefaults.js.map
+
+/***/ }),
+/* 140 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useThemeProviderState": () => (/* binding */ useThemeProviderState)
+/* harmony export */ });
+/* harmony import */ var _fluentui_theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(91);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _useTheme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(141);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(120);
+
+
+
+
+var themeToIdMap = new Map();
+var getThemeId = function () {
+    var themes = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        themes[_i] = arguments[_i];
+    }
+    var ids = [];
+    for (var _a = 0, themes_1 = themes; _a < themes_1.length; _a++) {
+        var theme = themes_1[_a];
+        if (theme) {
+            var id = theme.id || themeToIdMap.get(theme);
+            if (!id) {
+                id = (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__.getId)('');
+                themeToIdMap.set(theme, id);
+            }
+            ids.push(id);
+        }
+    }
+    return ids.join('-');
+};
+var useThemeProviderState = function (draftState) {
+    var userTheme = draftState.theme;
+    // Pull contextual theme.
+    var parentTheme = (0,_useTheme__WEBPACK_IMPORTED_MODULE_2__.useTheme)();
+    // Update the incoming theme with a memoized version of the merged theme.
+    var theme = (draftState.theme = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(function () {
+        var mergedTheme = (0,_fluentui_theme__WEBPACK_IMPORTED_MODULE_3__.mergeThemes)(parentTheme, userTheme);
+        mergedTheme.id = getThemeId(parentTheme, userTheme);
+        return mergedTheme;
+    }, [parentTheme, userTheme]));
+    draftState.customizerContext = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(function () { return ({
+        customizations: {
+            inCustomizerContext: true,
+            settings: { theme: theme },
+            scopedSettings: theme.components || {},
+        },
+    }); }, [theme]);
+    if (draftState.theme.rtl !== parentTheme.rtl) {
+        draftState.dir = draftState.theme.rtl ? 'rtl' : 'ltr';
+    }
+};
+//# sourceMappingURL=useThemeProviderState.js.map
+
+/***/ }),
+/* 141 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useTheme": () => (/* binding */ useTheme)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(38);
+/* harmony import */ var _fluentui_theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(86);
+/* harmony import */ var _ThemeContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(142);
+
+
+
+
+/**
+ * Get theme from CustomizerContext or Customizations singleton.
+ */
+function useCompatTheme() {
+    return (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__.useCustomizationSettings)(['theme']).theme;
+}
+/**
+ * React hook for programmatically accessing the theme.
+ */
+var useTheme = function () {
+    var theme = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_ThemeContext__WEBPACK_IMPORTED_MODULE_2__.ThemeContext);
+    var legacyTheme = useCompatTheme();
+    return theme || legacyTheme || (0,_fluentui_theme__WEBPACK_IMPORTED_MODULE_3__.createTheme)({});
+};
+//# sourceMappingURL=useTheme.js.map
+
+/***/ }),
+/* 142 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ThemeContext": () => (/* binding */ ThemeContext)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+
+var ThemeContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext(undefined);
+//# sourceMappingURL=ThemeContext.js.map
+
+/***/ }),
+/* 143 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "renderThemeProvider": () => (/* binding */ renderThemeProvider)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(44);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(144);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(145);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(39);
+/* harmony import */ var _ThemeContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(142);
+
+
+
+
+var renderThemeProvider = function (state) {
+    var theme = state.theme, customizerContext = state.customizerContext;
+    var Root = state.as || 'div';
+    var rootProps = typeof state.as === 'string' ? (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__.getNativeElementProps)(state.as, state) : (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_2__.omit)(state, ['as']);
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ThemeContext__WEBPACK_IMPORTED_MODULE_3__.ThemeContext.Provider, { value: theme },
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fluentui_utilities__WEBPACK_IMPORTED_MODULE_4__.CustomizerContext.Provider, { value: customizerContext },
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(Root, (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__assign)({}, rootProps)))));
+};
+//# sourceMappingURL=renderThemeProvider.js.map
+
+/***/ }),
+/* 144 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getNativeElementProps": () => (/* binding */ getNativeElementProps)
+/* harmony export */ });
+/* harmony import */ var _properties__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(66);
+
+var nativeElementMap = {
+    label: _properties__WEBPACK_IMPORTED_MODULE_0__.labelProperties,
+    audio: _properties__WEBPACK_IMPORTED_MODULE_0__.audioProperties,
+    video: _properties__WEBPACK_IMPORTED_MODULE_0__.videoProperties,
+    ol: _properties__WEBPACK_IMPORTED_MODULE_0__.olProperties,
+    li: _properties__WEBPACK_IMPORTED_MODULE_0__.liProperties,
+    a: _properties__WEBPACK_IMPORTED_MODULE_0__.anchorProperties,
+    button: _properties__WEBPACK_IMPORTED_MODULE_0__.buttonProperties,
+    input: _properties__WEBPACK_IMPORTED_MODULE_0__.inputProperties,
+    textarea: _properties__WEBPACK_IMPORTED_MODULE_0__.textAreaProperties,
+    select: _properties__WEBPACK_IMPORTED_MODULE_0__.selectProperties,
+    option: _properties__WEBPACK_IMPORTED_MODULE_0__.optionProperties,
+    table: _properties__WEBPACK_IMPORTED_MODULE_0__.tableProperties,
+    tr: _properties__WEBPACK_IMPORTED_MODULE_0__.trProperties,
+    th: _properties__WEBPACK_IMPORTED_MODULE_0__.thProperties,
+    td: _properties__WEBPACK_IMPORTED_MODULE_0__.tdProperties,
+    colGroup: _properties__WEBPACK_IMPORTED_MODULE_0__.colGroupProperties,
+    col: _properties__WEBPACK_IMPORTED_MODULE_0__.colProperties,
+    form: _properties__WEBPACK_IMPORTED_MODULE_0__.formProperties,
+    iframe: _properties__WEBPACK_IMPORTED_MODULE_0__.iframeProperties,
+    img: _properties__WEBPACK_IMPORTED_MODULE_0__.imgProperties,
+};
+/**
+ * Given an element tagname and user props, filters the props to only allowed props for the given
+ * element type.
+ * @param tagName - Tag name (e.g. "div")
+ * @param props - Props object
+ * @param excludedPropNames - List of props to disallow
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getNativeElementProps(tagName, props, excludedPropNames) {
+    var allowedPropNames = (tagName && nativeElementMap[tagName]) || _properties__WEBPACK_IMPORTED_MODULE_0__.htmlElementProperties;
+    return (0,_properties__WEBPACK_IMPORTED_MODULE_0__.getNativeProps)(props, allowedPropNames, excludedPropNames);
+}
+//# sourceMappingURL=getNativeElementProps.js.map
+
+/***/ }),
+/* 145 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "shallowCompare": () => (/* binding */ shallowCompare),
+/* harmony export */   "assign": () => (/* binding */ assign),
+/* harmony export */   "filteredAssign": () => (/* binding */ filteredAssign),
+/* harmony export */   "mapEnumByName": () => (/* binding */ mapEnumByName),
+/* harmony export */   "values": () => (/* binding */ values),
+/* harmony export */   "omit": () => (/* binding */ omit)
+/* harmony export */ });
+/**
+ * Compares a to b and b to a.
+ *
+ * @public
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function shallowCompare(a, b) {
+    for (var propName in a) {
+        if (a.hasOwnProperty(propName)) {
+            if (!b.hasOwnProperty(propName) || b[propName] !== a[propName]) {
+                return false;
+            }
+        }
+    }
+    for (var propName in b) {
+        if (b.hasOwnProperty(propName)) {
+            if (!a.hasOwnProperty(propName)) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+/**
+ * Makes a resulting merge of a bunch of objects. Pass in the target object followed by 1 or more
+ * objects as arguments and they will be merged sequentially into the target. Note that this will
+ * shallow merge; it will not create new cloned values for target members.
+ *
+ * @public
+ * @param target - Target object to merge following object arguments into.
+ * @param args - One or more objects that will be mixed into the target in the order they are provided.
+ * @returns Resulting merged target.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function assign(target) {
+    var args = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        args[_i - 1] = arguments[_i];
+    }
+    return filteredAssign.apply(this, [null, target].concat(args));
+}
+/**
+ * Makes a resulting merge of a bunch of objects, but allows a filter function to be passed in to filter
+ * the resulting merges. This allows for scenarios where you want to merge "everything except that one thing"
+ * or "properties that start with data-". Note that this will shallow merge; it will not create new cloned
+ * values for target members.
+ *
+ * @public
+ * @param isAllowed - Callback to determine if the given propName is allowed in the result.
+ * @param target - Target object to merge following object arguments into.
+ * @param args - One or more objects that will be mixed into the target in the order they are provided.
+ * @returns Resulting merged target.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function filteredAssign(isAllowed, target) {
+    var args = [];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        args[_i - 2] = arguments[_i];
+    }
+    target = target || {};
+    for (var _a = 0, args_1 = args; _a < args_1.length; _a++) {
+        var sourceObject = args_1[_a];
+        if (sourceObject) {
+            for (var propName in sourceObject) {
+                if (sourceObject.hasOwnProperty(propName) && (!isAllowed || isAllowed(propName))) {
+                    target[propName] = sourceObject[propName];
+                }
+            }
+        }
+    }
+    return target;
+}
+/**
+ * Takes an enum and iterates over each value of the enum (as a string), running the callback on each,
+ * returning a mapped array.
+ * @param theEnum - Enum to iterate over
+ * @param callback - The first parameter the name of the entry, and the second parameter is the value
+ * of that entry, which is the value you'd normally use when using the enum (usually a number).
+ */
+function mapEnumByName(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+theEnum, callback) {
+    // map<any> to satisfy compiler since it doesn't realize we strip out undefineds in the .filter() call
+    return Object.keys(theEnum)
+        .map(function (p) {
+        // map on each property name as a string
+        if (String(Number(p)) !== p) {
+            // if the property is not just a number (because enums in TypeScript will map both ways)
+            return callback(p, theEnum[p]);
+        }
+        return undefined;
+    })
+        .filter(function (v) { return !!v; }); // only return elements with values
+}
+/**
+ * Get all values in an object dictionary
+ *
+ * @param obj - The dictionary to get values for
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function values(obj) {
+    return Object.keys(obj).reduce(function (arr, key) {
+        arr.push(obj[key]);
+        return arr;
+    }, []);
+}
+/**
+ * Tiny helper to do the minimal amount of work in duplicating an object but omitting some
+ * props. This ends up faster than using object ...rest or reduce to filter.
+ *
+ * This behaves very much like filteredAssign, but does not merge many objects together,
+ * uses an exclusion object map, and avoids spreads all for optimal performance.
+ *
+ * See perf test for background:
+ * https://jsperf.com/omit-vs-rest-vs-reduce/1
+ *
+ * @param obj - The object to clone
+ * @param exclusions - The array of keys to exclude
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function omit(obj, exclusions) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    var result = {};
+    for (var key in obj) {
+        if (exclusions.indexOf(key) === -1 && obj.hasOwnProperty(key)) {
+            result[key] = obj[key];
+        }
+    }
+    return result;
+}
+//# sourceMappingURL=object.js.map
+
+/***/ }),
+/* 146 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useThemeProviderClasses": () => (/* binding */ useThemeProviderClasses)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(126);
+/* harmony import */ var _fluentui_react_window_provider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(148);
+/* harmony import */ var _makeStyles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(147);
+
+
+
+
+var useThemeProviderStyles = (0,_makeStyles__WEBPACK_IMPORTED_MODULE_1__.makeStyles)(function (theme) {
+    var semanticColors = theme.semanticColors, fonts = theme.fonts;
+    return {
+        body: [
+            {
+                color: semanticColors.bodyText,
+                background: semanticColors.bodyBackground,
+                fontFamily: fonts.medium.fontFamily,
+                fontWeight: fonts.medium.fontWeight,
+                fontSize: fonts.medium.fontSize,
+                MozOsxFontSmoothing: fonts.medium.MozOsxFontSmoothing,
+                WebkitFontSmoothing: fonts.medium.WebkitFontSmoothing,
+            },
+        ],
+    };
+});
+/**
+ * Hook to add class to body element.
+ */
+function useApplyClassToBody(state, classesToApply) {
+    var _a;
+    var applyTo = state.applyTo;
+    var applyToBody = applyTo === 'body';
+    var body = (_a = (0,_fluentui_react_window_provider__WEBPACK_IMPORTED_MODULE_2__.useDocument)()) === null || _a === void 0 ? void 0 : _a.body;
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {
+        if (!applyToBody || !body) {
+            return;
+        }
+        for (var _i = 0, classesToApply_1 = classesToApply; _i < classesToApply_1.length; _i++) {
+            var classToApply = classesToApply_1[_i];
+            if (classToApply) {
+                body.classList.add(classToApply);
+            }
+        }
+        return function () {
+            if (!applyToBody || !body) {
+                return;
+            }
+            for (var _i = 0, classesToApply_2 = classesToApply; _i < classesToApply_2.length; _i++) {
+                var classToApply = classesToApply_2[_i];
+                if (classToApply) {
+                    body.classList.remove(classToApply);
+                }
+            }
+        };
+    }, [applyToBody, body, classesToApply]);
+}
+function useThemeProviderClasses(state) {
+    var classes = useThemeProviderStyles(state);
+    var className = state.className, applyTo = state.applyTo;
+    useApplyClassToBody(state, [classes.root, classes.body]);
+    state.className = (0,_fluentui_utilities__WEBPACK_IMPORTED_MODULE_3__.css)(className, classes.root, applyTo === 'element' && classes.body);
+}
+//# sourceMappingURL=useThemeProviderClasses.js.map
+
+/***/ }),
+/* 147 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "makeStyles": () => (/* binding */ makeStyles)
+/* harmony export */ });
+/* harmony import */ var _useTheme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(141);
+/* harmony import */ var _fluentui_react_window_provider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(148);
+/* harmony import */ var _styleRenderers_mergeStylesRenderer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(149);
+
+
+
+var graphGet = function (graphNode, path) {
+    for (var _i = 0, path_1 = path; _i < path_1.length; _i++) {
+        var key = path_1[_i];
+        graphNode = graphNode.get(key);
+        if (!graphNode) {
+            return;
+        }
+    }
+    return graphNode;
+};
+var graphSet = function (graphNode, path, value) {
+    for (var i = 0; i < path.length - 1; i++) {
+        var key = path[i];
+        var current = graphNode.get(key);
+        if (!current) {
+            current = new Map();
+            graphNode.set(key, current);
+        }
+        graphNode = current;
+    }
+    graphNode.set(path[path.length - 1], value);
+};
+/**
+ * Registers a css object, optionally as a function of the theme.
+ *
+ * @param styleOrFunction - Either a css javascript object, or a function which takes in `ITheme`
+ * and returns a css javascript object.
+ */
+function makeStyles(styleOrFunction) {
+    // Create graph of inputs to map to output.
+    var graph = new Map();
+    return function (options) {
+        if (options === void 0) { options = {}; }
+        var theme = options.theme;
+        var win = (0,_fluentui_react_window_provider__WEBPACK_IMPORTED_MODULE_0__.useWindow)();
+        var contextualTheme = (0,_useTheme__WEBPACK_IMPORTED_MODULE_1__.useTheme)();
+        theme = theme || contextualTheme;
+        var renderer = _styleRenderers_mergeStylesRenderer__WEBPACK_IMPORTED_MODULE_2__.mergeStylesRenderer;
+        var id = renderer.getId();
+        var isStyleFunction = typeof styleOrFunction === 'function';
+        var path = isStyleFunction ? [id, win, theme] : [id, win];
+        var value = graphGet(graph, path);
+        if (!value) {
+            var styles = isStyleFunction ? styleOrFunction(theme) : styleOrFunction;
+            value = _styleRenderers_mergeStylesRenderer__WEBPACK_IMPORTED_MODULE_2__.mergeStylesRenderer.renderStyles(styles, { targetWindow: win, rtl: !!theme.rtl });
+            graphSet(graph, path, value);
+        }
+        return value;
+    };
+}
+//# sourceMappingURL=makeStyles.js.map
+
+/***/ }),
+/* 148 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "WindowContext": () => (/* binding */ WindowContext),
+/* harmony export */   "useWindow": () => (/* binding */ useWindow),
+/* harmony export */   "useDocument": () => (/* binding */ useDocument),
+/* harmony export */   "WindowProvider": () => (/* binding */ WindowProvider)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+
+/**
+ * Context for providing the window.
+ */
+var WindowContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext({
+    window: typeof window === 'object' ? window : undefined,
+});
+/**
+ * Hook to access the window object. This can be overridden contextually using the `WindowProvider`.
+ */
+var useWindow = function () { return react__WEBPACK_IMPORTED_MODULE_0__.useContext(WindowContext).window; };
+/**
+ * Hook to access the document object. This can be overridden contextually using the `WindowProvider`.
+ */
+var useDocument = function () { var _a; return (_a = react__WEBPACK_IMPORTED_MODULE_0__.useContext(WindowContext).window) === null || _a === void 0 ? void 0 : _a.document; };
+/**
+ * Component to provide the window object contextually. This is useful when rendering content to an element
+ * contained within a child window or iframe element, where event handlers and styling must be projected
+ * to an alternative window or document.
+ */
+var WindowProvider = function (props) {
+    return react__WEBPACK_IMPORTED_MODULE_0__.createElement(WindowContext.Provider, { value: props }, props.children);
+};
+//# sourceMappingURL=WindowProvider.js.map
+
+/***/ }),
+/* 149 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "mergeStylesRenderer": () => (/* binding */ mergeStylesRenderer)
+/* harmony export */ });
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(81);
+/* harmony import */ var _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(74);
+
+var _seed = 0;
+var mergeStylesRenderer = {
+    reset: function () {
+        // If the stylesheet reset call is made, invalidate the cache keys.
+        _fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_0__.Stylesheet.getInstance().onReset(function () { return _seed++; });
+    },
+    getId: function () { return _seed; },
+    renderStyles: function (styleSet, options) {
+        return (0,_fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_1__.mergeCssSets)((Array.isArray(styleSet) ? styleSet : [styleSet]), options);
+    },
+    renderFontFace: function (fontFace, options) {
+        return (0,_fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_2__.fontFace)(fontFace);
+    },
+    renderKeyframes: function (keyframes) {
+        return (0,_fluentui_merge_styles__WEBPACK_IMPORTED_MODULE_3__.keyframes)(keyframes);
+    },
+};
+//# sourceMappingURL=mergeStylesRenderer.js.map
+
+/***/ }),
+/* 150 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useFocusRects": () => (/* binding */ useFocusRects),
+/* harmony export */   "FocusRects": () => (/* binding */ FocusRects)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _dom_getWindow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(42);
+/* harmony import */ var _keyboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(151);
+/* harmony import */ var _setFocusVisibility__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(95);
+
+
+
+
+/**
+ * Counter for mounted component that uses focus rectangle.
+ * We want to cleanup the listners before last component that uses focus rectangle unmounts.
+ */
+var mountCounters = new WeakMap();
+function setMountCounters(key, delta) {
+    var newValue;
+    var currValue = mountCounters.get(key);
+    if (currValue) {
+        newValue = currValue + delta;
+    }
+    else {
+        newValue = 1;
+    }
+    mountCounters.set(key, newValue);
+    return newValue;
+}
+/**
+ * Initializes the logic which:
+ *
+ * 1. Subscribes keydown and mousedown events. (It will only do it once per window,
+ *    so it's safe to call this method multiple times.)
+ * 2. When the user presses directional keyboard keys, adds the 'ms-Fabric--isFocusVisible' classname
+ *    to the document body, removes the 'ms-Fabric-isFocusHidden' classname.
+ * 3. When the user clicks a mouse button, adds the 'ms-Fabric-isFocusHidden' classname to the
+ *    document body, removes the 'ms-Fabric--isFocusVisible' classname.
+ *
+ * This logic allows components on the page to conditionally render focus treatments based on
+ * the existence of global classnames, which simplifies logic overall.
+ *
+ * @param rootRef - A Ref object. Focus rectangle can be applied on itself and all its children.
+ */
+function useFocusRects(rootRef) {
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {
+        var _a;
+        var win = (0,_dom_getWindow__WEBPACK_IMPORTED_MODULE_1__.getWindow)(rootRef === null || rootRef === void 0 ? void 0 : rootRef.current);
+        if (!win || ((_a = win.FabricConfig) === null || _a === void 0 ? void 0 : _a.disableFocusRects) === true) {
+            return undefined;
+        }
+        var count = setMountCounters(win, 1);
+        if (count <= 1) {
+            win.addEventListener('mousedown', _onMouseDown, true);
+            win.addEventListener('pointerdown', _onPointerDown, true);
+            win.addEventListener('keydown', _onKeyDown, true);
+        }
+        return function () {
+            var _a;
+            if (!win || ((_a = win.FabricConfig) === null || _a === void 0 ? void 0 : _a.disableFocusRects) === true) {
+                return;
+            }
+            count = setMountCounters(win, -1);
+            if (count === 0) {
+                win.removeEventListener('mousedown', _onMouseDown, true);
+                win.removeEventListener('pointerdown', _onPointerDown, true);
+                win.removeEventListener('keydown', _onKeyDown, true);
+            }
+        };
+    }, [rootRef]);
+}
+/**
+ * Function Component wrapper which enables calling `useFocusRects` hook.
+ * Renders nothing.
+ */
+var FocusRects = function (props) {
+    useFocusRects(props.rootRef);
+    return null;
+};
+function _onMouseDown(ev) {
+    (0,_setFocusVisibility__WEBPACK_IMPORTED_MODULE_2__.setFocusVisibility)(false, ev.target);
+}
+function _onPointerDown(ev) {
+    if (ev.pointerType !== 'mouse') {
+        (0,_setFocusVisibility__WEBPACK_IMPORTED_MODULE_2__.setFocusVisibility)(false, ev.target);
+    }
+}
+function _onKeyDown(ev) {
+    // eslint-disable-next-line deprecation/deprecation
+    if ((0,_keyboard__WEBPACK_IMPORTED_MODULE_3__.isDirectionalKeyCode)(ev.which)) {
+        (0,_setFocusVisibility__WEBPACK_IMPORTED_MODULE_2__.setFocusVisibility)(true, ev.target);
+    }
+}
+//# sourceMappingURL=useFocusRects.js.map
+
+/***/ }),
+/* 151 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isDirectionalKeyCode": () => (/* binding */ isDirectionalKeyCode),
+/* harmony export */   "addDirectionalKeyCode": () => (/* binding */ addDirectionalKeyCode)
+/* harmony export */ });
+/* harmony import */ var _KeyCodes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(54);
+var _a;
+
+var DirectionalKeyCodes = (_a = {},
+    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.up] = 1,
+    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.down] = 1,
+    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.left] = 1,
+    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.right] = 1,
+    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.home] = 1,
+    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.end] = 1,
+    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.tab] = 1,
+    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.pageUp] = 1,
+    _a[_KeyCodes__WEBPACK_IMPORTED_MODULE_0__.KeyCodes.pageDown] = 1,
+    _a);
+/**
+ * Returns true if the keycode is a directional keyboard key.
+ */
+function isDirectionalKeyCode(which) {
+    return !!DirectionalKeyCodes[which];
+}
+/**
+ * Adds a keycode to the list of keys that, when pressed, should cause the focus outlines to be visible.
+ * This can be used to add global shortcut keys that directionally move from section to section within
+ * an app or between focus trap zones.
+ */
+function addDirectionalKeyCode(which) {
+    DirectionalKeyCodes[which] = 1;
+}
+//# sourceMappingURL=keyboard.js.map
+
+/***/ }),
+/* 152 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7674,7 +8728,176 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fabric_icons__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(153);
+/* harmony import */ var _fabric_icons_0__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(154);
+/* harmony import */ var _fabric_icons_1__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(155);
+/* harmony import */ var _fabric_icons_2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(156);
+/* harmony import */ var _fabric_icons_3__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(157);
+/* harmony import */ var _fabric_icons_4__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(158);
+/* harmony import */ var _fabric_icons_5__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(159);
+/* harmony import */ var _fabric_icons_6__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(160);
+/* harmony import */ var _fabric_icons_7__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(161);
+/* harmony import */ var _fabric_icons_8__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(162);
+/* harmony import */ var _fabric_icons_9__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(163);
+/* harmony import */ var _fabric_icons_10__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(164);
+/* harmony import */ var _fabric_icons_11__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(165);
+/* harmony import */ var _fabric_icons_12__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(166);
+/* harmony import */ var _fabric_icons_13__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(167);
+/* harmony import */ var _fabric_icons_14__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(168);
+/* harmony import */ var _fabric_icons_15__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(169);
+/* harmony import */ var _fabric_icons_16__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(170);
+/* harmony import */ var _fabric_icons_17__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(171);
+/* harmony import */ var _iconAliases__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(172);
+/* harmony import */ var _version__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(173);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var DEFAULT_BASE_URL = 'https://spoprod-a.akamaihd.net/files/fabric/assets/icons/';
+function initializeIcons(baseUrl, options) {
+    if (baseUrl === void 0) { baseUrl = DEFAULT_BASE_URL; }
+    [
+        _fabric_icons__WEBPACK_IMPORTED_MODULE_0__.initializeIcons,
+        _fabric_icons_0__WEBPACK_IMPORTED_MODULE_1__.initializeIcons,
+        _fabric_icons_1__WEBPACK_IMPORTED_MODULE_2__.initializeIcons,
+        _fabric_icons_2__WEBPACK_IMPORTED_MODULE_3__.initializeIcons,
+        _fabric_icons_3__WEBPACK_IMPORTED_MODULE_4__.initializeIcons,
+        _fabric_icons_4__WEBPACK_IMPORTED_MODULE_5__.initializeIcons,
+        _fabric_icons_5__WEBPACK_IMPORTED_MODULE_6__.initializeIcons,
+        _fabric_icons_6__WEBPACK_IMPORTED_MODULE_7__.initializeIcons,
+        _fabric_icons_7__WEBPACK_IMPORTED_MODULE_8__.initializeIcons,
+        _fabric_icons_8__WEBPACK_IMPORTED_MODULE_9__.initializeIcons,
+        _fabric_icons_9__WEBPACK_IMPORTED_MODULE_10__.initializeIcons,
+        _fabric_icons_10__WEBPACK_IMPORTED_MODULE_11__.initializeIcons,
+        _fabric_icons_11__WEBPACK_IMPORTED_MODULE_12__.initializeIcons,
+        _fabric_icons_12__WEBPACK_IMPORTED_MODULE_13__.initializeIcons,
+        _fabric_icons_13__WEBPACK_IMPORTED_MODULE_14__.initializeIcons,
+        _fabric_icons_14__WEBPACK_IMPORTED_MODULE_15__.initializeIcons,
+        _fabric_icons_15__WEBPACK_IMPORTED_MODULE_16__.initializeIcons,
+        _fabric_icons_16__WEBPACK_IMPORTED_MODULE_17__.initializeIcons,
+        _fabric_icons_17__WEBPACK_IMPORTED_MODULE_18__.initializeIcons,
+    ].forEach(function (initialize) { return initialize(baseUrl, options); });
+    (0,_iconAliases__WEBPACK_IMPORTED_MODULE_19__.registerIconAliases)();
+}
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 153 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
+/* harmony export */ });
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
+// Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
+
+function initializeIcons(baseUrl, options) {
+    if (baseUrl === void 0) { baseUrl = ''; }
+    var subset = {
+        style: {
+            MozOsxFontSmoothing: 'grayscale',
+            WebkitFontSmoothing: 'antialiased',
+            fontStyle: 'normal',
+            fontWeight: 'normal',
+            speak: 'none',
+        },
+        fontFace: {
+            fontFamily: "\"FabricMDL2Icons\"",
+            src: "url('" + baseUrl + "fabric-icons-a13498cf.woff') format('woff')",
+        },
+        icons: {
+            GlobalNavButton: '\uE700',
+            ChevronDown: '\uE70D',
+            ChevronUp: '\uE70E',
+            Edit: '\uE70F',
+            Add: '\uE710',
+            Cancel: '\uE711',
+            More: '\uE712',
+            Settings: '\uE713',
+            Mail: '\uE715',
+            Filter: '\uE71C',
+            Search: '\uE721',
+            Share: '\uE72D',
+            BlockedSite: '\uE72F',
+            FavoriteStar: '\uE734',
+            FavoriteStarFill: '\uE735',
+            CheckMark: '\uE73E',
+            Delete: '\uE74D',
+            ChevronLeft: '\uE76B',
+            ChevronRight: '\uE76C',
+            Calendar: '\uE787',
+            Megaphone: '\uE789',
+            Undo: '\uE7A7',
+            Flag: '\uE7C1',
+            Page: '\uE7C3',
+            Pinned: '\uE840',
+            View: '\uE890',
+            Clear: '\uE894',
+            Download: '\uE896',
+            Upload: '\uE898',
+            Folder: '\uE8B7',
+            Sort: '\uE8CB',
+            AlignRight: '\uE8E2',
+            AlignLeft: '\uE8E4',
+            Tag: '\uE8EC',
+            AddFriend: '\uE8FA',
+            Info: '\uE946',
+            SortLines: '\uE9D0',
+            List: '\uEA37',
+            CircleRing: '\uEA3A',
+            Heart: '\uEB51',
+            HeartFill: '\uEB52',
+            Tiles: '\uECA5',
+            Embed: '\uECCE',
+            Glimmer: '\uECF4',
+            Ascending: '\uEDC0',
+            Descending: '\uEDC1',
+            SortUp: '\uEE68',
+            SortDown: '\uEE69',
+            SyncToPC: '\uEE6E',
+            LargeGrid: '\uEECB',
+            SkypeCheck: '\uEF80',
+            SkypeClock: '\uEF81',
+            SkypeMinus: '\uEF82',
+            ClearFilter: '\uEF8F',
+            Flow: '\uEF90',
+            StatusCircleCheckmark: '\uF13E',
+            MoreVertical: '\uF2BC',
+        },
+    };
+    (0,_fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__.registerIcons)(subset, options);
+}
+//# sourceMappingURL=fabric-icons.js.map
+
+/***/ }),
+/* 154 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
+/* harmony export */ });
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -7799,7 +9022,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-0.js.map
 
 /***/ }),
-/* 127 */
+/* 155 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7807,7 +9030,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -7932,7 +9155,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-1.js.map
 
 /***/ }),
-/* 128 */
+/* 156 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7940,7 +9163,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -8065,7 +9288,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-2.js.map
 
 /***/ }),
-/* 129 */
+/* 157 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -8073,7 +9296,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -8198,7 +9421,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-3.js.map
 
 /***/ }),
-/* 130 */
+/* 158 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -8206,7 +9429,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -8331,7 +9554,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-4.js.map
 
 /***/ }),
-/* 131 */
+/* 159 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -8339,7 +9562,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -8464,7 +9687,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-5.js.map
 
 /***/ }),
-/* 132 */
+/* 160 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -8472,7 +9695,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -8597,7 +9820,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-6.js.map
 
 /***/ }),
-/* 133 */
+/* 161 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -8605,7 +9828,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -8730,7 +9953,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-7.js.map
 
 /***/ }),
-/* 134 */
+/* 162 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -8738,7 +9961,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -8863,7 +10086,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-8.js.map
 
 /***/ }),
-/* 135 */
+/* 163 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -8871,7 +10094,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -8996,7 +10219,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-9.js.map
 
 /***/ }),
-/* 136 */
+/* 164 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -9004,7 +10227,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -9129,7 +10352,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-10.js.map
 
 /***/ }),
-/* 137 */
+/* 165 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -9137,7 +10360,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -9262,7 +10485,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-11.js.map
 
 /***/ }),
-/* 138 */
+/* 166 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -9270,7 +10493,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -9395,7 +10618,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-12.js.map
 
 /***/ }),
-/* 139 */
+/* 167 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -9403,7 +10626,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -9528,7 +10751,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-13.js.map
 
 /***/ }),
-/* 140 */
+/* 168 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -9536,7 +10759,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -9661,7 +10884,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-14.js.map
 
 /***/ }),
-/* 141 */
+/* 169 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -9669,7 +10892,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -9794,7 +11017,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-15.js.map
 
 /***/ }),
-/* 142 */
+/* 170 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -9802,7 +11025,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -9927,7 +11150,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-16.js.map
 
 /***/ }),
-/* 143 */
+/* 171 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -9935,7 +11158,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 // Your use of the content in the files referenced here is subject to the terms of the license at https://aka.ms/fluentui-assets-license
 
 function initializeIcons(baseUrl, options) {
@@ -10004,7 +11227,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-17.js.map
 
 /***/ }),
-/* 144 */
+/* 172 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -10013,7 +11236,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "registerIconAliases": () => (/* binding */ registerIconAliases),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(94);
+/* harmony import */ var _fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
 
 var registerIconAliases = function () {
     (0,_fluentui_style_utilities__WEBPACK_IMPORTED_MODULE_0__.registerIconAlias)('trash', 'delete');
@@ -10028,12 +11251,12 @@ var registerIconAliases = function () {
 //# sourceMappingURL=iconAliases.js.map
 
 /***/ }),
-/* 145 */
+/* 173 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _fluentui_set_version__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(124);
+/* harmony import */ var _fluentui_set_version__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(113);
 // Do not modify this file; it is generated as part of publish.
 // The checked in version is a placeholder only and will not be updated.
 

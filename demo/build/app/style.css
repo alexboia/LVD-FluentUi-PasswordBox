@@ -19358,3 +19358,8 @@ body, #root {
 	margin: 0;
 	padding: 0;
 }
+
+.lvd-passwordbox-demo-container {
+	width: 500px;
+	margin: auto;
+}
