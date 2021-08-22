@@ -1,0 +1,157 @@
+.lvd-passwordbox-strength {
+	width: 100%;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+/* Bar style */
+
+.lvd-passwordbox-strength-bar,
+.lvd-passwordbox-strength-bar .lvd-passwordbox-strength-bar-meter {
+	height: 10px;
+	display: block;
+}
+
+.lvd-passwordbox-strength-bar {
+	border: 1px solid lightgray;
+	box-shadow: 0px 3px 5px rgba(0,0,0,0.1);
+}
+
+.lvd-passwordbox-strength-bar .lvd-passwordbox-strength-bar-meter {
+	background-color: lightgray;
+}
+
+.lvd-passwordbox-strength-bar.very-weak {
+	border: 1px solid #9b2226;
+}	
+
+.lvd-passwordbox-strength-bar.very-weak .lvd-passwordbox-strength-bar-meter {
+	background-color: #9b2226;
+}
+
+.lvd-passwordbox-strength-bar.weak {
+	border: 1px solid #ee9b00;
+}
+
+.lvd-passwordbox-strength-bar.weak .lvd-passwordbox-strength-bar-meter {
+	background-color: #ee9b00;
+}
+
+.lvd-passwordbox-strength-bar.medium {
+	border: 1px solid #e9d8a6;
+}
+
+.lvd-passwordbox-strength-bar.medium .lvd-passwordbox-strength-bar-meter {
+	background-color: #e9d8a6;
+}
+
+.lvd-passwordbox-strength-bar.strong {
+	border: 1px solid #118ab2;
+}
+
+.lvd-passwordbox-strength-bar.strong .lvd-passwordbox-strength-bar-meter {
+	background-color: #118ab2;
+}
+
+.lvd-passwordbox-strength-bar.very-strong {
+	border: 1px solid #55a630;
+}
+
+.lvd-passwordbox-strength-bar.very-strong .lvd-passwordbox-strength-bar-meter {
+	background-color: #55a630;
+}
+
+/* Intermittent bar style */
+
+.lvd-passwordbox-strength-intermittent-bar,
+.lvd-passwordbox-strength-intermittent-bar .lvd-passwordbox-strength-intermittent-bar-segment {
+	height: 10px;
+	display: block;
+}
+
+.lvd-passwordbox-strength-intermittent-bar-segment {
+	width: calc(20% - 7px);
+	margin-right: 5px;
+	float: left;
+	border: 1px solid lightgray;
+	box-shadow: 0px 3px 5px rgba(0,0,0,0.1);
+}
+
+.lvd-passwordbox-strength-intermittent-bar-segment.is-active { 
+	background-color: lightgray;
+}
+
+.lvd-passwordbox-strength-intermittent-bar-segment.very-strong {
+	width: calc(20% - 2px);
+	margin-right: 0px;
+	border: 1px solid #55a630;
+}
+
+.lvd-passwordbox-strength-intermittent-bar.very-weak .lvd-passwordbox-strength-intermittent-bar-segment {
+	border: 1px solid #9b2226;
+}
+
+.lvd-passwordbox-strength-intermittent-bar.very-weak .lvd-passwordbox-strength-intermittent-bar-segment.is-active {
+	background-color: #9b2226;
+}
+
+.lvd-passwordbox-strength-intermittent-bar.weak .lvd-passwordbox-strength-intermittent-bar-segment {
+	border: 1px solid #ee9b00;
+}
+
+.lvd-passwordbox-strength-intermittent-bar.weak .lvd-passwordbox-strength-intermittent-bar-segment.is-active {
+	background-color: #ee9b00;
+}
+
+.lvd-passwordbox-strength-intermittent-bar.medium .lvd-passwordbox-strength-intermittent-bar-segment {
+	border: 1px solid #e9d8a6;
+}
+
+.lvd-passwordbox-strength-intermittent-bar.medium .lvd-passwordbox-strength-intermittent-bar-segment.is-active {
+	background-color: #e9d8a6;
+}
+
+.lvd-passwordbox-strength-intermittent-bar.strong .lvd-passwordbox-strength-intermittent-bar-segment {
+	border: 1px solid #118ab2;
+}
+
+.lvd-passwordbox-strength-intermittent-bar.strong .lvd-passwordbox-strength-intermittent-bar-segment.is-active {
+	background-color: #118ab2;
+}
+
+.lvd-passwordbox-strength-intermittent-bar.very-strong .lvd-passwordbox-strength-intermittent-bar-segment {
+	border: 1px solid #55a630;
+}
+
+.lvd-passwordbox-strength-intermittent-bar.very-strong .lvd-passwordbox-strength-intermittent-bar-segment.is-active {
+	background-color: #55a630;
+}
+
+/* Text style */
+
+.lvd-passwordbox-strength-text {
+	text-align: center;
+	color: lightgray;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.lvd-passwordbox-strength-text.very-weak {
+	color: #9b2226;
+}
+
+.lvd-passwordbox-strength-text.weak {
+	color: #ee9b00;
+}
+
+.lvd-passwordbox-strength-text.medium {
+	color: #e9d8a6;
+}
+
+.lvd-passwordbox-strength-text.strong {
+	color: #118ab2;
+}
+
+.lvd-passwordbox-strength-text.very-strong {
+	color: #55a630;
+}

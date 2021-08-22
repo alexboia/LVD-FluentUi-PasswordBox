@@ -1,21 +1,21 @@
 "use strict";
 (self["webpackChunklvd_fluentui_passwordbox"] = self["webpackChunklvd_fluentui_passwordbox"] || []).push([[0],{
 
-/***/ 122:
+/***/ 126:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "IconBase": () => (/* binding */ IconBase)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(44);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(48);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _Icon_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(124);
-/* harmony import */ var _Image_Image__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(128);
-/* harmony import */ var _Image_Image_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(123);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(48);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(66);
-/* harmony import */ var _FontIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(125);
+/* harmony import */ var _Icon_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(128);
+/* harmony import */ var _Image_Image__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(132);
+/* harmony import */ var _Image_Image_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(127);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(52);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(70);
+/* harmony import */ var _FontIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(129);
 
 
 
@@ -103,7 +103,7 @@ var IconBase = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 127:
+/***/ 131:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -112,7 +112,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "MS_ICON": () => (/* binding */ MS_ICON),
 /* harmony export */   "getStyles": () => (/* binding */ getStyles)
 /* harmony export */ });
-/* harmony import */ var _Styling__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
+/* harmony import */ var _Styling__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(72);
 
 /** Class names used in themeable and non-themeable Icon components */
 var classNames = (0,_Styling__WEBPACK_IMPORTED_MODULE_0__.mergeStyleSets)({
@@ -153,7 +153,7 @@ var getStyles = function (props) {
 
 /***/ }),
 
-/***/ 124:
+/***/ 128:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -189,19 +189,19 @@ var IconType;
 
 /***/ }),
 
-/***/ 129:
+/***/ 133:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ImageBase": () => (/* binding */ ImageBase)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(44);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(48);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(48);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(66);
-/* harmony import */ var _Image_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(123);
-/* harmony import */ var _fluentui_react_hooks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(130);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(52);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(70);
+/* harmony import */ var _Image_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(127);
+/* harmony import */ var _fluentui_react_hooks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(134);
 
 
 
@@ -333,15 +333,15 @@ function computeCoverStyle(props, loadState, imageElement, frameElement) {
 
 /***/ }),
 
-/***/ 131:
+/***/ 135:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getStyles": () => (/* binding */ getStyles)
 /* harmony export */ });
-/* harmony import */ var _Styling__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(42);
+/* harmony import */ var _Styling__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(72);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(46);
 
 
 var GlobalClassNames = {
@@ -481,7 +481,7 @@ var getStyles = function (props) {
 
 /***/ }),
 
-/***/ 123:
+/***/ 127:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -570,17 +570,17 @@ var ImageLoadState;
 
 /***/ }),
 
-/***/ 65:
+/***/ 69:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "LabelBase": () => (/* binding */ LabelBase)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(44);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(48);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(66);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(48);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(70);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(52);
 
 
 
@@ -613,15 +613,15 @@ var LabelBase = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 67:
+/***/ 71:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getStyles": () => (/* binding */ getStyles)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(44);
-/* harmony import */ var _Styling__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(48);
+/* harmony import */ var _Styling__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(72);
 
 
 var getStyles = function (props) {
@@ -671,29 +671,29 @@ var getStyles = function (props) {
 
 /***/ }),
 
-/***/ 47:
+/***/ 51:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "TextFieldBase": () => (/* binding */ TextFieldBase)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(44);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(48);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _Label__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(64);
-/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(121);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(48);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(115);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(118);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(119);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(120);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(132);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(133);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(109);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(134);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(66);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(42);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(135);
+/* harmony import */ var _Label__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(68);
+/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(125);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(52);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(119);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(122);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(123);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(124);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(136);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(137);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(113);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(138);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(70);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(46);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(139);
 /* provided dependency */ var process = __webpack_require__(3);
 
 
@@ -1153,15 +1153,15 @@ function _browserNeedsRevealButton() {
 
 /***/ }),
 
-/***/ 136:
+/***/ 140:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getStyles": () => (/* binding */ getStyles)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(44);
-/* harmony import */ var _Styling__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(68);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(48);
+/* harmony import */ var _Styling__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(72);
 
 
 var globalClassNames = {
@@ -1576,7 +1576,7 @@ function getStyles(props) {
 
 /***/ }),
 
-/***/ 35:
+/***/ 39:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1591,6 +1591,45 @@ var PasswordBoxDefaults = {
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PasswordBoxDefaults);
+
+/***/ }),
+
+/***/ 38:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PasswordStrengthLevels": () => (/* binding */ PasswordStrengthLevels),
+/* harmony export */   "getAllAvailableLevels": () => (/* binding */ getAllAvailableLevels)
+/* harmony export */ });
+var PasswordStrengthLevels = {
+  veryWeak: {
+    id: 'very-weak',
+    value: 1
+  },
+  weak: {
+    id: 'weak',
+    value: 2
+  },
+  medium: {
+    id: 'medium',
+    value: 3
+  },
+  strong: {
+    id: 'strong',
+    value: 4
+  },
+  veryStrong: {
+    id: 'very-strong',
+    value: 5
+  }
+};
+
+function getAllAvailableLevels() {
+  return [PasswordStrengthLevels.veryWeak, PasswordStrengthLevels.weak, PasswordStrengthLevels.medium, PasswordStrengthLevels.strong, PasswordStrengthLevels.veryStrong];
+}
+
+
 
 /***/ }),
 
@@ -1699,7 +1738,7 @@ var App = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
-/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(152);
+/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(156);
 /* harmony import */ var _Root_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(16);
 
 
@@ -1725,7 +1764,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(21);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(24);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2);
-/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(137);
+/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(141);
 /* harmony import */ var _App_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(25);
 
 
@@ -1782,8 +1821,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(27);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(36);
-/* harmony import */ var _PasswordBoxDefaults_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(35);
+/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(40);
+/* harmony import */ var _strengthIndicatorStyles_Bar_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(35);
+/* harmony import */ var _strengthIndicatorStyles_IntermittentBar_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(37);
+/* harmony import */ var _PasswordBoxDefaults_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(39);
+/* harmony import */ var _PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(38);
 
 
 
@@ -1794,6 +1836,9 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__.default)(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+
+
 
 
 
@@ -1868,7 +1913,7 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "_getEmptyErrorMessage",
     value: function _getEmptyErrorMessage() {
-      return this.props.emptyErrorMessage || _PasswordBoxDefaults_js__WEBPACK_IMPORTED_MODULE_8__.default.messages.empty;
+      return this.props.emptyErrorMessage || _PasswordBoxDefaults_js__WEBPACK_IMPORTED_MODULE_10__.default.messages.empty;
     }
   }, {
     key: "componentDidMount",
@@ -1901,7 +1946,9 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
 
       var underlined = this._isUnderlined();
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement(_fluentui_react__WEBPACK_IMPORTED_MODULE_9__.TextField, {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement("div", {
+        className: "lvd-passwordbox-root"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement(_fluentui_react__WEBPACK_IMPORTED_MODULE_12__.TextField, {
         type: "password",
         label: label,
         canRevealPassword: canReveal,
@@ -1911,12 +1958,16 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
         onGetErrorMessage: this._getPasswordFieldErrorMessage,
         className: className,
         underlined: underlined
-      });
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement(_strengthIndicatorStyles_IntermittentBar_jsx__WEBPACK_IMPORTED_MODULE_9__.default, {
+        strengthPercent: 50,
+        strengthLevel: _PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_11__.PasswordStrengthLevels.veryStrong,
+        strengthText: "The password is very strong with this one"
+      }));
     }
   }, {
     key: "_getLabel",
     value: function _getLabel() {
-      return this.props.label || _PasswordBoxDefaults_js__WEBPACK_IMPORTED_MODULE_8__.default.label;
+      return this.props.label || _PasswordBoxDefaults_js__WEBPACK_IMPORTED_MODULE_10__.default.label;
     }
   }, {
     key: "_canReveal",
@@ -2008,6 +2059,332 @@ PasswordBox.propTypes = {
   onPasswordChanged: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func),
   onPasswordBoxInitialized: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func),
   onPasswordBoxDisposed: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func)
+};
+
+/***/ }),
+
+/***/ 35:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ StrengthIndicatorBar)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(17);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(18);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(19);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(21);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(24);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(27);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _TextOnly_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(36);
+
+
+
+
+
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__.default)(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+
+
+
+
+var StrengthIndicatorBar = /*#__PURE__*/function (_React$Component) {
+  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__.default)(StrengthIndicatorBar, _React$Component);
+
+  var _super = _createSuper(StrengthIndicatorBar);
+
+  function StrengthIndicatorBar(props) {
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__.default)(this, StrengthIndicatorBar);
+
+    return _super.call(this, props);
+  }
+
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__.default)(StrengthIndicatorBar, [{
+    key: "render",
+    value: function render() {
+      var strengthText = this._getStrengthText();
+
+      var strengthLevel = this._getStrengthLevel();
+
+      var strengthPercent = this._getStrengthPercent();
+
+      var cssWidth = "".concat(strengthPercent, "%");
+
+      var className = this._getContainerCssClassNameFromStrengtLevel(strengthLevel);
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(react__WEBPACK_IMPORTED_MODULE_5__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("div", {
+        className: className
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("div", {
+        className: "lvd-passwordbox-strength-bar-meter",
+        style: {
+          width: cssWidth
+        }
+      })), !!strengthText && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_TextOnly_jsx__WEBPACK_IMPORTED_MODULE_7__.default, {
+        strengthText: strengthText,
+        strengthLevel: strengthLevel,
+        strengthPercent: strengthPercent
+      }));
+    }
+  }, {
+    key: "_getStrengthText",
+    value: function _getStrengthText() {
+      return this.props.strengthText;
+    }
+  }, {
+    key: "_getStrengthPercent",
+    value: function _getStrengthPercent() {
+      return Math.ceil(this.props.strengthPercent || 0);
+    }
+  }, {
+    key: "_getStrengthLevel",
+    value: function _getStrengthLevel() {
+      return this.props.strengthLevel || null;
+    }
+  }, {
+    key: "_getContainerCssClassNameFromStrengtLevel",
+    value: function _getContainerCssClassNameFromStrengtLevel(strengthLevel) {
+      var className = 'lvd-passwordbox-strength lvd-passwordbox-strength-bar';
+
+      if (strengthLevel) {
+        className = "".concat(className, " ").concat(strengthLevel.id);
+      }
+
+      return className;
+    }
+  }]);
+
+  return StrengthIndicatorBar;
+}(react__WEBPACK_IMPORTED_MODULE_5__.Component);
+
+
+StrengthIndicatorBar.propTypes = {
+  strengthPercent: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().number),
+  strengthLevel: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().object),
+  strengthText: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string)
+};
+
+/***/ }),
+
+/***/ 37:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ StrengthIndicatorIntermittentBar)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(17);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(18);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(19);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(21);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(24);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(27);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _TextOnly_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(36);
+/* harmony import */ var _PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(38);
+
+
+
+
+
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__.default)(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+
+
+
+
+
+var StrengthIndicatorIntermittentBar = /*#__PURE__*/function (_React$Component) {
+  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__.default)(StrengthIndicatorIntermittentBar, _React$Component);
+
+  var _super = _createSuper(StrengthIndicatorIntermittentBar);
+
+  function StrengthIndicatorIntermittentBar(props) {
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__.default)(this, StrengthIndicatorIntermittentBar);
+
+    return _super.call(this, props);
+  }
+
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__.default)(StrengthIndicatorIntermittentBar, [{
+    key: "render",
+    value: function render() {
+      var strengthText = this._getStrengthText();
+
+      var strengthLevel = this._getStrengthLevel();
+
+      var strengthPercent = this._getStrengthPercent();
+
+      var className = this._getContainerCssClassNameFromStrengtLevel(strengthLevel);
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(react__WEBPACK_IMPORTED_MODULE_5__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("div", {
+        className: className
+      }, this._renderSegments(strengthLevel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("div", {
+        className: "clear"
+      })), !!strengthText && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_TextOnly_jsx__WEBPACK_IMPORTED_MODULE_7__.default, {
+        strengthText: strengthText,
+        strengthLevel: strengthLevel,
+        strengthPercent: strengthPercent
+      }));
+    }
+  }, {
+    key: "_getStrengthText",
+    value: function _getStrengthText() {
+      return this.props.strengthText;
+    }
+  }, {
+    key: "_getStrengthPercent",
+    value: function _getStrengthPercent() {
+      return Math.ceil(this.props.strengthPercent || 0);
+    }
+  }, {
+    key: "_getStrengthLevel",
+    value: function _getStrengthLevel() {
+      return this.props.strengthLevel || null;
+    }
+  }, {
+    key: "_getContainerCssClassNameFromStrengtLevel",
+    value: function _getContainerCssClassNameFromStrengtLevel(strengthLevel) {
+      var className = 'lvd-passwordbox-strength lvd-passwordbox-strength-intermittent-bar';
+
+      if (strengthLevel) {
+        className = "".concat(className, " ").concat(strengthLevel.id);
+      }
+
+      return className;
+    }
+  }, {
+    key: "_renderSegments",
+    value: function _renderSegments(currentLevel) {
+      var segments = this._getAllAvailableLevels();
+
+      return segments.map(function (strengthLevel) {
+        var className = "lvd-passwordbox-strength-intermittent-bar-segment ".concat(strengthLevel.id);
+
+        if (strengthLevel.value <= currentLevel.value) {
+          className = "".concat(className, " is-active");
+        }
+
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("div", {
+          key: strengthLevel.id,
+          className: className
+        });
+      });
+    }
+  }, {
+    key: "_getAllAvailableLevels",
+    value: function _getAllAvailableLevels() {
+      return (0,_PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_8__.getAllAvailableLevels)();
+    }
+  }]);
+
+  return StrengthIndicatorIntermittentBar;
+}(react__WEBPACK_IMPORTED_MODULE_5__.Component);
+
+
+StrengthIndicatorIntermittentBar.propTypes = {
+  strengthPercent: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().number),
+  strengthLevel: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().object),
+  strengthText: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string)
+};
+
+/***/ }),
+
+/***/ 36:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ StrengthIndicatorTextOnly)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(17);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(18);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(19);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(21);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(24);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(27);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_6__);
+
+
+
+
+
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__.default)(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+
+
+
+var StrengthIndicatorTextOnly = /*#__PURE__*/function (_React$Component) {
+  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__.default)(StrengthIndicatorTextOnly, _React$Component);
+
+  var _super = _createSuper(StrengthIndicatorTextOnly);
+
+  function StrengthIndicatorTextOnly(props) {
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__.default)(this, StrengthIndicatorTextOnly);
+
+    return _super.call(this, props);
+  }
+
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__.default)(StrengthIndicatorTextOnly, [{
+    key: "render",
+    value: function render() {
+      var strengthText = this._getStrengthText();
+
+      var strengthLevel = this._getStrengthLevel();
+
+      var className = this._getContainerCssClassNameFromStrengtLevel(strengthLevel);
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("div", {
+        className: className
+      }, strengthText);
+    }
+  }, {
+    key: "_getStrengthText",
+    value: function _getStrengthText() {
+      return this.props.strengthText;
+    }
+  }, {
+    key: "_getStrengthPercent",
+    value: function _getStrengthPercent() {
+      return Math.ceil(this.props.strengthPercent || 0);
+    }
+  }, {
+    key: "_getStrengthLevel",
+    value: function _getStrengthLevel() {
+      return this.props.strengthLevel || null;
+    }
+  }, {
+    key: "_getContainerCssClassNameFromStrengtLevel",
+    value: function _getContainerCssClassNameFromStrengtLevel(strengthLevel) {
+      var className = 'lvd-passwordbox-strength lvd-passwordbox-strength-text';
+
+      if (strengthLevel) {
+        className = "".concat(className, " ").concat(strengthLevel.id);
+      }
+
+      return className;
+    }
+  }]);
+
+  return StrengthIndicatorTextOnly;
+}(react__WEBPACK_IMPORTED_MODULE_5__.Component);
+
+
+StrengthIndicatorTextOnly.propTypes = {
+  strengthPercent: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().number),
+  strengthLevel: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().object),
+  strengthText: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string.isRequired)
 };
 
 /***/ }),
@@ -32215,7 +32592,7 @@ exports.unstable_wrapCallback=function(a){var b=P;return function(){var c=P;P=b;
 
 /***/ }),
 
-/***/ 44:
+/***/ 48:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);

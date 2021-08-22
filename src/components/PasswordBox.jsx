@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 
 import { TextField } from '@fluentui/react';
 
+import StrengthIndicatorBar from './strengthIndicatorStyles/Bar.jsx';
+import StrengthIndicatorIntermittentBar from './strengthIndicatorStyles/IntermittentBar.jsx';
 import PasswordBoxDefaults from './PasswordBoxDefaults.js';
+import { PasswordStrengthLevels } from './PasswordStrengthLevels.js';
 
 export default class PasswordBox extends React.Component {
 	constructor(props) {
@@ -84,17 +87,25 @@ export default class PasswordBox extends React.Component {
 		const underlined = this._isUnderlined();
 
 		return (
-			<TextField 
-				type="password"
-				label={label}
-				canRevealPassword={canReveal} 
-				disabled={disabled}
-				required={required}
-				onChange={this._handlePasswordChanged}
-				onGetErrorMessage={this._getPasswordFieldErrorMessage}
-				className={className}
-				underlined={underlined}
-			/>
+			<div className="lvd-passwordbox-root">
+				<TextField 
+					type="password"
+					label={label}
+					canRevealPassword={canReveal} 
+					disabled={disabled}
+					required={required}
+					onChange={this._handlePasswordChanged}
+					onGetErrorMessage={this._getPasswordFieldErrorMessage}
+					className={className}
+					underlined={underlined}
+				/>
+
+				<StrengthIndicatorIntermittentBar 
+					strengthPercent={50} 
+					strengthLevel={PasswordStrengthLevels.veryStrong} 
+					strengthText="The password is very strong with this one"
+				/>
+			</div>
 		);
 	};
 
