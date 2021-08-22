@@ -19350,7 +19350,7 @@ template {
 
 .lvd-passwordbox-strength-bar,
 .lvd-passwordbox-strength-bar .lvd-passwordbox-strength-bar-meter {
-	height: 10px;
+	height: 7px;
 	display: block;
 }
 
@@ -19407,7 +19407,7 @@ template {
 
 .lvd-passwordbox-strength-intermittent-bar,
 .lvd-passwordbox-strength-intermittent-bar .lvd-passwordbox-strength-intermittent-bar-segment {
-	height: 10px;
+	height: 7px;
 	display: block;
 }
 
@@ -19496,6 +19496,56 @@ template {
 
 .lvd-passwordbox-strength-text.very-strong {
 	color: #55a630;
+}
+.lvd-passwordbox-rules-container {
+	padding-top: 10px;
+}
+
+.lvd-passwordbox-rules-container ul,
+.lvd-passwordbox-rules-container ul li {
+	list-style: none;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.lvd-passwordbox-rules-container ul li {
+	margin-bottom: 10px;
+	height: 21px;
+	line-height: 21px;
+	vertical-align: middle;
+	font-size: 13px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #f8f9fa;
+}
+
+.lvd-passwordbox-rules-container ul li:first-of-type {
+	margin-top: 5px;
+}
+
+.lvd-passwordbox-rules-container ul li:last-of-type {
+	margin-bottom: 0px;
+}
+
+li.lvd-passwordbox-rule .lvd-passwordbox-rule-icon {
+	margin-right: 10px;
+	font-size: 11px;
+	color: #fff;
+	border-radius: 50%;
+	padding: 3px;
+	width: 15px;
+	height: 15px;
+	line-height: 15px;
+	vertical-align: top;
+	text-align: center;
+}
+
+li.lvd-passwordbox-rule.is-not-rule-met .lvd-passwordbox-rule-icon {
+	background-color: #9b2226;
+}
+
+li.lvd-passwordbox-rule.is-rule-met .lvd-passwordbox-rule-icon {
+	background-color: #55a630;
 }
 
 html {

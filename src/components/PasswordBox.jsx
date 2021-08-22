@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { TextField } from '@fluentui/react';
+import { DirectionalHint, FontWeights, TextField } from '@fluentui/react';
+import { Text, Callout } from '@fluentui/react';
 
 import PasswordBoxDefaults from './PasswordBoxDefaults.js';
 import { PasswordStrengthLevels } from './PasswordStrengthLevels.js';
 import StrengthIndicatorStyles from './StrengthIndicatorStyles.js';
 import PasswordStrengthIndicator from './PasswordStrengthIndicator.jsx';
+import PasswordStatusCallout from './PasswordStatusCallout.jsx';
 
 export default class PasswordBox extends React.Component {
 	constructor(props) {
@@ -14,13 +16,19 @@ export default class PasswordBox extends React.Component {
 
 		this.state = {
 			password: '',
-			hasInteracted: false
+			hasInteracted: false,
+			canShowRulesCallout: false
 		};
 
 		this._handlePasswordChanged = 
 			this._handlePasswordChanged.bind(this);
 		this._getPasswordFieldErrorMessage = 
 			this._getPasswordFieldErrorMessage.bind(this);
+		
+		this._handlePasswordStatusCalloutDismiss = 
+			this._handlePasswordStatusCalloutDismiss.bind(this);
+
+		this._passwordBoxContainerRef = React.createRef();
 	}
 
 	_handlePasswordChanged(event) {
@@ -66,6 +74,10 @@ export default class PasswordBox extends React.Component {
 	}
 
 	componentDidMount() {
+		this.setState({
+			canShowRulesCallout: true
+		});
+
 		if (this.props.onPasswordBoxInitialized != null) {
 			this.props.onPasswordBoxInitialized();
 		}
@@ -79,7 +91,18 @@ export default class PasswordBox extends React.Component {
 	}
 
 	render() {
+		return (
+			<div className="lvd-passwordbox-root" ref={this._passwordBoxContainerRef}>
+				{this._renderPasswordInputField()}
+				{this._renderPasswordStrengthIndicator()}
+				{this._renderPasswordRulesCallout()}
+			</div>
+		);
+	};
+
+	_renderPasswordInputField() {
 		const label = this._getLabel();
+		const placeholder = this._getPlaceholder();
 		const canReveal = this._canReveal();
 		const disabled = this._isDisabled();
 		const required = this._isRequired();
@@ -87,31 +110,27 @@ export default class PasswordBox extends React.Component {
 		const underlined = this._isUnderlined();
 
 		return (
-			<div className="lvd-passwordbox-root">
-				<TextField 
-					type="password"
-					label={label}
-					canRevealPassword={canReveal} 
-					disabled={disabled}
-					required={required}
-					onChange={this._handlePasswordChanged}
-					onGetErrorMessage={this._getPasswordFieldErrorMessage}
-					className={className}
-					underlined={underlined}
-				/>
-
-				<PasswordStrengthIndicator
-					style={StrengthIndicatorStyles.intermittentBar}
-					strengthPercent={50} 
-					strengthLevel={PasswordStrengthLevels.veryStrong} 
-					strengthText="The password is very strong with this one"
-				/>
-			</div>
+			<TextField 
+				type="password"
+				label={label}
+				placeholder={placeholder}
+				canRevealPassword={canReveal} 
+				disabled={disabled}
+				required={required}
+				onChange={this._handlePasswordChanged}
+				onGetErrorMessage={this._getPasswordFieldErrorMessage}
+				className={className}
+				underlined={underlined}
+			/>
 		);
-	};
+	}
 
 	_getLabel() {
 		return this.props.label || PasswordBoxDefaults.label;
+	}
+
+	_getPlaceholder() {
+		return this.props.placeholder || PasswordBoxDefaults.placeholder;
 	}
 
 	_canReveal() {
@@ -136,8 +155,70 @@ export default class PasswordBox extends React.Component {
 		return !!this.props.underlined;
 	}
 
+	_renderPasswordStrengthIndicator() {
+		const strengthProps = this._getPasswordStrengthProps();
+		const showIndicator = !!strengthProps.style 
+			&& strengthProps.style != StrengthIndicatorStyles.none
+			&& strengthProps.level != null;
+
+		return showIndicator && (
+			<PasswordStrengthIndicator
+				style={strengthProps.style}
+				strengthPercent={strengthProps.percent} 
+				strengthLevel={strengthProps.level} 
+				strengthText={strengthProps.text}
+			/>
+		);
+	}
+
+	_getPasswordStrengthProps() {
+		const strengthProps = this.props.passwordStrengthProps || {};
+		return {
+			style: strengthProps.style || PasswordBoxDefaults.strength.style,
+			percent: strengthProps.percent || 0,
+			level: strengthProps.level || null,
+			text: strengthProps.text || null
+		};
+	}
+
+	_renderPasswordRulesCallout() {
+		const passwordRulesProps = this._getPasswordRulesProps();
+		const showRulesCallout = this.state.canShowRulesCallout
+			&& passwordRulesProps.rules.length > 0;
+
+		return showRulesCallout && (
+			<PasswordStatusCallout 
+				rules={passwordRulesProps.rules} 
+				iconProps={passwordRulesProps.icons}
+				containerProps={passwordRulesProps.container}
+				titleProps={passwordRulesProps.title}
+				target={this._passwordBoxContainerRef.current} 
+				onDismiss={this._handlePasswordStatusCalloutDismiss}
+			/>
+		);
+	}
+
+	_getPasswordRulesProps() {
+		const passwordRulesProps = this.props.passwordRulesProps || {};
+		return {
+			rules: passwordRulesProps.rules || [],
+			container: Object.assign(PasswordBoxDefaults.rules.container, 
+				passwordRulesProps.container || {}),
+			title: Object.assign(PasswordBoxDefaults.rules.title, 
+				passwordRulesProps.title || {}),
+			icons: Object.assign(PasswordBoxDefaults.rules.icons, 
+				passwordRulesProps.icons || {})
+		};
+	}
+
+	_handlePasswordStatusCalloutDismiss() {
+		this.setState({
+			showCallout: false
+		});
+	}
+
 	_getPasswordSampleStatus() {
-		const status = {
+		return {
 			strength: {
 				score: { //or percentage 0-1
 					value: 1,
@@ -147,45 +228,21 @@ export default class PasswordBox extends React.Component {
 			},
 			rules: [
 				{
-					text: 'Must contain characters',
+					text: 'Must contain letters',
+					ruleMet: true
+				},
+				{
+					text: 'Must contain numbers',
 					ruleMet: false
 				}
 			]
 		};
 	}
-
-	_getPasswordStatusProps() {
-		return {
-			onPasswordStatusRequested: null,
-			requireInputStabilityMilliseconds: 400,
-			strengthIndicator: {
-				style: 'bar/intermittentBar/textOnly/none',
-				mapping: {
-					veryWeak: 0.1,
-					weak: 0.25,
-					medium: 0.5,
-					strong: 0.75,
-					veryStrong: 0.9
-				},
-				mappingLabels: {
-					veryWeak: 'Very weak',
-					weak: 'Weak',
-					medium: 'Medium',
-					strong: 'Strong',
-					veryStrong: 'Very strong'
-				}
-			},
-			rulesCallout: {
-				position: 'auto',
-				beakSize: 29,
-				gapSize: 10
-			}
-		}
-	}
 }
 
 PasswordBox.propTypes = {
 	label: PropTypes.string,
+	placeholder: PropTypes.string,
 	canReveal: PropTypes.bool,
 	disabled: PropTypes.bool,
 	underlined: PropTypes.bool,
@@ -193,7 +250,8 @@ PasswordBox.propTypes = {
 	required: PropTypes.bool,
 	emptyErrorMessage: PropTypes.string,
 
-	passwordStatusProps: PropTypes.object,
+	passwordStrengthProps: PropTypes.object,
+	passwordRulesProps: PropTypes.object,
 
 	onPasswordChanged: PropTypes.func,
 	onPasswordBoxInitialized: PropTypes.func,

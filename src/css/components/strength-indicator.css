@@ -8,7 +8,7 @@
 
 .lvd-passwordbox-strength-bar,
 .lvd-passwordbox-strength-bar .lvd-passwordbox-strength-bar-meter {
-	height: 10px;
+	height: 7px;
 	display: block;
 }
 
@@ -65,7 +65,7 @@
 
 .lvd-passwordbox-strength-intermittent-bar,
 .lvd-passwordbox-strength-intermittent-bar .lvd-passwordbox-strength-intermittent-bar-segment {
-	height: 10px;
+	height: 7px;
 	display: block;
 }
 
