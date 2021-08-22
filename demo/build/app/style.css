@@ -19350,13 +19350,12 @@ template {
 
 .lvd-passwordbox-strength-bar,
 .lvd-passwordbox-strength-bar .lvd-passwordbox-strength-bar-meter {
-	height: 7px;
+	height: 3px;
 	display: block;
 }
 
 .lvd-passwordbox-strength-bar {
 	border: 1px solid lightgray;
-	box-shadow: 0px 3px 5px rgba(0,0,0,0.1);
 }
 
 .lvd-passwordbox-strength-bar .lvd-passwordbox-strength-bar-meter {
@@ -19407,7 +19406,7 @@ template {
 
 .lvd-passwordbox-strength-intermittent-bar,
 .lvd-passwordbox-strength-intermittent-bar .lvd-passwordbox-strength-intermittent-bar-segment {
-	height: 7px;
+	height: 3px;
 	display: block;
 }
 
@@ -19416,7 +19415,6 @@ template {
 	margin-right: 5px;
 	float: left;
 	border: 1px solid lightgray;
-	box-shadow: 0px 3px 5px rgba(0,0,0,0.1);
 }
 
 .lvd-passwordbox-strength-intermittent-bar-segment.is-active { 
@@ -19474,8 +19472,8 @@ template {
 .lvd-passwordbox-strength-text {
 	text-align: center;
 	color: lightgray;
-	font-size: 12px;
-	font-weight: bold;
+	font-size: 11px;
+	font-weight: normal;
 }
 
 .lvd-passwordbox-strength-text.very-weak {
