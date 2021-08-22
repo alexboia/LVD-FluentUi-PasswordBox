@@ -15,7 +15,7 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist'),
 		filename: '[name].umd2.js',
 		library: {
-			name: 'c',
+			name: 'PasswordBox',
 			type: 'umd2'
 		}
 	},
