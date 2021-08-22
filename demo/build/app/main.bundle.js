@@ -1,21 +1,21 @@
 "use strict";
 (self["webpackChunklvd_fluentui_passwordbox"] = self["webpackChunklvd_fluentui_passwordbox"] || []).push([[0],{
 
-/***/ 126:
+/***/ 129:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "IconBase": () => (/* binding */ IconBase)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(48);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(51);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _Icon_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(128);
-/* harmony import */ var _Image_Image__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(132);
-/* harmony import */ var _Image_Image_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(127);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(52);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(70);
-/* harmony import */ var _FontIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(129);
+/* harmony import */ var _Icon_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(131);
+/* harmony import */ var _Image_Image__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(135);
+/* harmony import */ var _Image_Image_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(130);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(73);
+/* harmony import */ var _FontIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(132);
 
 
 
@@ -103,7 +103,7 @@ var IconBase = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 131:
+/***/ 134:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -112,7 +112,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "MS_ICON": () => (/* binding */ MS_ICON),
 /* harmony export */   "getStyles": () => (/* binding */ getStyles)
 /* harmony export */ });
-/* harmony import */ var _Styling__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(72);
+/* harmony import */ var _Styling__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(75);
 
 /** Class names used in themeable and non-themeable Icon components */
 var classNames = (0,_Styling__WEBPACK_IMPORTED_MODULE_0__.mergeStyleSets)({
@@ -153,7 +153,7 @@ var getStyles = function (props) {
 
 /***/ }),
 
-/***/ 128:
+/***/ 131:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -189,19 +189,19 @@ var IconType;
 
 /***/ }),
 
-/***/ 133:
+/***/ 136:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ImageBase": () => (/* binding */ ImageBase)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(48);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(51);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(52);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(70);
-/* harmony import */ var _Image_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(127);
-/* harmony import */ var _fluentui_react_hooks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(134);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(73);
+/* harmony import */ var _Image_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(130);
+/* harmony import */ var _fluentui_react_hooks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(137);
 
 
 
@@ -333,15 +333,15 @@ function computeCoverStyle(props, loadState, imageElement, frameElement) {
 
 /***/ }),
 
-/***/ 135:
+/***/ 138:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getStyles": () => (/* binding */ getStyles)
 /* harmony export */ });
-/* harmony import */ var _Styling__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(72);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(46);
+/* harmony import */ var _Styling__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(75);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49);
 
 
 var GlobalClassNames = {
@@ -481,7 +481,7 @@ var getStyles = function (props) {
 
 /***/ }),
 
-/***/ 127:
+/***/ 130:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -570,17 +570,17 @@ var ImageLoadState;
 
 /***/ }),
 
-/***/ 69:
+/***/ 72:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "LabelBase": () => (/* binding */ LabelBase)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(48);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(51);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(70);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(52);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(73);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55);
 
 
 
@@ -613,15 +613,15 @@ var LabelBase = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 71:
+/***/ 74:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getStyles": () => (/* binding */ getStyles)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(48);
-/* harmony import */ var _Styling__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(72);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(51);
+/* harmony import */ var _Styling__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(75);
 
 
 var getStyles = function (props) {
@@ -671,29 +671,29 @@ var getStyles = function (props) {
 
 /***/ }),
 
-/***/ 51:
+/***/ 54:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "TextFieldBase": () => (/* binding */ TextFieldBase)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(48);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(51);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _Label__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(68);
-/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(125);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(52);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(119);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(122);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(123);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(124);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(136);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(137);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(113);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(138);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(70);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(46);
-/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(139);
+/* harmony import */ var _Label__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(71);
+/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(128);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(122);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(125);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(126);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(127);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(139);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(140);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(116);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(141);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(73);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(49);
+/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(142);
 /* provided dependency */ var process = __webpack_require__(3);
 
 
@@ -1153,15 +1153,15 @@ function _browserNeedsRevealButton() {
 
 /***/ }),
 
-/***/ 140:
+/***/ 143:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getStyles": () => (/* binding */ getStyles)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(48);
-/* harmony import */ var _Styling__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(72);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(51);
+/* harmony import */ var _Styling__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(75);
 
 
 var globalClassNames = {
@@ -1576,7 +1576,7 @@ function getStyles(props) {
 
 /***/ }),
 
-/***/ 39:
+/***/ 35:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1594,7 +1594,7 @@ var PasswordBoxDefaults = {
 
 /***/ }),
 
-/***/ 38:
+/***/ 36:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1605,23 +1605,38 @@ __webpack_require__.r(__webpack_exports__);
 var PasswordStrengthLevels = {
   veryWeak: {
     id: 'very-weak',
-    value: 1
+    value: 1,
+    defaultThreshold: 0.1,
+    defaultLabel: 'Very weak',
+    defaultPercent: 20
   },
   weak: {
     id: 'weak',
-    value: 2
+    value: 2,
+    defaultThreshold: 0.25,
+    defaultLabel: 'Weak',
+    defaultPercent: 40
   },
   medium: {
     id: 'medium',
-    value: 3
+    value: 3,
+    defaultThreshold: 0.5,
+    defaultLabel: 'Medium',
+    defaultPercent: 60
   },
   strong: {
     id: 'strong',
-    value: 4
+    value: 4,
+    defaultThreshold: 0.75,
+    defaultLabel: 'Strong',
+    defaultPercent: 80
   },
   veryStrong: {
     id: 'very-strong',
-    value: 5
+    value: 5,
+    defaultThreshold: 0.9,
+    defaultLabel: 'Very strong',
+    defaultPercent: 100
   }
 };
 
@@ -1630,6 +1645,23 @@ function getAllAvailableLevels() {
 }
 
 
+
+/***/ }),
+
+/***/ 37:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var StrengthIndicatorStyles = {
+  bar: 'bar',
+  intermittentBar: 'intermittentBar',
+  textOnly: 'textOnly',
+  none: 'none'
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StrengthIndicatorStyles);
 
 /***/ }),
 
@@ -1738,7 +1770,7 @@ var App = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
-/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(156);
+/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(159);
 /* harmony import */ var _Root_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(16);
 
 
@@ -1764,7 +1796,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(21);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(24);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2);
-/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(141);
+/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(144);
 /* harmony import */ var _App_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(25);
 
 
@@ -1821,11 +1853,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(27);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(40);
-/* harmony import */ var _strengthIndicatorStyles_Bar_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(35);
-/* harmony import */ var _strengthIndicatorStyles_IntermittentBar_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(37);
-/* harmony import */ var _PasswordBoxDefaults_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(39);
-/* harmony import */ var _PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(38);
+/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(43);
+/* harmony import */ var _PasswordBoxDefaults_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(35);
+/* harmony import */ var _PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(36);
+/* harmony import */ var _StrengthIndicatorStyles_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(37);
+/* harmony import */ var _PasswordStrengthIndicator_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(38);
 
 
 
@@ -1913,7 +1945,7 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "_getEmptyErrorMessage",
     value: function _getEmptyErrorMessage() {
-      return this.props.emptyErrorMessage || _PasswordBoxDefaults_js__WEBPACK_IMPORTED_MODULE_10__.default.messages.empty;
+      return this.props.emptyErrorMessage || _PasswordBoxDefaults_js__WEBPACK_IMPORTED_MODULE_8__.default.messages.empty;
     }
   }, {
     key: "componentDidMount",
@@ -1958,16 +1990,17 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
         onGetErrorMessage: this._getPasswordFieldErrorMessage,
         className: className,
         underlined: underlined
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement(_strengthIndicatorStyles_IntermittentBar_jsx__WEBPACK_IMPORTED_MODULE_9__.default, {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement(_PasswordStrengthIndicator_jsx__WEBPACK_IMPORTED_MODULE_11__.default, {
+        style: _StrengthIndicatorStyles_js__WEBPACK_IMPORTED_MODULE_10__.default.intermittentBar,
         strengthPercent: 50,
-        strengthLevel: _PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_11__.PasswordStrengthLevels.veryStrong,
+        strengthLevel: _PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_9__.PasswordStrengthLevels.veryStrong,
         strengthText: "The password is very strong with this one"
       }));
     }
   }, {
     key: "_getLabel",
     value: function _getLabel() {
-      return this.props.label || _PasswordBoxDefaults_js__WEBPACK_IMPORTED_MODULE_10__.default.label;
+      return this.props.label || _PasswordBoxDefaults_js__WEBPACK_IMPORTED_MODULE_8__.default.label;
     }
   }, {
     key: "_canReveal",
@@ -2063,7 +2096,122 @@ PasswordBox.propTypes = {
 
 /***/ }),
 
-/***/ 35:
+/***/ 38:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ PasswordStrengthIndicator)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(39);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(17);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(18);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(19);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(21);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(24);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(27);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _StrengthIndicatorStyles__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(37);
+/* harmony import */ var _strengthIndicatorStyles_Bar_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(40);
+/* harmony import */ var _strengthIndicatorStyles_IntermittentBar_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(42);
+/* harmony import */ var _strengthIndicatorStyles_TextOnly_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(41);
+
+
+
+
+
+
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__.default)(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+
+
+
+
+
+
+
+var PasswordStrengthIndicator = /*#__PURE__*/function (_React$Component) {
+  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__.default)(PasswordStrengthIndicator, _React$Component);
+
+  var _super = _createSuper(PasswordStrengthIndicator);
+
+  function PasswordStrengthIndicator(props) {
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__.default)(this, PasswordStrengthIndicator);
+
+    return _super.call(this, props);
+  }
+
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__.default)(PasswordStrengthIndicator, [{
+    key: "render",
+    value: function render() {
+      var style = this._getStyle();
+
+      var strengthText = this._getStrengthText();
+
+      var strengthLevel = this._getStrengthLevel();
+
+      var strengthPercent = this._getStrengthPercent(strengthLevel);
+
+      var StrengthIndicatorStyleRenderer = this._getStyleRenderer(style);
+
+      if (!StrengthIndicatorStyleRenderer) {
+        throw new Error("No renderer found for style ".concat(style));
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement(StrengthIndicatorStyleRenderer, {
+        strengthPercent: strengthPercent,
+        strengthText: strengthText,
+        strengthLevel: strengthLevel
+      });
+    }
+  }, {
+    key: "_getStyle",
+    value: function _getStyle() {
+      return this.props.style || _StrengthIndicatorStyles__WEBPACK_IMPORTED_MODULE_8__.default.textOnly;
+    }
+  }, {
+    key: "_getStrengthText",
+    value: function _getStrengthText() {
+      return this.props.strengthText;
+    }
+  }, {
+    key: "_getStrengthPercent",
+    value: function _getStrengthPercent(currentStrengthLevel) {
+      return Math.ceil(this.props.strengthPercent || currentStrengthLevel.defaultPercent);
+    }
+  }, {
+    key: "_getStrengthLevel",
+    value: function _getStrengthLevel() {
+      return this.props.strengthLevel;
+    }
+  }, {
+    key: "_getStyleRenderer",
+    value: function _getStyleRenderer(style) {
+      var _mapping;
+
+      var mapping = (_mapping = {}, (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__.default)(_mapping, _StrengthIndicatorStyles__WEBPACK_IMPORTED_MODULE_8__.default.textOnly, _strengthIndicatorStyles_TextOnly_jsx__WEBPACK_IMPORTED_MODULE_11__.default), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__.default)(_mapping, _StrengthIndicatorStyles__WEBPACK_IMPORTED_MODULE_8__.default.bar, _strengthIndicatorStyles_Bar_jsx__WEBPACK_IMPORTED_MODULE_9__.default), (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__.default)(_mapping, _StrengthIndicatorStyles__WEBPACK_IMPORTED_MODULE_8__.default.intermittentBar, _strengthIndicatorStyles_IntermittentBar_jsx__WEBPACK_IMPORTED_MODULE_10__.default), _mapping);
+      return mapping.hasOwnProperty(style) ? mapping[style] : null;
+    }
+  }]);
+
+  return PasswordStrengthIndicator;
+}(react__WEBPACK_IMPORTED_MODULE_6__.Component);
+
+
+PasswordStrengthIndicator.propTypes = {
+  style: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().string),
+  strengthPercent: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().number),
+  strengthLevel: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().object.isRequired),
+  strengthText: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().string)
+};
+
+/***/ }),
+
+/***/ 40:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -2078,7 +2226,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(27);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _TextOnly_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(36);
+/* harmony import */ var _TextOnly_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(41);
 
 
 
@@ -2111,7 +2259,7 @@ var StrengthIndicatorBar = /*#__PURE__*/function (_React$Component) {
 
       var strengthLevel = this._getStrengthLevel();
 
-      var strengthPercent = this._getStrengthPercent();
+      var strengthPercent = this._getStrengthPercent(strengthLevel);
 
       var cssWidth = "".concat(strengthPercent, "%");
 
@@ -2133,12 +2281,12 @@ var StrengthIndicatorBar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "_getStrengthText",
     value: function _getStrengthText() {
-      return this.props.strengthText;
+      return this.props.strengthText || null;
     }
   }, {
     key: "_getStrengthPercent",
-    value: function _getStrengthPercent() {
-      return Math.ceil(this.props.strengthPercent || 0);
+    value: function _getStrengthPercent(currentLevel) {
+      return Math.ceil(this.props.strengthPercent || currentLevel.defaultPercent);
     }
   }, {
     key: "_getStrengthLevel",
@@ -2164,13 +2312,13 @@ var StrengthIndicatorBar = /*#__PURE__*/function (_React$Component) {
 
 StrengthIndicatorBar.propTypes = {
   strengthPercent: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().number),
-  strengthLevel: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().object),
+  strengthLevel: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().object.isRequired),
   strengthText: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string)
 };
 
 /***/ }),
 
-/***/ 37:
+/***/ 42:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -2185,8 +2333,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(27);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _TextOnly_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(36);
-/* harmony import */ var _PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(38);
+/* harmony import */ var _TextOnly_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(41);
+/* harmony import */ var _PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(36);
 
 
 
@@ -2220,7 +2368,7 @@ var StrengthIndicatorIntermittentBar = /*#__PURE__*/function (_React$Component) 
 
       var strengthLevel = this._getStrengthLevel();
 
-      var strengthPercent = this._getStrengthPercent();
+      var strengthPercent = this._getStrengthPercent(strengthLevel);
 
       var className = this._getContainerCssClassNameFromStrengtLevel(strengthLevel);
 
@@ -2241,8 +2389,8 @@ var StrengthIndicatorIntermittentBar = /*#__PURE__*/function (_React$Component) 
     }
   }, {
     key: "_getStrengthPercent",
-    value: function _getStrengthPercent() {
-      return Math.ceil(this.props.strengthPercent || 0);
+    value: function _getStrengthPercent(currentLevel) {
+      return Math.ceil(this.props.strengthPercent || currentLevel.defaultPercent);
     }
   }, {
     key: "_getStrengthLevel",
@@ -2291,13 +2439,13 @@ var StrengthIndicatorIntermittentBar = /*#__PURE__*/function (_React$Component) 
 
 StrengthIndicatorIntermittentBar.propTypes = {
   strengthPercent: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().number),
-  strengthLevel: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().object),
+  strengthLevel: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().object.isRequired),
   strengthText: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string)
 };
 
 /***/ }),
 
-/***/ 36:
+/***/ 41:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -2339,9 +2487,9 @@ var StrengthIndicatorTextOnly = /*#__PURE__*/function (_React$Component) {
   (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__.default)(StrengthIndicatorTextOnly, [{
     key: "render",
     value: function render() {
-      var strengthText = this._getStrengthText();
-
       var strengthLevel = this._getStrengthLevel();
+
+      var strengthText = this._getStrengthText(strengthLevel);
 
       var className = this._getContainerCssClassNameFromStrengtLevel(strengthLevel);
 
@@ -2350,19 +2498,14 @@ var StrengthIndicatorTextOnly = /*#__PURE__*/function (_React$Component) {
       }, strengthText);
     }
   }, {
-    key: "_getStrengthText",
-    value: function _getStrengthText() {
-      return this.props.strengthText;
-    }
-  }, {
-    key: "_getStrengthPercent",
-    value: function _getStrengthPercent() {
-      return Math.ceil(this.props.strengthPercent || 0);
-    }
-  }, {
     key: "_getStrengthLevel",
     value: function _getStrengthLevel() {
       return this.props.strengthLevel || null;
+    }
+  }, {
+    key: "_getStrengthText",
+    value: function _getStrengthText(currentLevel) {
+      return this.props.strengthText || currentLevel.defaultLabel;
     }
   }, {
     key: "_getContainerCssClassNameFromStrengtLevel",
@@ -2383,8 +2526,8 @@ var StrengthIndicatorTextOnly = /*#__PURE__*/function (_React$Component) {
 
 StrengthIndicatorTextOnly.propTypes = {
   strengthPercent: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().number),
-  strengthLevel: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().object),
-  strengthText: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string.isRequired)
+  strengthLevel: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().object.isRequired),
+  strengthText: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string)
 };
 
 /***/ }),
@@ -32592,7 +32735,7 @@ exports.unstable_wrapCallback=function(a){var b=P;return function(){var c=P;P=b;
 
 /***/ }),
 
-/***/ 48:
+/***/ 51:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);

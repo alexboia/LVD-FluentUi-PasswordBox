@@ -7,8 +7,8 @@ export default class StrengthIndicatorTextOnly extends React.Component {
 	}
 
 	render() {
-		const strengthText = this._getStrengthText();
 		const strengthLevel = this._getStrengthLevel();
+		const strengthText = this._getStrengthText(strengthLevel);
 		const className = this._getContainerCssClassNameFromStrengtLevel(strengthLevel);
 
 		return (
@@ -16,16 +16,12 @@ export default class StrengthIndicatorTextOnly extends React.Component {
 		);
 	}
 
-	_getStrengthText() {
-		return this.props.strengthText;
-	}
-
-	_getStrengthPercent() {
-		return Math.ceil(this.props.strengthPercent || 0);
-	}
-
 	_getStrengthLevel() {
 		return this.props.strengthLevel || null;
+	}
+
+	_getStrengthText(currentLevel) {
+		return this.props.strengthText || currentLevel.defaultLabel;
 	}
 
 	_getContainerCssClassNameFromStrengtLevel(strengthLevel) {
@@ -39,6 +35,6 @@ export default class StrengthIndicatorTextOnly extends React.Component {
 
 StrengthIndicatorTextOnly.propTypes = {
 	strengthPercent: PropTypes.number,
-	strengthLevel: PropTypes.object,
-	strengthText: PropTypes.string.isRequired
+	strengthLevel: PropTypes.object.isRequired,
+	strengthText: PropTypes.string
 };

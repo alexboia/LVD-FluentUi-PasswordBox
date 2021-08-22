@@ -11,7 +11,7 @@ export default class StrengthIndicatorBar extends React.Component {
 	render() {
 		const strengthText = this._getStrengthText();
 		const strengthLevel = this._getStrengthLevel();
-		const strengthPercent = this._getStrengthPercent();
+		const strengthPercent = this._getStrengthPercent(strengthLevel);
 		
 		const cssWidth = `${strengthPercent}%`;
 		const className = this._getContainerCssClassNameFromStrengtLevel(strengthLevel);
@@ -33,11 +33,11 @@ export default class StrengthIndicatorBar extends React.Component {
 	}
 
 	_getStrengthText() {
-		return this.props.strengthText;
+		return this.props.strengthText || null;
 	}
 
-	_getStrengthPercent() {
-		return Math.ceil(this.props.strengthPercent || 0);
+	_getStrengthPercent(currentLevel) {
+		return Math.ceil(this.props.strengthPercent || currentLevel.defaultPercent);
 	}
 
 	_getStrengthLevel() {
@@ -55,6 +55,6 @@ export default class StrengthIndicatorBar extends React.Component {
 
 StrengthIndicatorBar.propTypes = {
 	strengthPercent: PropTypes.number,
-	strengthLevel: PropTypes.object,
+	strengthLevel: PropTypes.object.isRequired,
 	strengthText: PropTypes.string
 };

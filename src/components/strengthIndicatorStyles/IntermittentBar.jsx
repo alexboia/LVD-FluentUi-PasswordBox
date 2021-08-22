@@ -12,7 +12,7 @@ export default class StrengthIndicatorIntermittentBar extends React.Component {
 	render() {
 		const strengthText = this._getStrengthText();
 		const strengthLevel = this._getStrengthLevel();
-		const strengthPercent = this._getStrengthPercent();
+		const strengthPercent = this._getStrengthPercent(strengthLevel);
 		const className = this._getContainerCssClassNameFromStrengtLevel(strengthLevel);
 
 		return (
@@ -36,8 +36,8 @@ export default class StrengthIndicatorIntermittentBar extends React.Component {
 		return this.props.strengthText;
 	}
 
-	_getStrengthPercent() {
-		return Math.ceil(this.props.strengthPercent || 0);
+	_getStrengthPercent(currentLevel) {
+		return Math.ceil(this.props.strengthPercent || currentLevel.defaultPercent);
 	}
 
 	_getStrengthLevel() {
@@ -73,6 +73,6 @@ export default class StrengthIndicatorIntermittentBar extends React.Component {
 
 StrengthIndicatorIntermittentBar.propTypes = {
 	strengthPercent: PropTypes.number,
-	strengthLevel: PropTypes.object,
+	strengthLevel: PropTypes.object.isRequired,
 	strengthText: PropTypes.string
 };
