@@ -28,8 +28,8 @@ And also an animated gif which shows how it all respons to user input:
 4. [Styling](#pb-styling)
 5. [Building](#pb-building)
 6. [Customization Options](#pb-customization)
-7. [Events](#pb-events)
-8. [Computing password strength levels](#pb-compute-strength-levels)
+7. [Computing password strength levels](#pb-compute-strength-levels)
+8. [Events](#pb-events)
 9. [Donate](#pb-donate)
 
 ## Installation
@@ -43,7 +43,7 @@ And also an animated gif which shows how it all respons to user input:
 The `demo` directory contains [a compiled and ready-to-run example](https://github.com/alexboia/LVD-FluentUi-PasswordBox/tree/main/demo). Just open up the `index.html` file.
 
 ## Basic Usage
-<a name="pb-usage"></a>
+<a name="pb-basic-usage"></a>
 
 ```javascript
 import React from 'react';
