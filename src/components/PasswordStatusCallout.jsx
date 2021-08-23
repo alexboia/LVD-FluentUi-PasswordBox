@@ -126,7 +126,7 @@ export default class PasswordStatusCallout extends React.Component {
 }
 
 PasswordStatusCallout.propTypes = {
-	target: PropTypes.element.isRequired,
+	target: PropTypes.object.isRequired,
 	rules: PropTypes.arrayOf(PropTypes.object).isRequired,
 	iconProps: PropTypes.object,
 	containerProps: PropTypes.object,

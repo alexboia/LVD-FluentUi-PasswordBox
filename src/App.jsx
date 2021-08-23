@@ -1,9 +1,8 @@
 import React from 'react';
 import PasswordBox from './components/PasswordBox.jsx';
-import { PasswordStrengthLevels } from './components/PasswordStrengthLevels.js';
 import StrengthIndicatorStyles from './components/StrengthIndicatorStyles.js';
 
-import { evaluatePassword } from './PasswordEvaluator.js';
+import { evaluatePassword } from './PasswordEvaluation.js';
 
 export default class App extends React.Component {
 	constructor(props) {

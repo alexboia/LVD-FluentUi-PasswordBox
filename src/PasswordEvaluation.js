@@ -1,5 +1,5 @@
 import PasswordCallbackRule from './components/rules/PasswordCallbackRule.js';
-import { PasswordStrengthLevels } from './components/PasswordStrengthLevels.js';
+import PasswordEvaluator from './components/rules/PasswordEvaluator.js';
 
 function _hasMoreThanMinimumLength(password) {
 	return password.length > 8;
@@ -32,34 +32,6 @@ function _getRules() {
 }
 
 export function evaluatePassword(password) {
-	if (!password) {
-		return {
-			level: null,
-			rules: []
-		};
-	}
-
-	const rules = _getRules();
-	const rulesResult = [];
-	let level = PasswordStrengthLevels.veryWeak;
-	
-	rules.forEach(rule => {
-		if (rule.evaluate(password)) {
-			level = level.next();
-			rulesResult.push({
-				ruleMet: true,
-				text: rule.name
-			});
-		} else {
-			rulesResult.push({
-				ruleMet: false,
-				text: rule.name
-			});
-		}
-	});
-
-	return {
-		level: level,
-		rules: rulesResult
-	};
+	const evaluator = new PasswordEvaluator(_getRules());
+	return evaluator.evaluatePassword(password);
 }

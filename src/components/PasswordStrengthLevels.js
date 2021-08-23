@@ -51,7 +51,12 @@ function getAllAvailableLevels() {
 	];
 }
 
+function getAvailableLevelCount() {
+	return getAllAvailableLevels().length;
+}
+
 export {
 	PasswordStrengthLevels,
-	getAllAvailableLevels
+	getAllAvailableLevels,
+	getAvailableLevelCount
 };

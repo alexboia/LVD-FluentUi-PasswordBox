@@ -10955,7 +10955,8 @@ var isIE11 = function () {
 /* 192 */,
 /* 193 */,
 /* 194 */,
-/* 195 */
+/* 195 */,
+/* 196 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -10964,8 +10965,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ThemeProvider": () => (/* binding */ ThemeProvider)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _useThemeProviderClasses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(202);
-/* harmony import */ var _useThemeProvider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(196);
+/* harmony import */ var _useThemeProviderClasses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(203);
+/* harmony import */ var _useThemeProvider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(197);
 /* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(153);
 /* harmony import */ var _fluentui_react_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(137);
 
@@ -10994,7 +10995,7 @@ ThemeProvider.displayName = 'ThemeProvider';
 //# sourceMappingURL=ThemeProvider.js.map
 
 /***/ }),
-/* 196 */
+/* 197 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11002,8 +11003,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "useThemeProvider": () => (/* binding */ useThemeProvider)
 /* harmony export */ });
-/* harmony import */ var _renderThemeProvider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(200);
-/* harmony import */ var _useThemeProviderState__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(197);
+/* harmony import */ var _renderThemeProvider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(201);
+/* harmony import */ var _useThemeProviderState__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(198);
 /* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(136);
 
 
@@ -11024,7 +11025,7 @@ var useThemeProvider = function (props, defaultProps) {
 //# sourceMappingURL=useThemeProvider.js.map
 
 /***/ }),
-/* 197 */
+/* 198 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11034,7 +11035,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _fluentui_theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(76);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _useTheme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(198);
+/* harmony import */ var _useTheme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(199);
 /* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(180);
 
 
@@ -11084,7 +11085,7 @@ var useThemeProviderState = function (draftState) {
 //# sourceMappingURL=useThemeProviderState.js.map
 
 /***/ }),
-/* 198 */
+/* 199 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11095,7 +11096,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(115);
 /* harmony import */ var _fluentui_theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(71);
-/* harmony import */ var _ThemeContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(199);
+/* harmony import */ var _ThemeContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(200);
 
 
 
@@ -11117,7 +11118,7 @@ var useTheme = function () {
 //# sourceMappingURL=useTheme.js.map
 
 /***/ }),
-/* 199 */
+/* 200 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11131,7 +11132,7 @@ var ThemeContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext(undefined);
 //# sourceMappingURL=ThemeContext.js.map
 
 /***/ }),
-/* 200 */
+/* 201 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11141,10 +11142,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(46);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(201);
+/* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(202);
 /* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(144);
 /* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(116);
-/* harmony import */ var _ThemeContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(199);
+/* harmony import */ var _ThemeContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(200);
 
 
 
@@ -11160,7 +11161,7 @@ var renderThemeProvider = function (state) {
 //# sourceMappingURL=renderThemeProvider.js.map
 
 /***/ }),
-/* 201 */
+/* 202 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11207,7 +11208,7 @@ function getNativeElementProps(tagName, props, excludedPropNames) {
 //# sourceMappingURL=getNativeElementProps.js.map
 
 /***/ }),
-/* 202 */
+/* 203 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11218,7 +11219,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var _fluentui_utilities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(141);
 /* harmony import */ var _fluentui_react_window_provider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(139);
-/* harmony import */ var _makeStyles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(203);
+/* harmony import */ var _makeStyles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(204);
 
 
 
@@ -11279,7 +11280,7 @@ function useThemeProviderClasses(state) {
 //# sourceMappingURL=useThemeProviderClasses.js.map
 
 /***/ }),
-/* 203 */
+/* 204 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11287,9 +11288,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "makeStyles": () => (/* binding */ makeStyles)
 /* harmony export */ });
-/* harmony import */ var _useTheme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(198);
+/* harmony import */ var _useTheme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(199);
 /* harmony import */ var _fluentui_react_window_provider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(139);
-/* harmony import */ var _styleRenderers_mergeStylesRenderer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(204);
+/* harmony import */ var _styleRenderers_mergeStylesRenderer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(205);
 
 
 
@@ -11346,7 +11347,7 @@ function makeStyles(styleOrFunction) {
 //# sourceMappingURL=makeStyles.js.map
 
 /***/ }),
-/* 204 */
+/* 205 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11379,7 +11380,7 @@ var mergeStylesRenderer = {
 //# sourceMappingURL=mergeStylesRenderer.js.map
 
 /***/ }),
-/* 205 */
+/* 206 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11387,27 +11388,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "initializeIcons": () => (/* binding */ initializeIcons)
 /* harmony export */ });
-/* harmony import */ var _fabric_icons__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(206);
-/* harmony import */ var _fabric_icons_0__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(207);
-/* harmony import */ var _fabric_icons_1__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(208);
-/* harmony import */ var _fabric_icons_2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(209);
-/* harmony import */ var _fabric_icons_3__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(210);
-/* harmony import */ var _fabric_icons_4__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(211);
-/* harmony import */ var _fabric_icons_5__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(212);
-/* harmony import */ var _fabric_icons_6__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(213);
-/* harmony import */ var _fabric_icons_7__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(214);
-/* harmony import */ var _fabric_icons_8__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(215);
-/* harmony import */ var _fabric_icons_9__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(216);
-/* harmony import */ var _fabric_icons_10__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(217);
-/* harmony import */ var _fabric_icons_11__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(218);
-/* harmony import */ var _fabric_icons_12__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(219);
-/* harmony import */ var _fabric_icons_13__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(220);
-/* harmony import */ var _fabric_icons_14__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(221);
-/* harmony import */ var _fabric_icons_15__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(222);
-/* harmony import */ var _fabric_icons_16__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(223);
-/* harmony import */ var _fabric_icons_17__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(224);
-/* harmony import */ var _iconAliases__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(225);
-/* harmony import */ var _version__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(226);
+/* harmony import */ var _fabric_icons__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(207);
+/* harmony import */ var _fabric_icons_0__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(208);
+/* harmony import */ var _fabric_icons_1__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(209);
+/* harmony import */ var _fabric_icons_2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(210);
+/* harmony import */ var _fabric_icons_3__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(211);
+/* harmony import */ var _fabric_icons_4__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(212);
+/* harmony import */ var _fabric_icons_5__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(213);
+/* harmony import */ var _fabric_icons_6__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(214);
+/* harmony import */ var _fabric_icons_7__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(215);
+/* harmony import */ var _fabric_icons_8__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(216);
+/* harmony import */ var _fabric_icons_9__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(217);
+/* harmony import */ var _fabric_icons_10__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(218);
+/* harmony import */ var _fabric_icons_11__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(219);
+/* harmony import */ var _fabric_icons_12__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(220);
+/* harmony import */ var _fabric_icons_13__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(221);
+/* harmony import */ var _fabric_icons_14__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(222);
+/* harmony import */ var _fabric_icons_15__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(223);
+/* harmony import */ var _fabric_icons_16__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(224);
+/* harmony import */ var _fabric_icons_17__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(225);
+/* harmony import */ var _iconAliases__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(226);
+/* harmony import */ var _version__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(227);
 
 
 
@@ -11458,7 +11459,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 206 */
+/* 207 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11548,7 +11549,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons.js.map
 
 /***/ }),
-/* 207 */
+/* 208 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11681,7 +11682,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-0.js.map
 
 /***/ }),
-/* 208 */
+/* 209 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11814,7 +11815,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-1.js.map
 
 /***/ }),
-/* 209 */
+/* 210 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11947,7 +11948,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-2.js.map
 
 /***/ }),
-/* 210 */
+/* 211 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12080,7 +12081,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-3.js.map
 
 /***/ }),
-/* 211 */
+/* 212 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12213,7 +12214,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-4.js.map
 
 /***/ }),
-/* 212 */
+/* 213 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12346,7 +12347,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-5.js.map
 
 /***/ }),
-/* 213 */
+/* 214 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12479,7 +12480,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-6.js.map
 
 /***/ }),
-/* 214 */
+/* 215 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12612,7 +12613,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-7.js.map
 
 /***/ }),
-/* 215 */
+/* 216 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12745,7 +12746,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-8.js.map
 
 /***/ }),
-/* 216 */
+/* 217 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12878,7 +12879,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-9.js.map
 
 /***/ }),
-/* 217 */
+/* 218 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -13011,7 +13012,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-10.js.map
 
 /***/ }),
-/* 218 */
+/* 219 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -13144,7 +13145,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-11.js.map
 
 /***/ }),
-/* 219 */
+/* 220 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -13277,7 +13278,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-12.js.map
 
 /***/ }),
-/* 220 */
+/* 221 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -13410,7 +13411,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-13.js.map
 
 /***/ }),
-/* 221 */
+/* 222 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -13543,7 +13544,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-14.js.map
 
 /***/ }),
-/* 222 */
+/* 223 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -13676,7 +13677,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-15.js.map
 
 /***/ }),
-/* 223 */
+/* 224 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -13809,7 +13810,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-16.js.map
 
 /***/ }),
-/* 224 */
+/* 225 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -13886,7 +13887,7 @@ function initializeIcons(baseUrl, options) {
 //# sourceMappingURL=fabric-icons-17.js.map
 
 /***/ }),
-/* 225 */
+/* 226 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -13910,7 +13911,7 @@ var registerIconAliases = function () {
 //# sourceMappingURL=iconAliases.js.map
 
 /***/ }),
-/* 226 */
+/* 227 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";

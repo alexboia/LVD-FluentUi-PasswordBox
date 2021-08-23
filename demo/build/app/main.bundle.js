@@ -7,7 +7,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
-/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(205);
+/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(206);
 /* harmony import */ var _Root_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(16);
 
 
@@ -30022,7 +30022,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(21);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(24);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2);
-/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(195);
+/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(196);
 /* harmony import */ var _App_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(25);
 
 
@@ -30085,9 +30085,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(24);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2);
 /* harmony import */ var _components_PasswordBox_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(26);
-/* harmony import */ var _components_PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(110);
-/* harmony import */ var _components_StrengthIndicatorStyles_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(36);
-/* harmony import */ var _PasswordEvaluator_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(193);
+/* harmony import */ var _components_StrengthIndicatorStyles_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(36);
+/* harmony import */ var _PasswordEvaluation_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(193);
 
 
 
@@ -30098,7 +30097,6 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__.default)(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
 
 
 
@@ -30135,7 +30133,7 @@ var App = /*#__PURE__*/function (_React$Component) {
 
       this._log("New password is ".concat(this._formatPasswordValue(newValue)));
 
-      var result = (0,_PasswordEvaluator_js__WEBPACK_IMPORTED_MODULE_10__.evaluatePassword)(newValue);
+      var result = (0,_PasswordEvaluation_js__WEBPACK_IMPORTED_MODULE_9__.evaluatePassword)(newValue);
       this.setState({
         strengthLevel: result.level,
         rules: result.rules
@@ -30173,7 +30171,7 @@ var App = /*#__PURE__*/function (_React$Component) {
         className: "lvd-passwordbox-demo-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement(_components_PasswordBox_jsx__WEBPACK_IMPORTED_MODULE_7__.default, {
         passwordStrengthProps: {
-          style: _components_StrengthIndicatorStyles_js__WEBPACK_IMPORTED_MODULE_9__.default.intermittentBar,
+          style: _components_StrengthIndicatorStyles_js__WEBPACK_IMPORTED_MODULE_8__.default.intermittentBar,
           level: strengthLevel,
           text: strengthText
         },
@@ -30445,6 +30443,7 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
       var passwordRulesProps = this._getPasswordRulesProps();
 
       var showRulesCallout = this.state.canShowRulesCallout && this.state.showRulesCallout && passwordRulesProps.rules.length > 0;
+      console.log(this._passwordBoxContainerRef.current);
       return showRulesCallout && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement(_PasswordStatusCallout_jsx__WEBPACK_IMPORTED_MODULE_11__.default, {
         rules: passwordRulesProps.rules,
         iconProps: passwordRulesProps.icons,
@@ -31553,7 +31552,8 @@ StrengthIndicatorIntermittentBar.propTypes = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "PasswordStrengthLevels": () => (/* binding */ PasswordStrengthLevels),
-/* harmony export */   "getAllAvailableLevels": () => (/* binding */ getAllAvailableLevels)
+/* harmony export */   "getAllAvailableLevels": () => (/* binding */ getAllAvailableLevels),
+/* harmony export */   "getAvailableLevelCount": () => (/* binding */ getAvailableLevelCount)
 /* harmony export */ });
 var PasswordStrengthLevels = {
   veryWeak: {
@@ -31610,6 +31610,10 @@ var PasswordStrengthLevels = {
 
 function getAllAvailableLevels() {
   return [PasswordStrengthLevels.veryWeak, PasswordStrengthLevels.weak, PasswordStrengthLevels.medium, PasswordStrengthLevels.strong, PasswordStrengthLevels.veryStrong];
+}
+
+function getAvailableLevelCount() {
+  return getAllAvailableLevels().length;
 }
 
 
@@ -31793,7 +31797,7 @@ var PasswordStatusCallout = /*#__PURE__*/function (_React$Component) {
 
 
 PasswordStatusCallout.propTypes = {
-  target: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().element.isRequired),
+  target: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().object.isRequired),
   rules: prop_types__WEBPACK_IMPORTED_MODULE_7___default().arrayOf((prop_types__WEBPACK_IMPORTED_MODULE_7___default().object)).isRequired,
   iconProps: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().object),
   containerProps: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().object),
@@ -34522,7 +34526,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "evaluatePassword": () => (/* binding */ evaluatePassword)
 /* harmony export */ });
 /* harmony import */ var _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(194);
-/* harmony import */ var _components_PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(110);
+/* harmony import */ var _components_rules_PasswordEvaluator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(195);
 
 
 
@@ -34551,35 +34555,8 @@ function _getRules() {
 }
 
 function evaluatePassword(password) {
-  if (!password) {
-    return {
-      level: null,
-      rules: []
-    };
-  }
-
-  var rules = _getRules();
-
-  var rulesResult = [];
-  var level = _components_PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_1__.PasswordStrengthLevels.veryWeak;
-  rules.forEach(function (rule) {
-    if (rule.evaluate(password)) {
-      level = level.next();
-      rulesResult.push({
-        ruleMet: true,
-        text: rule.name
-      });
-    } else {
-      rulesResult.push({
-        ruleMet: false,
-        text: rule.name
-      });
-    }
-  });
-  return {
-    level: level,
-    rules: rulesResult
-  };
+  var evaluator = new _components_rules_PasswordEvaluator_js__WEBPACK_IMPORTED_MODULE_1__.default(_getRules());
+  return evaluator.evaluatePassword(password);
 }
 
 /***/ }),
@@ -34623,6 +34600,88 @@ var PasswordCallbackRule = /*#__PURE__*/function () {
   }]);
 
   return PasswordCallbackRule;
+}();
+
+
+
+/***/ }),
+/* 195 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ PasswordEvaluator)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(17);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(18);
+/* harmony import */ var _PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(110);
+
+
+
+
+var PasswordEvaluator = /*#__PURE__*/function () {
+  function PasswordEvaluator(rules) {
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__.default)(this, PasswordEvaluator);
+
+    this._rules = rules || [];
+    this._maxLevelScore = _PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_2__.PasswordStrengthLevels.veryStrong.value;
+    this._ruleScore = this._computeRuleScore();
+  }
+
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__.default)(PasswordEvaluator, [{
+    key: "_computeRuleScore",
+    value: function _computeRuleScore() {
+      return this._rules.length > 0 ? Math.round(this._maxLevelScore / this._rules.length * 10) / 10 : this._maxLevelScore;
+    }
+  }, {
+    key: "evaluatePassword",
+    value: function evaluatePassword(password) {
+      var _this = this;
+
+      if (!password) {
+        return {
+          level: null,
+          rules: []
+        };
+      }
+
+      if (this._rules.length == 0) {
+        return {
+          level: _PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_2__.PasswordStrengthLevels.veryStrong,
+          rules: []
+        };
+      }
+
+      var score = 0;
+      var rulesResult = [];
+
+      this._rules.forEach(function (rule) {
+        var ruleMet = rule.evaluate(password);
+
+        if (ruleMet) {
+          score = Math.min(_this._ruleScore + score, _this._maxLevelScore);
+        }
+
+        rulesResult.push({
+          ruleMet: ruleMet,
+          text: rule.name
+        });
+      });
+
+      var level = _PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_2__.PasswordStrengthLevels.veryWeak;
+
+      while (level.value < score && level.value < this._maxLevelScore) {
+        level = level.next();
+      }
+
+      return {
+        level: level,
+        rules: rulesResult
+      };
+    }
+  }]);
+
+  return PasswordEvaluator;
 }();
 
 
