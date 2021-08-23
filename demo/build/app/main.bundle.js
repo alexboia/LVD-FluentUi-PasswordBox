@@ -30368,7 +30368,8 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
 
       var underlined = this._isUnderlined();
 
-      console.log(underlined);
+      var readOnly = this._isReadOnly();
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement(_fluentui_react__WEBPACK_IMPORTED_MODULE_12__.TextField, {
         type: "password",
         label: label,
@@ -30380,7 +30381,8 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
         onFocus: this._handlePasswordFocused,
         onGetErrorMessage: this._getPasswordFieldErrorMessage,
         className: className,
-        underlined: underlined
+        underlined: underlined,
+        readOnly: readOnly
       });
     }
   }, {
@@ -30417,6 +30419,11 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
     key: "_isUnderlined",
     value: function _isUnderlined() {
       return !!this.props.underlined;
+    }
+  }, {
+    key: "_isReadOnly",
+    value: function _isReadOnly() {
+      return !!this.props.readOnly;
     }
   }, {
     key: "_renderPasswordStrengthIndicator",
@@ -30487,6 +30494,7 @@ PasswordBox.propTypes = {
   canReveal: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
   disabled: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
   underlined: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
+  readOnly: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
   required: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
   emptyErrorMessage: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().string),
   passwordStrengthProps: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().object),
@@ -30735,6 +30743,9 @@ var PasswordBoxDefaults = {
   },
   rules: {
     container: {
+      calloutMaxWidth: 0,
+      calloutMinWidth: 0,
+      calloutWidth: 0,
       gapSpace: 5,
       isBeakVisible: true,
       beakWidth: 15,
@@ -31692,6 +31703,9 @@ var PasswordStatusCallout = /*#__PURE__*/function (_React$Component) {
       return rules.length && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement(_fluentui_react__WEBPACK_IMPORTED_MODULE_9__.Callout, {
         target: target,
         gapSpace: containerProps.gapSpace,
+        calloutWidth: containerProps.calloutWidth,
+        calloutMaxWidth: containerProps.calloutMaxWidth,
+        calloutMinWidth: containerProps.calloutMinWidth,
         isBeakVisible: containerProps.isBeakVisible,
         beakWidth: containerProps.beakWidth,
         directionalHint: containerProps.directionalHint,
@@ -34529,8 +34543,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "evaluatePassword": () => (/* binding */ evaluatePassword)
 /* harmony export */ });
-/* harmony import */ var _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(194);
-/* harmony import */ var _components_rules_PasswordEvaluator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(195);
+/* harmony import */ var _components_rules_PasswordEvaluator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(194);
+/* harmony import */ var _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(195);
 
 
 
@@ -34555,61 +34569,16 @@ function _hasNonAlphaNumericCharacters(password) {
 }
 
 function _getRules() {
-  return [new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_0__.default(_hasMoreThanMinimumLength, 'Must be more than 8 characters in length'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_0__.default(_hasLowercaseLetters, 'Must contain lowercase letters'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_0__.default(_hasUppercaseLetters, 'Must contain uppercase letters'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_0__.default(_hasNumbers, 'Must contain numbers'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_0__.default(_hasNonAlphaNumericCharacters, 'Must contain non-alphanumeric characters')];
+  return [new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_1__.default(_hasMoreThanMinimumLength, 'Must be more than 8 characters in length'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_1__.default(_hasLowercaseLetters, 'Must contain lowercase letters'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_1__.default(_hasUppercaseLetters, 'Must contain uppercase letters'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_1__.default(_hasNumbers, 'Must contain numbers'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_1__.default(_hasNonAlphaNumericCharacters, 'Must contain non-alphanumeric characters')];
 }
 
 function evaluatePassword(password) {
-  var evaluator = new _components_rules_PasswordEvaluator_js__WEBPACK_IMPORTED_MODULE_1__.default(_getRules());
+  var evaluator = new _components_rules_PasswordEvaluator_js__WEBPACK_IMPORTED_MODULE_0__.default(_getRules());
   return evaluator.evaluatePassword(password);
 }
 
 /***/ }),
 /* 194 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ PasswordCallbackRule)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(17);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(18);
-
-
-
-var PasswordCallbackRule = /*#__PURE__*/function () {
-  function PasswordCallbackRule(callback, name) {
-    var allowEmpty = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__.default)(this, PasswordCallbackRule);
-
-    this._callback = callback;
-    this._name = name;
-    this._allowEmpty = allowEmpty;
-  }
-
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__.default)(PasswordCallbackRule, [{
-    key: "evaluate",
-    value: function evaluate(input) {
-      if (!input) {
-        return this._allowEmpty;
-      }
-
-      return this._callback(input);
-    }
-  }, {
-    key: "name",
-    get: function get() {
-      return this._name;
-    }
-  }]);
-
-  return PasswordCallbackRule;
-}();
-
-
-
-/***/ }),
-/* 195 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -34686,6 +34655,51 @@ var PasswordEvaluator = /*#__PURE__*/function () {
   }]);
 
   return PasswordEvaluator;
+}();
+
+
+
+/***/ }),
+/* 195 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ PasswordCallbackRule)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(17);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(18);
+
+
+
+var PasswordCallbackRule = /*#__PURE__*/function () {
+  function PasswordCallbackRule(callback, name) {
+    var allowEmpty = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__.default)(this, PasswordCallbackRule);
+
+    this._callback = callback;
+    this._name = name;
+    this._allowEmpty = allowEmpty;
+  }
+
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__.default)(PasswordCallbackRule, [{
+    key: "evaluate",
+    value: function evaluate(input) {
+      if (!input) {
+        return this._allowEmpty;
+      }
+
+      return this._callback(input);
+    }
+  }, {
+    key: "name",
+    get: function get() {
+      return this._name;
+    }
+  }]);
+
+  return PasswordCallbackRule;
 }();
 
 
