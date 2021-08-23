@@ -77,3 +77,82 @@ class SomePasswordPage extends React.Component {
 	}
 }
 ```
+
+You can find a full working example [here](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/App.jsx).
+
+## Styling
+
+You can either directly include the `dist/style.css` into your `html` web page or use the `@import` directive inside your stylesheet if building using webpack:
+
+```css
+@import '~lvd-fluentui-passwordbox/dist/style.css';
+```
+
+Also see [the component itself](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/PasswordBox.jsx).
+
+## Building
+
+To build the demo application: 
+
+```
+npm run build-app
+```
+
+To build the library: 
+
+```
+npm run build-dist
+```
+
+To build both in one sitting: 
+
+```
+npm run build
+```
+
+## Customization Options
+
+| What | Prop Name | Type | Notes |
+| --- | --- | --- | --- |
+| Label | `label` | `string` | Defaults to `Password:` |
+| Placeholder | `placeholder` | `string` | Defaults to `Please fill in the password` |
+| Allow user to reveal password | `canReveal` | `boolean` | Defaults to `true` |
+| Disable the field | `disabled` | `boolean` | Defaults to `false` |
+| Display field in underlined style. | `underlined` | `boolean` | Defaults to `false` |
+| Set field as required. | `required` | `boolean` | Defaults to `false` |
+| Set field as readonly. | `readOnly` | `boolean` | Defaults to `false` |
+| Message to display when field is required, but not filled in. | `emptyErrorMessage` | `string` | Defaults to `You must fill in the password` |
+| Password strength indication. | `passwordStrengthProps` | `Password Strength Object` | Defaults to not display password strength indication. See below. |
+| Password rules information. | `passwordRulesProps` | `Password Rules Information Object` | Defaults to not display any password rules information. See below. |
+
+All the default values are defined [here](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/PasswordBoxDefaults.js).
+
+### Password Strength Object
+
+A plain javascript object with the following properties:
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `style` | `StrengthIndicatorStyles` | Mandatory. See below info on the available values. |
+| `level` | `PasswordStrengthLevels` | Describes the currently assigned password strength level. Mandatory. See below info on the available values. |
+| `percent` | `number` | Optional. The percentage (values between `0` an `100`) that describes the password strength. If not specified, defaults to the default percetnage assigned to the given password strength level. |
+| `text` | `string` | Optional. User-displayable text for the current password strength. If not specified, no text is displayed, with the exception of `StrengthIndicatorStyles.textOnly`, which displays the default text assigned to the given password strength level. |
+
+### Password Strength Levels
+
+The following [strength levels are available](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/PasswordStrengthLevels.js), fixed and may not be changed:
+
+| Name | Usage | Notes |
+| --- | --- | --- |
+
+### Strength Indicator Styles
+
+The following [styles are available](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/StrengthIndicatorStyles.js):
+
+| Name | Usage | Notes |
+| --- | --- | --- |
+| Bar | `StrengthIndicatorStyles.bar` | Displays a contigous static bar filled in accordance with the determinted password strength percentage. Also displays an optional descriptive text, if given. [Implemented here](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/strengthIndicatorStyles/Bar.jsx) |
+| Intermittent Bar | `StrengthIndicatorStyles.intermittentBar` | Displays an intermittent static bar comprised of five segments, each segment corresponding to a strength level. The bar segments that are filled are determinted by the given password strength level. Also displays an optional descriptive text, if given. [Implemented here](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/strengthIndicatorStyles/IntermittentBar.jsx) |
+| Text Only | `StrengthIndicatorStyles.textOnly` | Just displays a descriptive text. [Implemented here](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/strengthIndicatorStyles/TextOnly.jsx) |
+
+### Password Rules Information Object
