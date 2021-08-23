@@ -235,7 +235,7 @@ However, for your convenience there's an API that you can use to do so:
 
 - define your rules using by creating instances of: 
 	- [`PasswordCallbackRule`](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/rules/PasswordCallbackRule.js);
-	- [`PasswordLengthRule`] (https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/rules/PasswordLengthRule.js);
+	- [`PasswordLengthRule`](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/rules/PasswordLengthRule.js);
 	- [`PasswordRegexRule`](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/rules/PasswordRegexRule.js).
 - feed these rules to the [built-in password evaluator](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/rules/PasswordEvaluator.js).
 
