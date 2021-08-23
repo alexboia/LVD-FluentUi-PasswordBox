@@ -29,3 +29,51 @@ And also an animated gif which shows how it all respons to user input:
 <a name="lb-demo"></a>
 
 The `demo` directory contains [a compiled and ready-to-run example](https://github.com/alexboia/LVD-FluentUi-PasswordBox/tree/main/demo). Just open up the `index.html` file.
+
+## Basic Usage
+
+
+```javascript
+import React from 'react';
+import { PasswordBox, StrengthIndicatorStyles } from 'lvd-fluentui-passwordbox';
+
+class SomePasswordPage extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this._handlePasswordChanged =
+			this._handlePasswordChanged.bind(this);
+	}
+
+	_handlePasswordChanged(oldValue, newValue) {
+		// For instance, compute strength level or password rules
+		//	See below for a built-in API to do that (though it's not mandatory)
+	}
+
+	render() {
+		const strengthLevel = /* fetch or compute strength level from somehwere */;
+		const strengthLevelText = /* fetch or compute strength level text from somehwere */;
+		const rules = /* fetch or compute password rules from somewhere */;
+
+		return (
+			<PasswordBox 
+				label="Your password, please"
+				placeholder="Please fill in your new password"
+				canReveal={true}
+				required={true}
+				underlined={true}
+				emptyErrorMessage="The password is required, whether you like it or not!"
+				passwordStrengthProps={{
+					style: StrengthIndicatorStyles.intermittentBar,
+					level: strengthLevel,
+					text: strengthText
+				}}
+				passwordRulesProps={{
+					rules: rules
+				}}
+				onPasswordChanged={this._handlePasswordChanged}
+			/>
+		);
+	}
+}
+```
