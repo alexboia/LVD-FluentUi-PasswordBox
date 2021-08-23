@@ -21,17 +21,17 @@ And also an animated gif which shows how it all respons to user input:
 </p>
 
 ## Installation
-<a name="lb-installation"></a>
+<a name="pb-installation"></a>
 
 `npm install --save lvd-fluentui-passwordbox`
 
 ## Demo
-<a name="lb-demo"></a>
+<a name="pb-demo"></a>
 
 The `demo` directory contains [a compiled and ready-to-run example](https://github.com/alexboia/LVD-FluentUi-PasswordBox/tree/main/demo). Just open up the `index.html` file.
 
 ## Basic Usage
-
+<a name="pb-usage"></a>
 
 ```javascript
 import React from 'react';
@@ -81,6 +81,7 @@ class SomePasswordPage extends React.Component {
 You can find a full working example [here](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/App.jsx).
 
 ## Styling
+<a name="pb-styling"></a>
 
 You can either directly include the `dist/style.css` into your `html` web page or use the `@import` directive inside your stylesheet if building using webpack:
 
@@ -91,6 +92,7 @@ You can either directly include the `dist/style.css` into your `html` web page o
 Also see [the component itself](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/PasswordBox.jsx).
 
 ## Building
+<a name="pb-building"></a>
 
 To build the demo application: 
 
@@ -111,6 +113,7 @@ npm run build
 ```
 
 ## Customization Options
+<a name="pb-customization"></a>
 
 | What | Prop Name | Type | Notes |
 | --- | --- | --- | --- |
@@ -223,3 +226,76 @@ A plain javascript object with the following properties:
 | `notMetIcon` | Type | Icon name used when the rule is not met. Defaults to `Cancel`.  |
 
 Please see the supported [FluentUI icons](https://developer.microsoft.com/en-us/fluentui#/styles/web/icons).
+
+## Computing password strength levels
+
+It is up to you how you compute the password strength level, just as long you provide one of the values described above.
+
+However, for your convenience there's an API that you can use to do so:
+
+- define your rules using by creating instances of [`PasswordCallbackRule`](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/rules/PasswordCallbackRule.js) and [`PasswordRegexRule`](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/rules/PasswordRegexRule.js).
+- feed these rules to the [built-in password evaluator](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/rules/PasswordEvaluator.js).
+
+Here's an example, similar to the one built-in the demo application:
+
+```javascript
+import PasswordEvaluator from 'lvd-fluentui-passwordbox';
+import PasswordCallbackRule from 'lvd-fluentui-passwordbox';
+
+function _hasMoreThanMinimumLength(password) {
+	return password.length > 8;
+}
+
+function _hasLowercaseLetters(password) {
+	return !!password.match(/[a-z]+/);
+}
+
+function _hasUppercaseLetters(password) {
+	return !!password.match(/[A-Z]+/);
+}
+
+function _hasNumbers(password) {
+	return !!password.match(/[0-9]+/);
+}
+
+function _hasNonAlphaNumericCharacters(password) {
+	return !!password.match(/[^a-zA-Z0-9]+/);
+}
+
+function _getRules() {
+	return [
+		new PasswordCallbackRule(_hasMoreThanMinimumLength, 
+			'Must be more than 8 characters in length'),
+		new PasswordCallbackRule(_hasLowercaseLetters, 
+			'Must contain lowercase letters'),
+		new PasswordCallbackRule(_hasUppercaseLetters, 
+			'Must contain uppercase letters'),
+		new PasswordCallbackRule(_hasNumbers, 
+			'Must contain numbers'),
+		new PasswordCallbackRule(_hasNonAlphaNumericCharacters, 
+			'Must contain non-alphanumeric characters')
+	];
+}
+
+export function evaluatePassword(password) {
+	const evaluator = new PasswordEvaluator(_getRules());
+	return evaluator.evaluatePassword(password);
+}
+```
+
+## Events
+<a name="pb-events"></a>
+
+| Event | Prop Name | Arguments | Notes |
+| --- | --- | --- | --- |
+| Value changed | `onPasswordChanged` | (`oldPassword`:`string`, `newPassword`:`string`) | Triggered whenever the value of the password field changes. |
+| Component initialized | `onPasswordBoxInitialized` | `none` | Triggered when the component is mounted by `React`. |
+| Component disposed | `onPasswordBoxDisposed` | (`currentPassword`:`string`) | Triggered when the component is un-mounted by `React`. |
+
+## Donate
+<a name="pb-donate"></a>
+
+I put some of my free time into developing and maintaining this plugin.
+If helped you in your projects and you are happy with it, you can...
+
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q5Q01KGLM)
