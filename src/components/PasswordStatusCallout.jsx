@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { DirectionalHint, FontWeights, TextField } from '@fluentui/react';
 import { Text, Callout } from '@fluentui/react';
 
 import PasswordBoxDefaults from './PasswordBoxDefaults.js';
@@ -81,22 +80,12 @@ export default class PasswordStatusCallout extends React.Component {
 		const iconProps = this._getIconProps();
 
 		return rules.map((rule) => {
-			const ruleKey = `rule-${ruleIndex++}`;
-			let ruleIcon = iconProps.notMetIcon;
-			let className = 'lvd-passwordbox-rule';
-
-			if (rule.ruleMet) {
-				className = `${className} is-rule-met`;
-				ruleIcon = iconProps.metIcon;
-			} else {
-				className = `${className} is-not-rule-met`;
-			}
-
-			const ruleIconClassName = `lvd-passwordbox-rule-icon ms-Icon ms-Icon--${ruleIcon}`;
+			const ruleKey = this._computeRuleKey(ruleIndex ++);
+			const ruleDisplayProps = this._computeRuleItemDisplayProps(rule, iconProps);
 
 			return (
-				<li key={ruleKey} className={className}>
-					<i className={ruleIconClassName}></i>
+				<li key={ruleKey} className={ruleDisplayProps.className}>
+					<i className={ruleDisplayProps.ruleIconClassName}></i>
 					{rule.text}
 				</li>
 			);
@@ -106,6 +95,33 @@ export default class PasswordStatusCallout extends React.Component {
 	_getIconProps() {
 		const iconProps = this.props.iconProps || {};
 		return Object.assign(PasswordBoxDefaults.rules.icons, iconProps);
+	}
+
+	_computeRuleKey(ruleIndex) {
+		return `rule-${ruleIndex}`;
+	}
+
+	_computeRuleItemDisplayProps(rule, iconProps) {
+		let className = 'lvd-passwordbox-rule';
+		let ruleIconName = iconProps.notMetIcon;
+
+		if (rule.ruleMet) {
+			className = `${className} is-rule-met`;
+			ruleIconName = iconProps.metIcon;
+		} else {
+			className = `${className} is-not-rule-met`;
+		}
+
+		const ruleIconClassName = this._computeRuleIconClassName(ruleIconName);
+
+		return {
+			className: className,
+			ruleIconClassName: ruleIconClassName
+		};
+	}
+
+	_computeRuleIconClassName(ruleIconName) {
+		return `lvd-passwordbox-rule-icon ms-Icon ms-Icon--${ruleIconName}`;
 	}
 }
 

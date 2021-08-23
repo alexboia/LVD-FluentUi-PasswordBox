@@ -7,7 +7,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
-/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(203);
+/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(205);
 /* harmony import */ var _Root_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(16);
 
 
@@ -30022,7 +30022,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(21);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(24);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2);
-/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(193);
+/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(195);
 /* harmony import */ var _App_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(25);
 
 
@@ -30085,8 +30085,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(24);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2);
 /* harmony import */ var _components_PasswordBox_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(26);
-/* harmony import */ var _components_PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(105);
+/* harmony import */ var _components_PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(110);
 /* harmony import */ var _components_StrengthIndicatorStyles_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(36);
+/* harmony import */ var _PasswordEvaluator_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(193);
 
 
 
@@ -30097,6 +30098,7 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__.default)(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 
 
 
@@ -30133,38 +30135,11 @@ var App = /*#__PURE__*/function (_React$Component) {
 
       this._log("New password is ".concat(this._formatPasswordValue(newValue)));
 
-      var strengthLevel = this._computePasswordStrengthLevel(newValue);
-
+      var result = (0,_PasswordEvaluator_js__WEBPACK_IMPORTED_MODULE_10__.evaluatePassword)(newValue);
       this.setState({
-        strengthLevel: strengthLevel
+        strengthLevel: result.level,
+        rules: result.rules
       });
-    }
-  }, {
-    key: "_computePasswordStrengthLevel",
-    value: function _computePasswordStrengthLevel(password) {
-      if (!password) {
-        return null;
-      }
-
-      var level = _components_PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_8__.PasswordStrengthLevels.veryWeak;
-
-      if (this._hasLowercaseLetters(password)) {
-        level = level.next();
-      }
-
-      if (this._hasUppercaseLetters(password)) {
-        level = level.next();
-      }
-
-      if (this._hasNonAlphaNumericCharacters(password)) {
-        level = level.next();
-      }
-
-      if (this._hasMoreThanMinimumLength(password)) {
-        level = level.next();
-      }
-
-      return level;
     }
   }, {
     key: "_formatPasswordValue",
@@ -30189,33 +30164,9 @@ var App = /*#__PURE__*/function (_React$Component) {
       this._log("Last password value is ".concat(this._formatPasswordValue(value), "."));
     }
   }, {
-    key: "_hasMoreThanMinimumLength",
-    value: function _hasMoreThanMinimumLength(password) {
-      return password.length > 8;
-    }
-  }, {
-    key: "_hasLowercaseLetters",
-    value: function _hasLowercaseLetters(password) {
-      return !!password.match(/[a-z]+/);
-    }
-  }, {
-    key: "_hasUppercaseLetters",
-    value: function _hasUppercaseLetters(password) {
-      return !!password.match(/[A-Z]+/);
-    }
-  }, {
-    key: "_hasNumbers",
-    value: function _hasNumbers(password) {
-      return !!password.match(/[0-9]+/);
-    }
-  }, {
-    key: "_hasNonAlphaNumericCharacters",
-    value: function _hasNonAlphaNumericCharacters(password) {
-      return !!password.match(/[^a-zA-Z0-9]+/);
-    }
-  }, {
     key: "render",
     value: function render() {
+      var rules = this.state.rules;
       var strengthLevel = this.state.strengthLevel;
       var strengthText = strengthLevel != null ? strengthLevel.defaultLabel : null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement("div", {
@@ -30225,6 +30176,9 @@ var App = /*#__PURE__*/function (_React$Component) {
           style: _components_StrengthIndicatorStyles_js__WEBPACK_IMPORTED_MODULE_9__.default.intermittentBar,
           level: strengthLevel,
           text: strengthText
+        },
+        passwordRulesProps: {
+          rules: rules
         },
         onPasswordChanged: this._handlePasswordChanged,
         onPasswordBoxInitialized: this._handlePasswordBoxInitialized,
@@ -30257,12 +30211,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(27);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(172);
+/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(172);
 /* harmony import */ var _PasswordBoxDefaults_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(35);
-/* harmony import */ var _PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(105);
-/* harmony import */ var _StrengthIndicatorStyles_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(36);
-/* harmony import */ var _PasswordStrengthIndicator_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(106);
-/* harmony import */ var _PasswordStatusCallout_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(111);
+/* harmony import */ var _StrengthIndicatorStyles_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(36);
+/* harmony import */ var _PasswordStrengthIndicator_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(105);
+/* harmony import */ var _PasswordStatusCallout_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(111);
 
 
 
@@ -30273,8 +30226,6 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__.default)(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-
 
 
 
@@ -30298,8 +30249,10 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       password: '',
       hasInteracted: false,
+      showRulesCallout: true,
       canShowRulesCallout: false
     };
+    _this._handlePasswordFocused = _this._handlePasswordFocused.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
     _this._handlePasswordChanged = _this._handlePasswordChanged.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
     _this._getPasswordFieldErrorMessage = _this._getPasswordFieldErrorMessage.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
     _this._handlePasswordStatusCalloutDismiss = _this._handlePasswordStatusCalloutDismiss.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
@@ -30378,6 +30331,17 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "_handlePasswordFocused",
+    value: function _handlePasswordFocused(event) {
+      event.preventDefault();
+
+      if (!!this.state.password) {
+        this.setState({
+          showRulesCallout: true
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement("div", {
@@ -30402,7 +30366,7 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
 
       var underlined = this._isUnderlined();
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement(_fluentui_react__WEBPACK_IMPORTED_MODULE_13__.TextField, {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement(_fluentui_react__WEBPACK_IMPORTED_MODULE_12__.TextField, {
         type: "password",
         label: label,
         placeholder: placeholder,
@@ -30410,6 +30374,7 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
         disabled: disabled,
         required: required,
         onChange: this._handlePasswordChanged,
+        onFocus: this._handlePasswordFocused,
         onGetErrorMessage: this._getPasswordFieldErrorMessage,
         className: className,
         underlined: underlined
@@ -30455,8 +30420,8 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
     value: function _renderPasswordStrengthIndicator() {
       var strengthProps = this._getPasswordStrengthProps();
 
-      var showIndicator = !!strengthProps.style && strengthProps.style != _StrengthIndicatorStyles_js__WEBPACK_IMPORTED_MODULE_10__.default.none && strengthProps.level != null;
-      return showIndicator && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement(_PasswordStrengthIndicator_jsx__WEBPACK_IMPORTED_MODULE_11__.default, {
+      var showIndicator = !!strengthProps.style && strengthProps.style != _StrengthIndicatorStyles_js__WEBPACK_IMPORTED_MODULE_9__.default.none && strengthProps.level != null;
+      return showIndicator && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement(_PasswordStrengthIndicator_jsx__WEBPACK_IMPORTED_MODULE_10__.default, {
         style: strengthProps.style,
         strengthPercent: strengthProps.percent,
         strengthLevel: strengthProps.level,
@@ -30479,8 +30444,8 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
     value: function _renderPasswordRulesCallout() {
       var passwordRulesProps = this._getPasswordRulesProps();
 
-      var showRulesCallout = this.state.canShowRulesCallout && passwordRulesProps.rules.length > 0;
-      return showRulesCallout && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement(_PasswordStatusCallout_jsx__WEBPACK_IMPORTED_MODULE_12__.default, {
+      var showRulesCallout = this.state.canShowRulesCallout && this.state.showRulesCallout && passwordRulesProps.rules.length > 0;
+      return showRulesCallout && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement(_PasswordStatusCallout_jsx__WEBPACK_IMPORTED_MODULE_11__.default, {
         rules: passwordRulesProps.rules,
         iconProps: passwordRulesProps.icons,
         containerProps: passwordRulesProps.container,
@@ -30504,29 +30469,8 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
     key: "_handlePasswordStatusCalloutDismiss",
     value: function _handlePasswordStatusCalloutDismiss() {
       this.setState({
-        showCallout: false
+        showRulesCallout: false
       });
-    }
-  }, {
-    key: "_getPasswordSampleStatus",
-    value: function _getPasswordSampleStatus() {
-      return {
-        strength: {
-          score: {
-            //or percentage 0-1
-            value: 1,
-            max: 5
-          },
-          description: 'The password is strong with this one!'
-        },
-        rules: [{
-          text: 'Must contain letters',
-          ruleMet: true
-        }, {
-          text: 'Must contain numbers',
-          ruleMet: false
-        }]
-      };
     }
   }]);
 
@@ -31175,77 +31119,9 @@ function __classPrivateFieldSet(receiver, state, value, kind, f) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "PasswordStrengthLevels": () => (/* binding */ PasswordStrengthLevels),
-/* harmony export */   "getAllAvailableLevels": () => (/* binding */ getAllAvailableLevels)
-/* harmony export */ });
-var PasswordStrengthLevels = {
-  veryWeak: {
-    id: 'very-weak',
-    value: 1,
-    defaultThreshold: 0.1,
-    defaultLabel: 'Very weak',
-    defaultPercent: 20,
-    next: function next() {
-      return PasswordStrengthLevels.weak;
-    }
-  },
-  weak: {
-    id: 'weak',
-    value: 2,
-    defaultThreshold: 0.25,
-    defaultLabel: 'Weak',
-    defaultPercent: 40,
-    next: function next() {
-      return PasswordStrengthLevels.medium;
-    }
-  },
-  medium: {
-    id: 'medium',
-    value: 3,
-    defaultThreshold: 0.5,
-    defaultLabel: 'Medium',
-    defaultPercent: 60,
-    next: function next() {
-      return PasswordStrengthLevels.strong;
-    }
-  },
-  strong: {
-    id: 'strong',
-    value: 4,
-    defaultThreshold: 0.75,
-    defaultLabel: 'Strong',
-    defaultPercent: 80,
-    next: function next() {
-      return PasswordStrengthLevels.veryStrong;
-    }
-  },
-  veryStrong: {
-    id: 'very-strong',
-    value: 5,
-    defaultThreshold: 0.9,
-    defaultLabel: 'Very strong',
-    defaultPercent: 100,
-    next: function next() {
-      return PasswordStrengthLevels.veryStrong;
-    }
-  }
-};
-
-function getAllAvailableLevels() {
-  return [PasswordStrengthLevels.veryWeak, PasswordStrengthLevels.weak, PasswordStrengthLevels.medium, PasswordStrengthLevels.strong, PasswordStrengthLevels.veryStrong];
-}
-
-
-
-/***/ }),
-/* 106 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ PasswordStrengthIndicator)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(107);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(106);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(17);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(18);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(19);
@@ -31255,9 +31131,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(27);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _StrengthIndicatorStyles__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(36);
-/* harmony import */ var _strengthIndicatorStyles_Bar_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(108);
-/* harmony import */ var _strengthIndicatorStyles_IntermittentBar_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(110);
-/* harmony import */ var _strengthIndicatorStyles_TextOnly_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(109);
+/* harmony import */ var _strengthIndicatorStyles_Bar_jsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(107);
+/* harmony import */ var _strengthIndicatorStyles_IntermittentBar_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(109);
+/* harmony import */ var _strengthIndicatorStyles_TextOnly_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(108);
 
 
 
@@ -31352,8 +31228,8 @@ PasswordStrengthIndicator.propTypes = {
 };
 
 /***/ }),
-/* 107 */,
-/* 108 */
+/* 106 */,
+/* 107 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -31368,7 +31244,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(27);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _TextOnly_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(109);
+/* harmony import */ var _TextOnly_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(108);
 
 
 
@@ -31459,7 +31335,7 @@ StrengthIndicatorBar.propTypes = {
 };
 
 /***/ }),
-/* 109 */
+/* 108 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -31545,7 +31421,7 @@ StrengthIndicatorTextOnly.propTypes = {
 };
 
 /***/ }),
-/* 110 */
+/* 109 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -31560,8 +31436,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(27);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _TextOnly_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(109);
-/* harmony import */ var _PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(105);
+/* harmony import */ var _TextOnly_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(108);
+/* harmony import */ var _PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(110);
 
 
 
@@ -31671,6 +31547,74 @@ StrengthIndicatorIntermittentBar.propTypes = {
 };
 
 /***/ }),
+/* 110 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PasswordStrengthLevels": () => (/* binding */ PasswordStrengthLevels),
+/* harmony export */   "getAllAvailableLevels": () => (/* binding */ getAllAvailableLevels)
+/* harmony export */ });
+var PasswordStrengthLevels = {
+  veryWeak: {
+    id: 'very-weak',
+    value: 1,
+    defaultThreshold: 0.1,
+    defaultLabel: 'Very weak',
+    defaultPercent: 20,
+    next: function next() {
+      return PasswordStrengthLevels.weak;
+    }
+  },
+  weak: {
+    id: 'weak',
+    value: 2,
+    defaultThreshold: 0.25,
+    defaultLabel: 'Weak',
+    defaultPercent: 40,
+    next: function next() {
+      return PasswordStrengthLevels.medium;
+    }
+  },
+  medium: {
+    id: 'medium',
+    value: 3,
+    defaultThreshold: 0.5,
+    defaultLabel: 'Medium',
+    defaultPercent: 60,
+    next: function next() {
+      return PasswordStrengthLevels.strong;
+    }
+  },
+  strong: {
+    id: 'strong',
+    value: 4,
+    defaultThreshold: 0.75,
+    defaultLabel: 'Strong',
+    defaultPercent: 80,
+    next: function next() {
+      return PasswordStrengthLevels.veryStrong;
+    }
+  },
+  veryStrong: {
+    id: 'very-strong',
+    value: 5,
+    defaultThreshold: 0.9,
+    defaultLabel: 'Very strong',
+    defaultPercent: 100,
+    next: function next() {
+      return PasswordStrengthLevels.veryStrong;
+    }
+  }
+};
+
+function getAllAvailableLevels() {
+  return [PasswordStrengthLevels.veryWeak, PasswordStrengthLevels.weak, PasswordStrengthLevels.medium, PasswordStrengthLevels.strong, PasswordStrengthLevels.veryStrong];
+}
+
+
+
+/***/ }),
 /* 111 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -31700,7 +31644,6 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__.default)(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
 
 
 
@@ -31788,28 +31731,22 @@ var PasswordStatusCallout = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "_renderPassowrdRules",
     value: function _renderPassowrdRules(rules) {
+      var _this2 = this;
+
       var ruleIndex = 0;
 
       var iconProps = this._getIconProps();
 
       return rules.map(function (rule) {
-        var ruleKey = "rule-".concat(ruleIndex++);
-        var ruleIcon = iconProps.notMetIcon;
-        var className = 'lvd-passwordbox-rule';
+        var ruleKey = _this2._computeRuleKey(ruleIndex++);
 
-        if (rule.ruleMet) {
-          className = "".concat(className, " is-rule-met");
-          ruleIcon = iconProps.metIcon;
-        } else {
-          className = "".concat(className, " is-not-rule-met");
-        }
+        var ruleDisplayProps = _this2._computeRuleItemDisplayProps(rule, iconProps);
 
-        var ruleIconClassName = "lvd-passwordbox-rule-icon ms-Icon ms-Icon--".concat(ruleIcon);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement("li", {
           key: ruleKey,
-          className: className
+          className: ruleDisplayProps.className
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement("i", {
-          className: ruleIconClassName
+          className: ruleDisplayProps.ruleIconClassName
         }), rule.text);
       });
     }
@@ -31818,6 +31755,36 @@ var PasswordStatusCallout = /*#__PURE__*/function (_React$Component) {
     value: function _getIconProps() {
       var iconProps = this.props.iconProps || {};
       return Object.assign(_PasswordBoxDefaults_js__WEBPACK_IMPORTED_MODULE_8__.default.rules.icons, iconProps);
+    }
+  }, {
+    key: "_computeRuleKey",
+    value: function _computeRuleKey(ruleIndex) {
+      return "rule-".concat(ruleIndex);
+    }
+  }, {
+    key: "_computeRuleItemDisplayProps",
+    value: function _computeRuleItemDisplayProps(rule, iconProps) {
+      var className = 'lvd-passwordbox-rule';
+      var ruleIconName = iconProps.notMetIcon;
+
+      if (rule.ruleMet) {
+        className = "".concat(className, " is-rule-met");
+        ruleIconName = iconProps.metIcon;
+      } else {
+        className = "".concat(className, " is-not-rule-met");
+      }
+
+      var ruleIconClassName = this._computeRuleIconClassName(ruleIconName);
+
+      return {
+        className: className,
+        ruleIconClassName: ruleIconClassName
+      };
+    }
+  }, {
+    key: "_computeRuleIconClassName",
+    value: function _computeRuleIconClassName(ruleIconName) {
+      return "lvd-passwordbox-rule-icon ms-Icon ms-Icon--".concat(ruleIconName);
     }
   }]);
 
@@ -34545,6 +34512,120 @@ function getStyles(props) {
     };
 }
 //# sourceMappingURL=TextField.styles.js.map
+
+/***/ }),
+/* 193 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "evaluatePassword": () => (/* binding */ evaluatePassword)
+/* harmony export */ });
+/* harmony import */ var _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(194);
+/* harmony import */ var _components_PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(110);
+
+
+
+function _hasMoreThanMinimumLength(password) {
+  return password.length > 8;
+}
+
+function _hasLowercaseLetters(password) {
+  return !!password.match(/[a-z]+/);
+}
+
+function _hasUppercaseLetters(password) {
+  return !!password.match(/[A-Z]+/);
+}
+
+function _hasNumbers(password) {
+  return !!password.match(/[0-9]+/);
+}
+
+function _hasNonAlphaNumericCharacters(password) {
+  return !!password.match(/[^a-zA-Z0-9]+/);
+}
+
+function _getRules() {
+  return [new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_0__.default(_hasMoreThanMinimumLength, 'Must be more than 8 characters in length'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_0__.default(_hasLowercaseLetters, 'Must contain lowercase letters'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_0__.default(_hasUppercaseLetters, 'Must contain uppercase letters'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_0__.default(_hasNumbers, 'Must contain numbers'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_0__.default(_hasNonAlphaNumericCharacters, 'Must contain non-alphanumeric characters')];
+}
+
+function evaluatePassword(password) {
+  if (!password) {
+    return {
+      level: null,
+      rules: []
+    };
+  }
+
+  var rules = _getRules();
+
+  var rulesResult = [];
+  var level = _components_PasswordStrengthLevels_js__WEBPACK_IMPORTED_MODULE_1__.PasswordStrengthLevels.veryWeak;
+  rules.forEach(function (rule) {
+    if (rule.evaluate(password)) {
+      level = level.next();
+      rulesResult.push({
+        ruleMet: true,
+        text: rule.name
+      });
+    } else {
+      rulesResult.push({
+        ruleMet: false,
+        text: rule.name
+      });
+    }
+  });
+  return {
+    level: level,
+    rules: rulesResult
+  };
+}
+
+/***/ }),
+/* 194 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ PasswordCallbackRule)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(17);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(18);
+
+
+
+var PasswordCallbackRule = /*#__PURE__*/function () {
+  function PasswordCallbackRule(callback, name) {
+    var allowEmpty = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__.default)(this, PasswordCallbackRule);
+
+    this._callback = callback;
+    this._name = name;
+    this._allowEmpty = allowEmpty;
+  }
+
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__.default)(PasswordCallbackRule, [{
+    key: "evaluate",
+    value: function evaluate(input) {
+      if (!input) {
+        return this._allowEmpty;
+      }
+
+      return this._callback(input);
+    }
+  }, {
+    key: "name",
+    get: function get() {
+      return this._name;
+    }
+  }]);
+
+  return PasswordCallbackRule;
+}();
+
+
 
 /***/ })
 ],

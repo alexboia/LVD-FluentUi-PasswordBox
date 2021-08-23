@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { DirectionalHint, FontWeights, TextField } from '@fluentui/react';
-import { Text, Callout } from '@fluentui/react';
+import { TextField } from '@fluentui/react';
 
 import PasswordBoxDefaults from './PasswordBoxDefaults.js';
-import { PasswordStrengthLevels } from './PasswordStrengthLevels.js';
 import StrengthIndicatorStyles from './StrengthIndicatorStyles.js';
 import PasswordStrengthIndicator from './PasswordStrengthIndicator.jsx';
 import PasswordStatusCallout from './PasswordStatusCallout.jsx';
@@ -17,9 +15,12 @@ export default class PasswordBox extends React.Component {
 		this.state = {
 			password: '',
 			hasInteracted: false,
+			showRulesCallout: true,
 			canShowRulesCallout: false
 		};
 
+		this._handlePasswordFocused =
+			this._handlePasswordFocused.bind(this);
 		this._handlePasswordChanged = 
 			this._handlePasswordChanged.bind(this);
 		this._getPasswordFieldErrorMessage = 
@@ -90,6 +91,15 @@ export default class PasswordBox extends React.Component {
 		}
 	}
 
+	_handlePasswordFocused(event) {
+		event.preventDefault();
+		if (!!this.state.password) {
+			this.setState({
+				showRulesCallout: true
+			});
+		}
+	}
+
 	render() {
 		return (
 			<div className="lvd-passwordbox-root" ref={this._passwordBoxContainerRef}>
@@ -118,6 +128,7 @@ export default class PasswordBox extends React.Component {
 				disabled={disabled}
 				required={required}
 				onChange={this._handlePasswordChanged}
+				onFocus={this._handlePasswordFocused}
 				onGetErrorMessage={this._getPasswordFieldErrorMessage}
 				className={className}
 				underlined={underlined}
@@ -184,6 +195,7 @@ export default class PasswordBox extends React.Component {
 	_renderPasswordRulesCallout() {
 		const passwordRulesProps = this._getPasswordRulesProps();
 		const showRulesCallout = this.state.canShowRulesCallout
+			&& this.state.showRulesCallout
 			&& passwordRulesProps.rules.length > 0;
 
 		return showRulesCallout && (
@@ -213,30 +225,8 @@ export default class PasswordBox extends React.Component {
 
 	_handlePasswordStatusCalloutDismiss() {
 		this.setState({
-			showCallout: false
+			showRulesCallout: false
 		});
-	}
-
-	_getPasswordSampleStatus() {
-		return {
-			strength: {
-				score: { //or percentage 0-1
-					value: 1,
-					max: 5 
-				},
-				description: 'The password is strong with this one!'
-			},
-			rules: [
-				{
-					text: 'Must contain letters',
-					ruleMet: true
-				},
-				{
-					text: 'Must contain numbers',
-					ruleMet: false
-				}
-			]
-		};
 	}
 }
 

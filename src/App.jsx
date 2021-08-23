@@ -3,6 +3,8 @@ import PasswordBox from './components/PasswordBox.jsx';
 import { PasswordStrengthLevels } from './components/PasswordStrengthLevels.js';
 import StrengthIndicatorStyles from './components/StrengthIndicatorStyles.js';
 
+import { evaluatePassword } from './PasswordEvaluator.js';
+
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -25,36 +27,12 @@ export default class App extends React.Component {
 		this._log(`Old password is ${this._formatPasswordValue(oldValue)}`);
 		this._log(`New password is ${this._formatPasswordValue(newValue)}`);
 
-		const strengthLevel = this._computePasswordStrengthLevel(newValue);
+		const result = evaluatePassword(newValue);
+
 		this.setState({
-			strengthLevel: strengthLevel
+			strengthLevel: result.level,
+			rules: result.rules
 		});
-	}
-
-	_computePasswordStrengthLevel(password) {
-		if (!password) {
-			return null;
-		}
-
-		let level = PasswordStrengthLevels.veryWeak;
-		
-		if (this._hasLowercaseLetters(password)) {
-			level = level.next();
-		}
-
-		if (this._hasUppercaseLetters(password)) {
-			level = level.next();
-		}
-
-		if (this._hasNonAlphaNumericCharacters(password)) {
-			level = level.next();
-		}
-
-		if (this._hasMoreThanMinimumLength(password)) {
-			level = level.next();
-		}
-
-		return level;
 	}
 
 	_formatPasswordValue(value) {
@@ -74,27 +52,8 @@ export default class App extends React.Component {
 		this._log(`Last password value is ${this._formatPasswordValue(value)}.`);
 	}
 
-	_hasMoreThanMinimumLength(password) {
-		return password.length > 8;
-	}
-
-	_hasLowercaseLetters(password) {
-		return !!password.match(/[a-z]+/);
-	}
-
-	_hasUppercaseLetters(password) {
-		return !!password.match(/[A-Z]+/);
-	}
-
-	_hasNumbers(password) {
-		return !!password.match(/[0-9]+/);
-	}
-
-	_hasNonAlphaNumericCharacters(password) {
-		return !!password.match(/[^a-zA-Z0-9]+/);
-	}
-
 	render() {
+		const rules = this.state.rules;
 		const strengthLevel = this.state.strengthLevel;
 		const strengthText = strengthLevel != null 
 			? strengthLevel.defaultLabel 
@@ -107,6 +66,9 @@ export default class App extends React.Component {
 						style: StrengthIndicatorStyles.intermittentBar,
 						level: strengthLevel,
 						text: strengthText
+					}}
+					passwordRulesProps={{
+						rules: rules
 					}}
 					onPasswordChanged={this._handlePasswordChanged}
 					onPasswordBoxInitialized={this._handlePasswordBoxInitialized}
