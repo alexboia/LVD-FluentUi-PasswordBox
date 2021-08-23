@@ -282,6 +282,11 @@ export function evaluatePassword(password) {
 }
 ```
 
+You may also create your own password rules objects, just as long as they provide:
+
+- an `evaluate(input)` method, that returns `true` if the password satisfies the rule or `false` otherwise;
+- a `name` property, that describes the rule - will be displayed to the user.
+
 ## Events
 <a name="pb-events"></a>
 
