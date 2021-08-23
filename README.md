@@ -211,3 +211,15 @@ A plain javascript object with the following properties:
 | `style` | `object` | Inline style applied. Defaults to `{ marginBottom: 0, fontWeight: FontWeights.semilight }`. |
 
 These properties mirror their corresponding properties described for the [FluentUI `Text` component](https://developer.microsoft.com/en-us/fluentui#/controls/web/text).
+
+#### Password Information Callout Icons Properties Object
+
+These properties describe various icons used for rendering the password rules.
+A plain javascript object with the following properties:
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `metIcon` | Type | Icon name used when the rule is met. Defaults to `CheckMark`.  |
+| `notMetIcon` | Type | Icon name used when the rule is not met. Defaults to `Cancel`.  |
+
+Please see the supported [FluentUI icons](https://developer.microsoft.com/en-us/fluentui#/styles/web/icons).
