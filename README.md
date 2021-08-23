@@ -35,7 +35,8 @@ The `demo` directory contains [a compiled and ready-to-run example](https://gith
 
 ```javascript
 import React from 'react';
-import { PasswordBox, StrengthIndicatorStyles } from 'lvd-fluentui-passwordbox';
+import { PasswordBox, 
+	StrengthIndicatorStyles } from 'lvd-fluentui-passwordbox';
 
 class SomePasswordPage extends React.Component {
 	constructor(props) {
@@ -242,9 +243,10 @@ However, for your convenience there's an API that you can use to do so:
 Here's an example, similar to the one built-in the demo application:
 
 ```javascript
-import PasswordEvaluator from 'lvd-fluentui-passwordbox';
-import PasswordCallbackRule from 'lvd-fluentui-passwordbox';
-import PasswordLengthRule from 'lvd-fluentui-passwordbox';
+import { PasswordEvaluator, 
+	PasswordCallbackRule, 
+	PasswordLengthRule } 
+from 'lvd-fluentui-passwordbox';
 
 function _hasLowercaseLetters(password) {
 	return !!password.match(/[a-z]+/);

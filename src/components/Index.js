@@ -1,9 +1,10 @@
 import PasswordBox from './PasswordBox.jsx';
 import PasswordCallbackRule from './rules/PasswordCallbackRule.js';
 import PasswordRegexRule from './rules/PasswordRegexRule.js';
+import PasswordLengthRule from './rules/PasswordLengthRule.js';
 import PasswordEvaluator from './rules/PasswordEvaluator.js';
-import PasswordStrengthIndicator from './PasswordStrengthIndicator.jsx';
 
+import PasswordStrengthIndicator from './PasswordStrengthIndicator.jsx';
 import StrengthIndicatorStyles from './StrengthIndicatorStyles.js';
 
 import { 
@@ -16,8 +17,9 @@ export {
 	PasswordCallbackRule,
 	PasswordRegexRule,
 	PasswordEvaluator,
-	PasswordStrengthIndicator,
+	PasswordLengthRule,
 
+	PasswordStrengthIndicator,
 	StrengthIndicatorStyles,
 	PasswordStrengthLevels,
 	
