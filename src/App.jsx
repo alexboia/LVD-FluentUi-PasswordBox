@@ -61,6 +61,11 @@ export default class App extends React.Component {
 		return (
 			<div className="lvd-passwordbox-demo-container">
 				<PasswordBox 
+					label="Your password, please"
+					placeholder="Please fill in your new password"
+					canReveal={true}
+					required={true}
+					emptyErrorMessage="The password is required, whether you like it or not!"
 					passwordStrengthProps={{
 						style: StrengthIndicatorStyles.intermittentBar,
 						level: strengthLevel,
