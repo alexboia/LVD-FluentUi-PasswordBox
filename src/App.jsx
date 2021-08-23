@@ -74,7 +74,12 @@ export default class App extends React.Component {
 					passwordRulesProps={{
 						rules: rules,
 						title: {
-							text: 'Required password rules'
+							text: 'Required password rules',
+							variant: 'medium'
+						},
+						icons: {
+							notMetIcon: 'Warning',
+							metIcon: 'Emoji'
 						}
 					}}
 					onPasswordChanged={this._handlePasswordChanged}
