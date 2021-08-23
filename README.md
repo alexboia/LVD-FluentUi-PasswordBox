@@ -1,5 +1,7 @@
 # LVD-FluentUi-PasswordBox
 
+[![NPM](https://nodei.co/npm/lvd-fluentui-passwordbox.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/lvd-fluentui-passwordbox/)
+
 A ReactJS password box built using the [FluentUI library](https://github.com/microsoft/fluentui).
 It features a basic structure, with some additional features: 
 
