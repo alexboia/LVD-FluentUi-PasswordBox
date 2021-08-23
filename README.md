@@ -20,6 +20,18 @@ And also an animated gif which shows how it all respons to user input:
 	<img align="center" src="https://raw.githubusercontent.com/alexboia/LVD-FluentUi-PasswordBox/main/docs/AnimationPWD.gif" style="margin-bottom: 20px; margin-right: 20px; border-radius: 5px;" />
 </p>
 
+## Contents
+
+1. [Installation](#pb-installation)
+2. [Demo](#pb-demo)
+3. [Basic Usage](#pb-basic-usage)
+4. [Styling](#pb-styling)
+5. [Building](#pb-building)
+6. [Customization Options](#pb-customization)
+7. [Events](#pb-events)
+8. [Computing password strength levels](#pb-compute-strength-levels)
+9. [Donate](#pb-donate)
+
 ## Installation
 <a name="pb-installation"></a>
 
@@ -229,6 +241,7 @@ A plain javascript object with the following properties:
 Please see the supported [FluentUI icons](https://developer.microsoft.com/en-us/fluentui#/styles/web/icons).
 
 ## Computing password strength levels
+<a name="pb-compute-strength-levels"></a>
 
 It is up to you how you compute the password strength level, just as long you provide one of the values described above.
 
