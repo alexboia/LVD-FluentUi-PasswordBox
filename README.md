@@ -144,6 +144,11 @@ The following [strength levels are available](https://github.com/alexboia/LVD-Fl
 
 | Name | Usage | Notes |
 | --- | --- | --- |
+| Very Weak | `PasswordStrengthLevels.veryWeak` | By default, up to 20% strength. |
+| Weak | `PasswordStrengthLevels.weak` | By default, from 21% up to 40% strength. |
+| Medium | `PasswordStrengthLevels.medium` | By default, from 41% up to 60% strength. |
+| Strong | `PasswordStrengthLevels.strong` | By default, from 61% up to 80% strength. |
+| Very Strong | `PasswordStrengthLevels.veryStrong` | By default, from 81% up to 100% strength. |
 
 ### Strength Indicator Styles
 
@@ -156,3 +161,33 @@ The following [styles are available](https://github.com/alexboia/LVD-FluentUi-Pa
 | Text Only | `StrengthIndicatorStyles.textOnly` | Just displays a descriptive text. [Implemented here](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/strengthIndicatorStyles/TextOnly.jsx) |
 
 ### Password Rules Information Object
+
+A plain javascript object with the following properties:
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `rules` | `Rule Evaluation Result Object[]` | See below. |
+| `container` | `Password Information Callout Container Properties Object` | See below. |
+| `title` | `Password Information Callout Title Properties Object` | See below. |
+| `icons` | `Password Information Callout Icons Properties Object` | See below. |
+
+#### Rule Evaluation Result Object
+
+A plain javascript object with the following properties:
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `ruleMet` | `boolean` | Whether or not the rule is satisfied or not. |
+| `text` | `string` | The descriptive text, displayed for the object. |
+
+#### Password Information Callout Container Properties Object
+
+A plain javascript object with the following properties:
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `gapSpace` | `number` | - |
+| `isBeakVisible` | `boolean` | - |
+| `beakWidth` | `number` | - |
+| `directionalHint` | `DirectionalHint` | - |
+| `style` | `object` | - |
