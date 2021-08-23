@@ -7,7 +7,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
-/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(206);
+/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(207);
 /* harmony import */ var _Root_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(16);
 
 
@@ -30022,7 +30022,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(21);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(24);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2);
-/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(196);
+/* harmony import */ var _fluentui_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(197);
 /* harmony import */ var _App_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(25);
 
 
@@ -34548,12 +34548,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _components_rules_PasswordEvaluator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(194);
 /* harmony import */ var _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(195);
+/* harmony import */ var _components_rules_PasswordLengthRule_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(196);
 
 
 
-function _hasMoreThanMinimumLength(password) {
-  return password.length > 8;
-}
 
 function _hasLowercaseLetters(password) {
   return !!password.match(/[a-z]+/);
@@ -34572,7 +34570,7 @@ function _hasNonAlphaNumericCharacters(password) {
 }
 
 function _getRules() {
-  return [new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_1__.default(_hasMoreThanMinimumLength, 'Must be more than 8 characters in length'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_1__.default(_hasLowercaseLetters, 'Must contain lowercase letters'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_1__.default(_hasUppercaseLetters, 'Must contain uppercase letters'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_1__.default(_hasNumbers, 'Must contain numbers'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_1__.default(_hasNonAlphaNumericCharacters, 'Must contain non-alphanumeric characters')];
+  return [new _components_rules_PasswordLengthRule_js__WEBPACK_IMPORTED_MODULE_2__.default(8), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_1__.default(_hasLowercaseLetters, 'Must contain lowercase letters'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_1__.default(_hasUppercaseLetters, 'Must contain uppercase letters'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_1__.default(_hasNumbers, 'Must contain numbers'), new _components_rules_PasswordCallbackRule_js__WEBPACK_IMPORTED_MODULE_1__.default(_hasNonAlphaNumericCharacters, 'Must contain non-alphanumeric characters')];
 }
 
 function evaluatePassword(password) {
@@ -34703,6 +34701,50 @@ var PasswordCallbackRule = /*#__PURE__*/function () {
   }]);
 
   return PasswordCallbackRule;
+}();
+
+
+
+/***/ }),
+/* 196 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ PasswordLengthRule)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(17);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(18);
+
+
+
+var PasswordLengthRule = /*#__PURE__*/function () {
+  function PasswordLengthRule(minimumLength) {
+    var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__.default)(this, PasswordLengthRule);
+
+    this._minimumLength = minimumLength;
+    this._name = name;
+  }
+
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__.default)(PasswordLengthRule, [{
+    key: "evaluate",
+    value: function evaluate(input) {
+      if (!input || !input.length) {
+        return this._minimumLength == 0;
+      }
+
+      return input.length >= this._minimumLength;
+    }
+  }, {
+    key: "name",
+    get: function get() {
+      return this._name || "Must be at least ".concat(this._minimumLength, " character(s) in length");
+    }
+  }]);
+
+  return PasswordLengthRule;
 }();
 
 

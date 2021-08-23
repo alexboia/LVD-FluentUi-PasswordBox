@@ -233,7 +233,10 @@ It is up to you how you compute the password strength level, just as long you pr
 
 However, for your convenience there's an API that you can use to do so:
 
-- define your rules using by creating instances of [`PasswordCallbackRule`](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/rules/PasswordCallbackRule.js) and [`PasswordRegexRule`](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/rules/PasswordRegexRule.js).
+- define your rules using by creating instances of: 
+	- [`PasswordCallbackRule`](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/rules/PasswordCallbackRule.js);
+	- [`PasswordLengthRule`] (https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/rules/PasswordLengthRule.js);
+	- [`PasswordRegexRule`](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/rules/PasswordRegexRule.js).
 - feed these rules to the [built-in password evaluator](https://github.com/alexboia/LVD-FluentUi-PasswordBox/blob/main/src/components/rules/PasswordEvaluator.js).
 
 Here's an example, similar to the one built-in the demo application:
@@ -241,10 +244,7 @@ Here's an example, similar to the one built-in the demo application:
 ```javascript
 import PasswordEvaluator from 'lvd-fluentui-passwordbox';
 import PasswordCallbackRule from 'lvd-fluentui-passwordbox';
-
-function _hasMoreThanMinimumLength(password) {
-	return password.length > 8;
-}
+import PasswordLengthRule from 'lvd-fluentui-passwordbox';
 
 function _hasLowercaseLetters(password) {
 	return !!password.match(/[a-z]+/);
@@ -264,8 +264,7 @@ function _hasNonAlphaNumericCharacters(password) {
 
 function _getRules() {
 	return [
-		new PasswordCallbackRule(_hasMoreThanMinimumLength, 
-			'Must be more than 8 characters in length'),
+		new PasswordLengthRule(8),
 		new PasswordCallbackRule(_hasLowercaseLetters, 
 			'Must contain lowercase letters'),
 		new PasswordCallbackRule(_hasUppercaseLetters, 
