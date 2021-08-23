@@ -17,7 +17,7 @@ Here's a static screenshot of how it all looks like [using the default styling](
 And also an animated gif which shows how it all respons to user input:
 
 <p align="left">
-	<img align="center" src="https://raw.githubusercontent.com/alexboia/LVD-FluentUi-PasswordBox/main/docs/AnimationPWD" style="margin-bottom: 20px; margin-right: 20px; border-radius: 5px;" />
+	<img align="center" src="https://raw.githubusercontent.com/alexboia/LVD-FluentUi-PasswordBox/main/docs/AnimationPWD.gif" style="margin-bottom: 20px; margin-right: 20px; border-radius: 5px;" />
 </p>
 
 ## Installation
