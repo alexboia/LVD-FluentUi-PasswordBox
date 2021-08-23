@@ -65,6 +65,7 @@ export default class App extends React.Component {
 					placeholder="Please fill in your new password"
 					canReveal={true}
 					required={true}
+					underlined={true}
 					emptyErrorMessage="The password is required, whether you like it or not!"
 					passwordStrengthProps={{
 						style: StrengthIndicatorStyles.intermittentBar,
@@ -77,8 +78,6 @@ export default class App extends React.Component {
 					onPasswordChanged={this._handlePasswordChanged}
 					onPasswordBoxInitialized={this._handlePasswordBoxInitialized}
 					onPasswordBoxDisposed={this._handlePasswordBoxDisposed}
-					required={true}
-					underlined={false}
 				/>
 			</div>
 		);

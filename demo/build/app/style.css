@@ -19340,6 +19340,10 @@ template {
 	margin: 0;
 	padding: 0;
 }
+
+.lvd-passwordbox-root .ms-TextField--underlined .ms-Label {
+	padding-left: 0px;
+}
 .lvd-passwordbox-strength {
 	width: 100%;
 	margin-bottom: 5px;
