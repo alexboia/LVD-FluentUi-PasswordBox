@@ -15,6 +15,9 @@ const PasswordBoxDefaults = {
 
 	rules: {
 		container: {
+			calloutMaxWidth: 0,
+			calloutMinWidth: 0,
+			calloutWidth: 0,
 			gapSpace: 5,
 			isBeakVisible: true,
 			beakWidth: 15,

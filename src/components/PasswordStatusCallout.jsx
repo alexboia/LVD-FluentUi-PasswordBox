@@ -28,6 +28,9 @@ export default class PasswordStatusCallout extends React.Component {
 			<Callout 
 				target={target} 
 				gapSpace={containerProps.gapSpace}
+				calloutWidth={containerProps.calloutWidth}
+				calloutMaxWidth={containerProps.calloutMaxWidth}
+				calloutMinWidth={containerProps.calloutMinWidth}
 				isBeakVisible={containerProps.isBeakVisible}
 				beakWidth={containerProps.beakWidth}
 				directionalHint={containerProps.directionalHint}

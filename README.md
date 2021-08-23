@@ -182,12 +182,32 @@ A plain javascript object with the following properties:
 
 #### Password Information Callout Container Properties Object
 
+These are the properties that are applied to the callout container itself. 
 A plain javascript object with the following properties:
 
 | Name | Type | Notes |
 | --- | --- | --- |
-| `gapSpace` | `number` | - |
-| `isBeakVisible` | `boolean` | - |
-| `beakWidth` | `number` | - |
-| `directionalHint` | `DirectionalHint` | - |
-| `style` | `object` | - |
+| `gapSpace` | `number` | Defaults to `5`. |
+| `isBeakVisible` | `boolean` | Defaults to `true`. |
+| `beakWidth` | `number` | Defaults to `15`. |
+| `directionalHint` | `DirectionalHint` | Defaults to `DirectionalHint.bottomCenter`. |
+| `style` | `object` | Inline style applied. Defaults to `{ width: 300, padding: 10 }`. |
+| `calloutWidth` | `number` | Defaults to `0`. |
+| `calloutMaxWidth` | `number` | Defaults to `0`. |
+| `calloutMinWidth` | `number` | Defaults to `0`. |
+
+These properties mirror their corresponding properties described for the [FluentUI `Callout` component](https://developer.microsoft.com/en-us/fluentui#/controls/web/callout).
+
+#### Password Information Callout Title Properties Object
+
+These are the properties that are applied to the callout title. 
+A plain javascript object with the following properties:
+
+| Name | Type | Notes |
+| --- | --- | --- |
+| `visible` | `boolean` | Whether o not to show the tile. Defaults to `true`. |
+| `text` | `string` | The title text. Defaults to `Password rules`. |
+| `variant` | `IFontStyles` | Defaults to `mediumPlus`. |
+| `style` | `object` | Inline style applied. Defaults to `{ marginBottom: 0, fontWeight: FontWeights.semilight }`. |
+
+These properties mirror their corresponding properties described for the [FluentUI `Text` component](https://developer.microsoft.com/en-us/fluentui#/controls/web/text).
