@@ -28,4 +28,5 @@ body, #root {
 .lvd-passwordbox-demo-container {
 	width: 500px;
 	margin: auto;
+	margin-top: 250px;
 }
