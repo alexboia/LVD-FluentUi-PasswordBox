@@ -30174,7 +30174,7 @@ var App = /*#__PURE__*/function (_React$Component) {
         placeholder: "Please fill in your new password",
         canReveal: true,
         required: true,
-        underlined: true,
+        underlined: false,
         emptyErrorMessage: "The password is required, whether you like it or not!",
         passwordStrengthProps: {
           style: _components_StrengthIndicatorStyles_js__WEBPACK_IMPORTED_MODULE_8__.default.intermittentBar,
@@ -30182,7 +30182,10 @@ var App = /*#__PURE__*/function (_React$Component) {
           text: strengthText
         },
         passwordRulesProps: {
-          rules: rules
+          rules: rules,
+          title: {
+            text: 'Required password rules'
+          }
         },
         onPasswordChanged: this._handlePasswordChanged,
         onPasswordBoxInitialized: this._handlePasswordBoxInitialized,
