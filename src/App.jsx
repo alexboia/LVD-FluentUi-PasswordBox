@@ -67,6 +67,7 @@ export default class App extends React.Component {
 					canReveal={true}
 					required={true}
 					underlined={false}
+					autoComplete={false}
 					emptyErrorMessage="The password is required, whether you like it or not!"
 					passwordStrengthProps={{
 						style: StrengthIndicatorStyles.intermittentBar,

@@ -70,9 +70,11 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
       password: '',
       hasInteracted: false,
       showRulesCallout: true,
-      canShowRulesCallout: false
+      canShowRulesCallout: false,
+      showStrengthIndicator: true
     };
     _this._handlePasswordFocused = _this._handlePasswordFocused.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
+    _this._handlePasswordBlured = _this._handlePasswordBlured.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
     _this._handlePasswordChanged = _this._handlePasswordChanged.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
     _this._getPasswordFieldErrorMessage = _this._getPasswordFieldErrorMessage.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
     _this._handlePasswordStatusCalloutDismiss = _this._handlePasswordStatusCalloutDismiss.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
@@ -160,6 +162,25 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
           showRulesCallout: true
         });
       }
+
+      this.setState({
+        showStrengthIndicator: true
+      });
+    }
+  }, {
+    key: "_handlePasswordBlured",
+    value: function _handlePasswordBlured(event) {
+      event.preventDefault();
+      this.setState({
+        showStrengthIndicator: this._shouldShowOnBlur()
+      });
+    }
+  }, {
+    key: "_shouldShowOnBlur",
+    value: function _shouldShowOnBlur() {
+      var strengthProps = this._getPasswordStrengthProps();
+
+      return !strengthProps.hideOnBlur;
     }
   }, {
     key: "render",
@@ -188,6 +209,7 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
 
       var readOnly = this._isReadOnly();
 
+      var autoComplete = this._isAutoComplete() ? 'on' : 'off';
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default().createElement(_fluentui_react__WEBPACK_IMPORTED_MODULE_8__.TextField, {
         type: "password",
         label: label,
@@ -197,10 +219,12 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
         required: required,
         onChange: this._handlePasswordChanged,
         onFocus: this._handlePasswordFocused,
+        onBlur: this._handlePasswordBlured,
         onGetErrorMessage: this._getPasswordFieldErrorMessage,
         className: className,
         underlined: underlined,
-        readOnly: readOnly
+        readOnly: readOnly,
+        autoComplete: autoComplete
       });
     }
   }, {
@@ -244,11 +268,17 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
       return !!this.props.readOnly;
     }
   }, {
+    key: "_isAutoComplete",
+    value: function _isAutoComplete() {
+      return !!this.props.autoComplete;
+    }
+  }, {
     key: "_renderPasswordStrengthIndicator",
     value: function _renderPasswordStrengthIndicator() {
       var strengthProps = this._getPasswordStrengthProps();
 
-      var showIndicator = !!strengthProps.style && strengthProps.style != _StrengthIndicatorStyles_js__WEBPACK_IMPORTED_MODULE_10__.default.none && strengthProps.level != null;
+      var showIndicator = this._shouldShowStrengthIndicator(strengthProps);
+
       return showIndicator && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default().createElement(_PasswordStrengthIndicator_jsx__WEBPACK_IMPORTED_MODULE_11__.default, {
         style: strengthProps.style,
         strengthPercent: strengthProps.percent,
@@ -264,15 +294,22 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
         style: strengthProps.style || _PasswordBoxDefaults_js__WEBPACK_IMPORTED_MODULE_9__.default.strength.style,
         percent: strengthProps.percent || 0,
         level: strengthProps.level || null,
-        text: strengthProps.text || null
+        text: strengthProps.text || null,
+        hideOnBlur: strengthProps.hasOwnProperty('hideOnBlur') ? !!strengthProps.hideOnBlur : false
       };
+    }
+  }, {
+    key: "_shouldShowStrengthIndicator",
+    value: function _shouldShowStrengthIndicator(strengthProps) {
+      return !!strengthProps.style && strengthProps.style != _StrengthIndicatorStyles_js__WEBPACK_IMPORTED_MODULE_10__.default.none && strengthProps.level != null && this.state.showStrengthIndicator;
     }
   }, {
     key: "_renderPasswordRulesCallout",
     value: function _renderPasswordRulesCallout() {
       var passwordRulesProps = this._getPasswordRulesProps();
 
-      var showRulesCallout = this.state.canShowRulesCallout && this.state.showRulesCallout && passwordRulesProps.rules.length > 0;
+      var showRulesCallout = this._shouldShowRulesCallout(passwordRulesProps);
+
       return showRulesCallout && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default().createElement(_PasswordStatusCallout_jsx__WEBPACK_IMPORTED_MODULE_12__.default, {
         rules: passwordRulesProps.rules,
         iconProps: passwordRulesProps.icons,
@@ -294,6 +331,11 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "_shouldShowRulesCallout",
+    value: function _shouldShowRulesCallout(passwordRulesProps) {
+      return this.state.canShowRulesCallout && this.state.showRulesCallout && passwordRulesProps.rules.length > 0;
+    }
+  }, {
     key: "_handlePasswordStatusCalloutDismiss",
     value: function _handlePasswordStatusCalloutDismiss() {
       this.setState({
@@ -313,6 +355,7 @@ PasswordBox.propTypes = {
   disabled: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
   underlined: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
   readOnly: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
+  autoComplete: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
   required: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
   emptyErrorMessage: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().string),
   passwordStrengthProps: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().object),

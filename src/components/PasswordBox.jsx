@@ -16,11 +16,14 @@ export default class PasswordBox extends React.Component {
 			password: '',
 			hasInteracted: false,
 			showRulesCallout: true,
-			canShowRulesCallout: false
+			canShowRulesCallout: false,
+			showStrengthIndicator: true
 		};
 
 		this._handlePasswordFocused =
 			this._handlePasswordFocused.bind(this);
+		this._handlePasswordBlured = 
+			this._handlePasswordBlured.bind(this);
 		this._handlePasswordChanged = 
 			this._handlePasswordChanged.bind(this);
 		this._getPasswordFieldErrorMessage = 
@@ -98,6 +101,22 @@ export default class PasswordBox extends React.Component {
 				showRulesCallout: true
 			});
 		}
+
+		this.setState({
+			showStrengthIndicator: true
+		});
+	}
+
+	_handlePasswordBlured(event) {
+		event.preventDefault();
+		this.setState({
+			showStrengthIndicator: this._shouldShowOnBlur()
+		});
+	}
+
+	_shouldShowOnBlur() {
+		const strengthProps = this._getPasswordStrengthProps();
+		return !strengthProps.hideOnBlur;
 	}
 
 	render() {
@@ -133,6 +152,7 @@ export default class PasswordBox extends React.Component {
 				required={required}
 				onChange={this._handlePasswordChanged}
 				onFocus={this._handlePasswordFocused}
+				onBlur={this._handlePasswordBlured}
 				onGetErrorMessage={this._getPasswordFieldErrorMessage}
 				className={className}
 				underlined={underlined}
@@ -182,9 +202,7 @@ export default class PasswordBox extends React.Component {
 
 	_renderPasswordStrengthIndicator() {
 		const strengthProps = this._getPasswordStrengthProps();
-		const showIndicator = !!strengthProps.style 
-			&& strengthProps.style != StrengthIndicatorStyles.none
-			&& strengthProps.level != null;
+		const showIndicator = this._shouldShowStrengthIndicator(strengthProps);
 
 		return showIndicator && (
 			<PasswordStrengthIndicator
@@ -202,15 +220,23 @@ export default class PasswordBox extends React.Component {
 			style: strengthProps.style || PasswordBoxDefaults.strength.style,
 			percent: strengthProps.percent || 0,
 			level: strengthProps.level || null,
-			text: strengthProps.text || null
+			text: strengthProps.text || null,
+			hideOnBlur: strengthProps.hasOwnProperty('hideOnBlur')
+				? !!strengthProps.hideOnBlur
+				: false
 		};
+	}
+
+	_shouldShowStrengthIndicator(strengthProps) {
+		return  !!strengthProps.style 
+			&& strengthProps.style != StrengthIndicatorStyles.none
+			&& strengthProps.level != null
+			&& this.state.showStrengthIndicator;
 	}
 
 	_renderPasswordRulesCallout() {
 		const passwordRulesProps = this._getPasswordRulesProps();
-		const showRulesCallout = this.state.canShowRulesCallout
-			&& this.state.showRulesCallout
-			&& passwordRulesProps.rules.length > 0;
+		const showRulesCallout = this._shouldShowRulesCallout(passwordRulesProps);
 
 		return showRulesCallout && (
 			<PasswordStatusCallout 
@@ -235,6 +261,12 @@ export default class PasswordBox extends React.Component {
 			icons: Object.assign(PasswordBoxDefaults.rules.icons, 
 				passwordRulesProps.icons || {})
 		};
+	}
+
+	_shouldShowRulesCallout(passwordRulesProps) {
+		return this.state.canShowRulesCallout
+			&& this.state.showRulesCallout
+			&& passwordRulesProps.rules.length > 0;
 	}
 
 	_handlePasswordStatusCalloutDismiss() {
