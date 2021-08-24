@@ -119,6 +119,9 @@ export default class PasswordBox extends React.Component {
 		const className = this._getClassName();
 		const underlined = this._isUnderlined();
 		const readOnly = this._isReadOnly();
+		const autoComplete = this._isAutoComplete() 
+			? 'on' 
+			: 'off';
 
 		return (
 			<TextField 
@@ -134,6 +137,7 @@ export default class PasswordBox extends React.Component {
 				className={className}
 				underlined={underlined}
 				readOnly={readOnly}
+				autoComplete={autoComplete}
 			/>
 		);
 	}
@@ -170,6 +174,10 @@ export default class PasswordBox extends React.Component {
 
 	_isReadOnly() {
 		return !!this.props.readOnly;
+	}
+
+	_isAutoComplete() {
+		return !!this.props.autoComplete;
 	}
 
 	_renderPasswordStrengthIndicator() {
@@ -243,6 +251,7 @@ PasswordBox.propTypes = {
 	disabled: PropTypes.bool,
 	underlined: PropTypes.bool,
 	readOnly: PropTypes.bool,
+	autoComplete: PropTypes.bool,
 	
 	required: PropTypes.bool,
 	emptyErrorMessage: PropTypes.string,

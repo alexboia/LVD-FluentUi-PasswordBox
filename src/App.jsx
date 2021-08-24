@@ -24,9 +24,11 @@ export default class App extends React.Component {
 		this._log('Password changed.')
 		this._log(`Old password is ${this._formatPasswordValue(oldValue)}`);
 		this._log(`New password is ${this._formatPasswordValue(newValue)}`);
+		this._evaluateNewPassword(newValue);
+	}
 
+	_evaluateNewPassword(newValue) {
 		const result = evaluatePassword(newValue);
-
 		this.setState({
 			strengthLevel: result.level,
 			rules: result.rules
