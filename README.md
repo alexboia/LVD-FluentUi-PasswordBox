@@ -32,7 +32,8 @@ And also an animated gif which shows how it all respons to user input:
 6. [Customization Options](#pb-customization)
 7. [Computing password strength levels](#pb-compute-strength-levels)
 8. [Events](#pb-events)
-9. [Donate](#pb-donate)
+9. [Changelog](#pb-changelog)
+10. [Donate](#pb-donate)
 
 ## Installation
 <a name="pb-installation"></a>
@@ -134,6 +135,7 @@ npm run build
 | --- | --- | --- | --- |
 | Label | `label` | `string` | Defaults to `Password:` |
 | Placeholder | `placeholder` | `string` | Defaults to `Please fill in the password` |
+| Descriptive text displayed below the field | `description` | `string` | Defaults to empty string. |
 | Allow user to reveal password | `canReveal` | `boolean` | Defaults to `true` |
 | Disable the field | `disabled` | `boolean` | Defaults to `false` |
 | Display field in underlined style. | `underlined` | `boolean` | Defaults to `false` |
@@ -312,6 +314,17 @@ You may also create your own password rules objects, just as long as they provid
 | Value changed | `onPasswordChanged` | (`oldPassword`:`string`, `newPassword`:`string`) | Triggered whenever the value of the password field changes. |
 | Component initialized | `onPasswordBoxInitialized` | `none` | Triggered when the component is mounted by `React`. |
 | Component disposed | `onPasswordBoxDisposed` | (`currentPassword`:`string`) | Triggered when the component is un-mounted by `React`. |
+| Focused | `onFocus` | (`event`:`React.FormEvent`) | Triggered when the underlying password text field gains focus. |
+| Lost focus | `onBlur` | (`event`:`React.FormEvent`) | Triggered when the underlying password text field loses focus. |
+
+## Changelog
+<a name="pb-changelog"></a>
+
+### Version 0.0.3
+
+- A descriptive text can now be displayed below the text field input, using the `description` prop;
+- Can now listen for the text field input focus event using the `onFocus` prop;
+- Can now listen for the text field input blur event using the `onBlur` prop
 
 ## Donate
 <a name="pb-donate"></a>

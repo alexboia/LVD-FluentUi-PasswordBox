@@ -30121,6 +30121,8 @@ var App = /*#__PURE__*/function (_React$Component) {
     _this._handlePasswordChanged = _this._handlePasswordChanged.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
     _this._handlePasswordBoxInitialized = _this._handlePasswordBoxInitialized.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
     _this._handlePasswordBoxDisposed = _this._handlePasswordBoxDisposed.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
+    _this._handlePasswordBoxFocused = _this._handlePasswordBoxFocused.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
+    _this._handlePasswordBoxBlured = _this._handlePasswordBoxBlured.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
     return _this;
   }
 
@@ -30167,6 +30169,16 @@ var App = /*#__PURE__*/function (_React$Component) {
       this._log("Last password value is ".concat(this._formatPasswordValue(value), "."));
     }
   }, {
+    key: "_handlePasswordBoxFocused",
+    value: function _handlePasswordBoxFocused(event) {
+      this._log('Password box focused.');
+    }
+  }, {
+    key: "_handlePasswordBoxBlured",
+    value: function _handlePasswordBoxBlured(event) {
+      this._log('Password box blured.');
+    }
+  }, {
     key: "render",
     value: function render() {
       var rules = this.state.rules;
@@ -30177,6 +30189,7 @@ var App = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6__.createElement(_components_PasswordBox_jsx__WEBPACK_IMPORTED_MODULE_7__.default, {
         label: "Your password, please",
         placeholder: "Please fill in your new password",
+        description: "May the paswsord be strong with you!",
         canReveal: true,
         required: true,
         underlined: false,
@@ -30200,7 +30213,9 @@ var App = /*#__PURE__*/function (_React$Component) {
         },
         onPasswordChanged: this._handlePasswordChanged,
         onPasswordBoxInitialized: this._handlePasswordBoxInitialized,
-        onPasswordBoxDisposed: this._handlePasswordBoxDisposed
+        onPasswordBoxDisposed: this._handlePasswordBoxDisposed,
+        onFocus: this._handlePasswordBoxFocused,
+        onBlur: this._handlePasswordBoxBlured
       }));
     }
   }]);
@@ -30351,8 +30366,6 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "_handlePasswordFocused",
     value: function _handlePasswordFocused(event) {
-      event.preventDefault();
-
       if (!!this.state.password) {
         this.setState({
           showRulesCallout: true
@@ -30362,14 +30375,21 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
       this.setState({
         showStrengthIndicator: true
       });
+
+      if (this.props.onFocus != null) {
+        this.props.onFocus(event);
+      }
     }
   }, {
     key: "_handlePasswordBlured",
     value: function _handlePasswordBlured(event) {
-      event.preventDefault();
       this.setState({
         showStrengthIndicator: this._shouldShowOnBlur()
       });
+
+      if (this.props.onBlur != null) {
+        this.props.onBlur(event);
+      }
     }
   }, {
     key: "_shouldShowOnBlur",
@@ -30393,6 +30413,8 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
 
       var placeholder = this._getPlaceholder();
 
+      var description = this._getDescription();
+
       var canReveal = this._canReveal();
 
       var disabled = this._isDisabled();
@@ -30410,6 +30432,7 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
         type: "password",
         label: label,
         placeholder: placeholder,
+        description: description,
         canRevealPassword: canReveal,
         disabled: disabled,
         required: required,
@@ -30432,6 +30455,11 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
     key: "_getPlaceholder",
     value: function _getPlaceholder() {
       return this.props.placeholder || _PasswordBoxDefaults_js__WEBPACK_IMPORTED_MODULE_8__.default.placeholder;
+    }
+  }, {
+    key: "_getDescription",
+    value: function _getDescription() {
+      return this.props.description || _PasswordBoxDefaults_js__WEBPACK_IMPORTED_MODULE_8__.default.description;
     }
   }, {
     key: "_canReveal",
@@ -30547,6 +30575,7 @@ var PasswordBox = /*#__PURE__*/function (_React$Component) {
 PasswordBox.propTypes = {
   label: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().string),
   placeholder: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().string),
+  description: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().string),
   canReveal: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
   disabled: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
   underlined: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
@@ -30558,7 +30587,9 @@ PasswordBox.propTypes = {
   passwordRulesProps: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().object),
   onPasswordChanged: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func),
   onPasswordBoxInitialized: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func),
-  onPasswordBoxDisposed: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func)
+  onPasswordBoxDisposed: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func),
+  onFocus: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func),
+  onBlur: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func)
 };
 
 /***/ }),
@@ -30792,6 +30823,7 @@ __webpack_require__.r(__webpack_exports__);
 var PasswordBoxDefaults = {
   label: 'Password:',
   placeholder: 'Please fill in the password',
+  description: '',
   messages: {
     empty: 'You must fill in the password'
   },

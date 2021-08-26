@@ -18,6 +18,11 @@ export default class App extends React.Component {
 			this._handlePasswordBoxInitialized.bind(this);
 		this._handlePasswordBoxDisposed = 
 			this._handlePasswordBoxDisposed.bind(this);
+
+		this._handlePasswordBoxFocused = 
+			this._handlePasswordBoxFocused.bind(this);
+		this._handlePasswordBoxBlured = 
+			this._handlePasswordBoxBlured.bind(this);
 	}
 
 	_handlePasswordChanged(oldValue, newValue) {
@@ -52,6 +57,14 @@ export default class App extends React.Component {
 		this._log(`Last password value is ${this._formatPasswordValue(value)}.`);
 	}
 
+	_handlePasswordBoxFocused(event) {
+		this._log('Password box focused.')
+	}
+
+	_handlePasswordBoxBlured(event) {
+		this._log('Password box blured.')
+	}
+
 	render() {
 		const rules = this.state.rules;
 		const strengthLevel = this.state.strengthLevel;
@@ -64,6 +77,7 @@ export default class App extends React.Component {
 				<PasswordBox 
 					label="Your password, please"
 					placeholder="Please fill in your new password"
+					description="May the paswsord be strong with you!"
 					canReveal={true}
 					required={true}
 					underlined={false}
@@ -88,6 +102,8 @@ export default class App extends React.Component {
 					onPasswordChanged={this._handlePasswordChanged}
 					onPasswordBoxInitialized={this._handlePasswordBoxInitialized}
 					onPasswordBoxDisposed={this._handlePasswordBoxDisposed}
+					onFocus={this._handlePasswordBoxFocused}
+					onBlur={this._handlePasswordBoxBlured}
 				/>
 			</div>
 		);

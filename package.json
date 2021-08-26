@@ -1,6 +1,6 @@
 {
 	"name": "lvd-fluentui-passwordbox",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "A ReactJS password box built using the FluentUI library. It features a basic structure, with some additional features",
 	"homepage": "https://github.com/alexboia/LVD-FluentUi-PasswordBox",
 	"repository": {

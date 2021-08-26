@@ -95,7 +95,6 @@ export default class PasswordBox extends React.Component {
 	}
 
 	_handlePasswordFocused(event) {
-		event.preventDefault();
 		if (!!this.state.password) {
 			this.setState({
 				showRulesCallout: true
@@ -105,13 +104,20 @@ export default class PasswordBox extends React.Component {
 		this.setState({
 			showStrengthIndicator: true
 		});
+
+		if (this.props.onFocus != null) {
+			this.props.onFocus(event);
+		}
 	}
 
 	_handlePasswordBlured(event) {
-		event.preventDefault();
 		this.setState({
 			showStrengthIndicator: this._shouldShowOnBlur()
 		});
+
+		if (this.props.onBlur != null) {
+			this.props.onBlur(event);
+		}
 	}
 
 	_shouldShowOnBlur() {
@@ -132,6 +138,7 @@ export default class PasswordBox extends React.Component {
 	_renderPasswordInputField() {
 		const label = this._getLabel();
 		const placeholder = this._getPlaceholder();
+		const description = this._getDescription();
 		const canReveal = this._canReveal();
 		const disabled = this._isDisabled();
 		const required = this._isRequired();
@@ -147,6 +154,7 @@ export default class PasswordBox extends React.Component {
 				type="password"
 				label={label}
 				placeholder={placeholder}
+				description={description}
 				canRevealPassword={canReveal} 
 				disabled={disabled}
 				required={required}
@@ -168,6 +176,10 @@ export default class PasswordBox extends React.Component {
 
 	_getPlaceholder() {
 		return this.props.placeholder || PasswordBoxDefaults.placeholder;
+	}
+
+	_getDescription() {
+		return this.props.description || PasswordBoxDefaults.description;
 	}
 
 	_canReveal() {
@@ -279,6 +291,7 @@ export default class PasswordBox extends React.Component {
 PasswordBox.propTypes = {
 	label: PropTypes.string,
 	placeholder: PropTypes.string,
+	description: PropTypes.string,
 	canReveal: PropTypes.bool,
 	disabled: PropTypes.bool,
 	underlined: PropTypes.bool,
@@ -293,5 +306,8 @@ PasswordBox.propTypes = {
 
 	onPasswordChanged: PropTypes.func,
 	onPasswordBoxInitialized: PropTypes.func,
-	onPasswordBoxDisposed: PropTypes.func
+	onPasswordBoxDisposed: PropTypes.func,
+
+	onFocus: PropTypes.func,
+	onBlur: PropTypes.func
 };

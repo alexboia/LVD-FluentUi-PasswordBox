@@ -4,6 +4,7 @@ import StrengthIndicatorStyles from "./StrengthIndicatorStyles";
 const PasswordBoxDefaults = {
 	label: 'Password:',
 	placeholder: 'Please fill in the password',
+	description: '',
 
 	messages: {
 		empty: 'You must fill in the password'
