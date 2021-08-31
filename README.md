@@ -324,7 +324,7 @@ You may also create your own password rules objects, just as long as they provid
 
 - A descriptive text can now be displayed below the text field input, using the `description` prop;
 - Can now listen for the text field input focus event using the `onFocus` prop;
-- Can now listen for the text field input blur event using the `onBlur` prop
+- Can now listen for the text field input blur event using the `onBlur` prop.
 
 ## Donate
 <a name="pb-donate"></a>
