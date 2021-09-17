@@ -320,6 +320,9 @@ You may also create your own password rules objects, just as long as they provid
 ## Changelog
 <a name="pb-changelog"></a>
 
+### Version 0.0.4
+- Added type definitions.
+
 ### Version 0.0.3
 
 - A descriptive text can now be displayed below the text field input, using the `description` prop;
