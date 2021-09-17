@@ -11,6 +11,8 @@
 		"url": "https://github.com/alexboia/LVD-FluentUi-PasswordBox/issues"
 	},
 	"main": "dist/index.umd2.js",
+	"types": "dist/index.d.ts",
+	"typings": "dist/index.d.ts",
 	"scripts": {
 		"build-app": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./build-app.ps1",
 		"build-dist": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./build-dist.ps1",
