@@ -320,6 +320,9 @@ You may also create your own password rules objects, just as long as they provid
 ## Changelog
 <a name="pb-changelog"></a>
 
+### Version 0.0.5
+- Updated type definitions.
+
 ### Version 0.0.4
 - Added type definitions.
 

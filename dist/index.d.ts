@@ -134,3 +134,15 @@ export declare class PasswordBox extends React.Component<IPasswordBoxProps, {}> 
 	constructor(props:IPasswordBoxProps);
 	render(): JSX.Element;
 }
+
+export interface IPasswordStrengthIndicatorProps {
+	style: StrengthIndicatorStyles;
+	strengthPercent: number;
+	strengthLevel: IPasswordStrengthLevel;
+	strengthText: string;
+}
+
+export declare class PasswordStrengthIndicator extends React.Component<IPasswordStrengthIndicatorProps, {}> {
+	constructor(props: IPasswordStrengthIndicatorProps);
+	render(): JSX.Element;
+}
